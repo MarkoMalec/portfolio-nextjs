@@ -1,7 +1,7 @@
-import { useSession, signOut } from "next-auth/react";
-import { getServerAuthSession } from "~/server/auth";
-import { useState, useEffect } from "react";
-import { PrismaClient } from '@prisma/client';
+import { useState } from 'react';
+import axios, { AxiosError } from 'axios';
+import { useMutation } from '@tanstack/react-query';
+import { useSession, signOut } from 'next-auth/react';
 
 const Dashboard = ({ user }) => {
   const { data: session } = useSession();
@@ -19,31 +19,67 @@ const Dashboard = ({ user }) => {
     );
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
 
-    try {
-        const response = await fetch('/api/posts', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                title: title,
-                content: content,
-            }),
-        });
+//     try {
+//         const response = await fetch('/api/posts', {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//             },
+//             body: JSON.stringify({
+//                 title: title,
+//                 content: content,
+//             }),
+//         });
 
-        if (!response.ok) {
-            throw new Error('Failed to create post');
-        }
+//         if (!response.ok) {
+//             throw new Error('Failed to create post');
+//         }
 
-        const data = await response.json();
-        console.log('Post created:', data);
-    } catch (error) {
-        console.error('Error:', error.message);
+//         const data = await response.json();
+//         console.log('Post created:', data);
+//     } catch (error) {
+//         console.error('Error:', error.message);
+//     }
+// };
+
+const { mutate: createPost, isLoading } = useMutation({
+  mutationFn: async () => {
+    const payload = {
+      title,
+      content,
+      session
+    };
+
+    const { data } = await axios.post('http://localhost:3000/api/posts', payload, { withCredentials: true });
+    return data;
+  },
+  onError: (err) => {
+    if (err instanceof AxiosError) {
+      if (err.response?.status === 401) {
+        console.error("User is not authenticated");
+        // Handle unauthorized error
+        return;
+      }
+      console.error("Failed to create post:", err.message);
     }
+  },
+  onSuccess: (data) => {
+    console.log("Post created:", data);
+    // Handle success - for example, clear the input fields
+    setTitle('');
+    setContent('');
+  },
+});
+
+const handleSubmit = (e) => {
+  e.preventDefault();
+  createPost();
 };
+
+isLoading ?? 'loading';
 
 
   return (
