@@ -20,6 +20,7 @@
     "paths": {
       "~/*": ["./src/*"],
       "@components/*":["src/components/*"],
+      "@Dashboard/*":["src/Dashboard/*"],
       "@context/*":["src/context/*"],
       "@hooks/*":["src/hooks/*"],
       "@assets/*":["src/assets/*"],

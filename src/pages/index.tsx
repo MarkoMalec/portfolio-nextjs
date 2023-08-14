@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { fetchExperiences } from "@utils/data-fetching";
+import { fetchExperiences, fetchPosts } from "@utils/data-fetching";
 import Cursor from "@components/Cursor/Cursor";
 import Sidebar from "@components/Sidebar/Sidebar";
 import Hero from "@components/Hero/Hero";
@@ -26,10 +26,12 @@ export default function Home({ experiences = [] }) {
 
 export async function getServerSideProps() {
   const experiences = await fetchExperiences();
+  const posts = await fetchPosts();
 
   return {
     props: {
       experiences,
+      posts
     },
   };
 }

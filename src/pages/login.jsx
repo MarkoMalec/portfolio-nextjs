@@ -1,16 +1,16 @@
 import { signIn, useSession } from "next-auth/react";
-import Dashboard from "./dashboard";
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 const Login = () => {
   const { data: session } = useSession();
+  const router = useRouter();
 
-  if (session) {
-    return (
-      <div className="logged_in">
-        <Dashboard user={session.user} />
-      </div>
-    );
-  }
+  useEffect(() => {
+    if (session) {
+      router.push('/dashboard');
+    }
+  }, [session]);
 
   return (
     <div>
