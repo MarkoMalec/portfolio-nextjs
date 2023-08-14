@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "checkJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "noUncheckedIndexedAccess": true,
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./src/*"],
+      "@components/*":["src/components/*"],
+      "@context/*":["src/context/*"],
+      "@hooks/*":["src/hooks/*"],
+      "@assets/*":["src/assets/*"],
+      "@api/*": ["src/pages/api/*"],
+      "@utils/*": ["src/utils/*"],
+    }
+  },
+  "include": [
+    ".eslintrc.cjs",
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.cjs",
+    "**/*.mjs"
+, "src/components/Experience/VerticalTimeline.jsx", "src/components/Experience/VerticalTimeline.jsx"  ],
+  "exclude": ["node_modules"]
+}

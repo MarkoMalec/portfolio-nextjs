@@ -1,0 +1,211 @@
+$background-gradient-herotext: -webkit-linear-gradient(
+  40deg,
+  rgba(249, 85, 176, 1) 0%,
+  rgba(235, 125, 14, 1) 25%,
+  rgba(255, 255, 255, 0.8) 50%
+);
+
+.hero-wrapper {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  background: url(../../assets/hero-bg-3.png);
+  transform: scaleX(-1);
+  background-size: cover;
+  background-position-x: -200px;
+  background-repeat: no-repeat;
+  clip-path: polygon(
+    0% 91%,
+    0% 91%,
+    0% 91%,
+    1% 91%,
+    1% 92%,
+    1% 92%,
+    2% 92%,
+    2% 92%,
+    3% 93%,
+    3% 93%,
+    4% 94%,
+    4% 94%,
+    5% 94%,
+    5% 94%,
+    5% 95%,
+    6% 95%,
+    6% 95%,
+    7% 96%,
+    7% 96%,
+    9% 96%,
+    10% 96%,
+    11% 97%,
+    12% 97%,
+    14% 96%,
+    16% 96%,
+    19% 96%,
+    20% 96%,
+    21% 96%,
+    22% 95%,
+    23% 95%,
+    24% 95%,
+    25% 95%,
+    26% 94%,
+    27% 93%,
+    28% 93%,
+    30% 92%,
+    31% 92%,
+    33% 92%,
+    35% 93%,
+    37% 93%,
+    38% 94%,
+    40% 95%,
+    41% 96%,
+    42% 97%,
+    44% 98%,
+    47% 98%,
+    49% 98%,
+    50% 98%,
+    51% 97%,
+    52% 97%,
+    54% 96%,
+    55% 95%,
+    56% 95%,
+    57% 94%,
+    58% 93%,
+    60% 93%,
+    61% 92%,
+    62% 92%,
+    64% 92%,
+    65% 94%,
+    66% 94%,
+    68% 95%,
+    69% 96%,
+    71% 97%,
+    74% 98%,
+    77% 99%,
+    79% 98%,
+    79% 98%,
+    80% 98%,
+    82% 98%,
+    84% 97%,
+    86% 96%,
+    87% 96%,
+    90% 95%,
+    92% 95%,
+    93% 95%,
+    93% 94%,
+    94% 94%,
+    96% 93%,
+    97% 93%,
+    97% 92%,
+    98% 92%,
+    98% 92%,
+    98% 92%,
+    99% 91%,
+    99% 91%,
+    99% 91%,
+    99% 91%,
+    99% 92%,
+    99% 92%,
+    100% 92%,
+    100% 92%,
+    100% 92%,
+    100% 0%,
+    0% 0%
+  );
+
+  .logo_wrapper {
+    width: 100px;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    align-items: center;
+  }
+
+  @media (max-width: 476px) {
+    background-size: 290%;
+    background-position-x: center;
+    background-repeat: no-repeat;
+    align-items: flex-end;
+    padding-bottom: 15rem;
+  }
+
+  .hero-inner {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    transform: scaleX(-1);
+    z-index: 10;
+
+    h4 {
+      color: #9c9d9f;
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: 8.16px;
+      line-height: 24px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 100px;
+      line-height: 1;
+      color: white;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    p {
+      color: #9c9d9f;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 42px;
+    }
+
+    a.btn {
+      display: block;
+      font-size: 21px;
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      margin-top: 24px;
+      padding: 5px 12px;
+      transition: 0.25s ease-in-out;
+
+      &::before {
+        content: "";
+        display: block;
+        height: 6px;
+        width: 126px;
+        background: linear-gradient(
+          298deg,
+          #135799 0%,
+          rgba(19, 87, 153, 0) 100%
+        );
+        border-radius: 5px;
+        transition: 0.15s ease-in-out;
+        transform-origin: left;
+      }
+
+      &:hover::before {
+        transform: scaleX(1.1);
+      }
+
+      @media (max-width: 768px) {
+        font-size: 21px;
+      }
+    }
+
+    @media (max-width: 476px) {
+      flex-direction: column-reverse;
+    }
+  }
+}

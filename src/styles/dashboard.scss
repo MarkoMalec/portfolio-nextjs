@@ -1,0 +1,66 @@
+@import './colors';
+
+.logged_in {
+    height: 100vh;
+    background-color: $dashboard-black;
+    padding: 25px;
+}
+
+#dashboard {
+    min-height: 100%;
+
+    &.dashboard-container {
+        border-radius: 12px;
+        padding: 25px;
+        background: $dashboard-gray;
+    }
+
+    .btn {
+        border: none;
+        padding: 10px 21px;
+        color: $dashboard-white;
+        font-size: 18px;
+        border-radius: 50px;
+        display: block;
+        cursor: pointer;
+        transition: .15s ease-in-out;
+
+        &.btn-primary {
+            background-color: $dashboard-blue;
+
+            &:hover {
+                color: $dashboard-black;
+                background-color: $dashboard-white;
+                box-shadow: 5px 5px 20px $dashboard-black;
+            }
+        }
+    }
+
+    .create-article {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        max-width: 800px;
+
+        input, textarea {
+            background-color: $dashboard-white;
+            border: none;
+            border-radius: 6px;
+            padding: 10px;
+            line-height: 1;
+        }
+
+        textarea {
+            height: 700px;
+            font-size: 18px;
+        }
+
+        input[type="text"] {
+            font-size: 26px;
+        }
+
+        button {
+            align-self: flex-end;
+        }
+    }
+}
