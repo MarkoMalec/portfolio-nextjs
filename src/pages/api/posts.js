@@ -4,12 +4,35 @@ const prisma = new PrismaClient();
 
 export default async function handler(req, res) {
     if (req.method === 'GET') {
-        try {
-            const posts = await prisma.post.findMany();
-            return res.status(200).json(posts);
-        } catch (error) {
-            console.error('Error fetching posts:', error);
-            return res.status(500).json({ error: "Failed to fetch posts." });
+        const { id } = req.query; // Get the id query parameter
+
+        if (id) {
+            // If an ID is provided, fetch a single post
+            try {
+                const singlePost = await prisma.post.findUnique({
+                    where: {
+                        id: parseInt(id, 10),
+                    }
+                });
+
+                if (!singlePost) {
+                    return res.status(404).json({ error: "Post not found." });
+                }
+
+                return res.status(200).json(singlePost);
+            } catch (error) {
+                console.error('Error fetching single post:', error);
+                return res.status(500).json({ error: "Failed to fetch post." });
+            }
+        } else {
+            // If no ID is provided, fetch all posts
+            try {
+                const posts = await prisma.post.findMany();
+                return res.status(200).json(posts);
+            } catch (error) {
+                console.error('Error fetching posts:', error);
+                return res.status(500).json({ error: "Failed to fetch posts." });
+            }
         }
     }
     

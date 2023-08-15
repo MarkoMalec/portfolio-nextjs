@@ -1,19 +1,23 @@
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 import { fetchPosts } from "@utils/data-fetching";
-import DashboardSidebar from '@Dashboard/Sidebar/DashboardSidebar';
+import DashboardSidebar from "@Dashboard/Sidebar/DashboardSidebar";
 
 // Import your subpage components here
-import Posts from '@Dashboard/Posts/Posts';
+import Posts from "@Dashboard/Posts/Posts";
+import NewPost from "@Dashboard/Posts/create";
 
-function DashboardSubpage() {
+function DashboardSubpage({ posts }) {
   const router = useRouter();
   const { subpage } = router.query;
 
   let ContentComponent;
 
   switch (subpage) {
-    case 'posts':
-      ContentComponent = Posts;
+    case "posts":
+      ContentComponent = () => <Posts posts={posts} />;
+      break;
+    case "create":
+      ContentComponent = () => <NewPost />;
       break;
     default:
       ContentComponent = () => <div>Not Found</div>;
@@ -32,31 +36,26 @@ function DashboardSubpage() {
 
 export default DashboardSubpage;
 
-// Example static paths for your subpages
 export async function getStaticPaths() {
-    return {
-      paths: [
-        { params: { subpage: 'posts' } },
-        // Add more paths if you have other subpages
-      ],
-      fallback: false // This will result in a 404 for paths not defined above
-    };
-  }
-  
-  export async function getStaticProps(context) {
-    let posts = [];
-    
-    if (context.params.subpage === 'posts') {
-      posts = await fetchPosts();
-      // No need to call .json() again.
-    }
-  
-    return {
-      props: {
-        posts
-      }
-    };
+  return {
+    paths: [
+      { params: { subpage: "posts" } },
+      { params: { subpage: "create" } },
+    ],
+    fallback: false, // 404
+  };
 }
 
-  
-  
+export async function getStaticProps(context) {
+  let posts = [];
+
+  if (context.params.subpage === "posts") {
+    posts = await fetchPosts();
+  }
+
+  return {
+    props: {
+      posts,
+    },
+  };
+}
