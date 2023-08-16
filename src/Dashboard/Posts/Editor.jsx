@@ -7,7 +7,7 @@ import { useSession } from "next-auth/react";
 import TextareaAutosize from "react-textarea-autosize";
 import { useForm } from "react-hook-form";
 // import { uploadFiles } from "@uploadthing/react";
-import { uploadFiles } from "@lib/uploadthing";
+import { uploadFiles } from "@api/uploadthing";
 
 function Editor() {
   const { data: session } = useSession();
@@ -100,10 +100,10 @@ function Editor() {
             config: {
               uploader: {
                 async uploadByFile(file) {
-                  // upload to uploadthing
-                  console.log(file);
-                  const [res] = await uploadFiles([file], "imageUploader");
-
+                  const [res] = await uploadFiles({
+                    endpoint: "imageUploader",
+                    files: [file],
+                  });
                   return {
                     success: 1,
                     file: {
@@ -141,7 +141,7 @@ function Editor() {
   return (
     <div className="create-article">
       <form onSubmit={handleSubmit}>
-        <TextareaAutosize spellcheck="false" placeholder="Title" />
+        <TextareaAutosize spellCheck="false" placeholder="Title" />
         <div id="editor" />
       </form>
     </div>
