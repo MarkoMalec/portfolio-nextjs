@@ -64,6 +64,7 @@ const NewPost = () => {
         </button>
       </form> */}
       <Editor />
+      <button type="submit" form="article_form">Submit</button>
     </DashboardLayout>
   );
 };

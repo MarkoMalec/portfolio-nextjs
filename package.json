@@ -26,6 +26,7 @@
     "axios": "^1.4.0",
     "circletype": "^2.3.0",
     "cors": "^2.8.5",
+    "editorjs-react-renderer": "^3.5.1",
     "firebase": "^10.1.0",
     "framer-motion": "^10.15.1",
     "gsap": "file:gsap-bonus.tgz",

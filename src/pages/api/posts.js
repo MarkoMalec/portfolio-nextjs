@@ -53,7 +53,7 @@ export default async function handler(req, res) {
             const newPost = await prisma.post.create({
                 data: {
                     title,
-                    content,
+                    content: JSON.stringify(content),
                     authorId: session.user.id,
                 },
             });
