@@ -26,6 +26,7 @@
       "@assets/*":["src/assets/*"],
       "@api/*": ["src/pages/api/*"],
       "@utils/*": ["src/utils/*"],
+      "@lib/*": ["src/lib/*"]
     }
   },
   "include": [

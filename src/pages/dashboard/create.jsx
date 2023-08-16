@@ -3,6 +3,7 @@ import axios, { AxiosError } from "axios";
 import { useMutation } from "@tanstack/react-query";
 import { useSession, getSession, signOut } from "next-auth/react";
 import DashboardLayout from "@Dashboard/layout";
+import Editor from "@Dashboard/Posts/Editor";
 
 const NewPost = () => {
   const { data: session } = useSession();
@@ -62,6 +63,7 @@ const NewPost = () => {
           Publish
         </button>
       </form>
+      <Editor />
     </DashboardLayout>
   );
 };

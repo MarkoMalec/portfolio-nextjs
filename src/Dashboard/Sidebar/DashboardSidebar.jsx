@@ -4,17 +4,16 @@ import { useSession, signOut } from "next-auth/react";
 
 const DashboardSidebar = () => {
   const { data: session } = useSession();
-
-  if (!session) {
-    return <div>Loading</div>;
-  }
-  const user = session.user;
+  const user = session?.user;
 
   return (
     <aside className="sidebar">
       <div className="user_meta">
-        <img src={user.image} alt={`${user.name}'s avatar`} />
-        <span>{user.name}</span>
+        <img 
+          src={user?.image || "/"} 
+          alt={user ? `${user.name}'s avatar` : "empty image"} 
+        />
+        <span>{user?.name || "Loading..."}</span>
       </div>
       <nav className="sidebar-nav">
         <ul>

@@ -7,12 +7,12 @@
 }
 
 #dashboard {
-  height: 95vh;
+  min-height: 95vh;
   margin: 25px;
   border-radius: 12px;
   padding-right: 25px;
   background: $dashboard-gray;
-  overflow: hidden;
+  // overflow: hidden;
 
   aside {
     display: flex;

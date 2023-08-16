@@ -1,13 +1,12 @@
-import { useRouter } from "next/router";
-import DashboardSidebar from "@Dashboard/Sidebar/DashboardSidebar";
 import { fetchSinglePost } from "@utils/data-fetching";
+import DashboardLayout from "@Dashboard/layout";
 
 function SinglePostPage({ post }) {
   return (
-    <>
+    <DashboardLayout>
       <h2>{post.title}</h2>
       <p>{post.content}</p>
-    </>
+    </DashboardLayout>
   );
 }
 
