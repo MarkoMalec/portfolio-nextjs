@@ -47,7 +47,7 @@ const NewPost = () => {
   };
   return (
     <DashboardLayout>
-      <form className="create-article" onSubmit={handleSubmit}>
+      {/* <form className="create-article" onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Title"
@@ -62,7 +62,7 @@ const NewPost = () => {
         <button className="btn btn-primary" type="submit">
           Publish
         </button>
-      </form>
+      </form> */}
       <Editor />
     </DashboardLayout>
   );

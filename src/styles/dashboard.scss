@@ -134,18 +134,23 @@
     gap: 16px;
     max-width: 800px;
 
-    input,
     textarea {
-      background-color: $dashboard-white;
+      background-color: transparent;
       border: none;
-      border-radius: 6px;
-      padding: 10px;
-      line-height: 1;
-    }
+      // line-height: 1;
+      font-size: 71px;
+      font-family: "Arial";
+      font-weight: 700;
+      color: $dashboard-blue;
+      &::spelling-error {
+        text-decoration: none;
+      }
 
-    textarea {
-      height: 700px;
-      font-size: 18px;
+      &:focus {
+        border: 0;
+        border-bottom: 1px solid white;
+        outline: 0;
+      }
     }
 
     input[type="text"] {

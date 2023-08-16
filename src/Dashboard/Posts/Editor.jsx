@@ -101,6 +101,7 @@ function Editor() {
               uploader: {
                 async uploadByFile(file) {
                   // upload to uploadthing
+                  console.log(file);
                   const [res] = await uploadFiles([file], "imageUploader");
 
                   return {
@@ -138,9 +139,9 @@ function Editor() {
   }, [isMounted, initializeEditor]);
 
   return (
-    <div className="post_form_wrapper">
+    <div className="create-article">
       <form onSubmit={handleSubmit}>
-        <TextareaAutosize placeholder="Title" />
+        <TextareaAutosize spellcheck="false" placeholder="Title" />
         <div id="editor" />
       </form>
     </div>
