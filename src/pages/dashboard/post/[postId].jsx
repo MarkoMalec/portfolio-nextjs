@@ -4,14 +4,10 @@ import { fetchSinglePost } from "@utils/data-fetching";
 
 function SinglePostPage({ post }) {
   return (
-    <div id="dashboard" className="dashboard-container">
-      <DashboardSidebar />
-      <div className="dashboard-content">
-        {console.log(post)}
-        <h2>{post.title}</h2>
-        <p>{post.content}</p>
-      </div>
-    </div>
+    <>
+      <h2>{post.title}</h2>
+      <p>{post.content}</p>
+    </>
   );
 }
 

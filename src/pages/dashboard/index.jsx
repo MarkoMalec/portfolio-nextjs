@@ -1,32 +1,25 @@
-// import { useState } from "react";
-import DashboardSidebar from "@Dashboard/Sidebar/DashboardSidebar";
-// import axios, { AxiosError } from "axios";
-// import { useMutation } from "@tanstack/react-query";
-import { useSession, getSession, signOut } from "next-auth/react";
-// import { useRouter } from "next/router";
-import SubpageContent from "./[subpage]";
+import { useSession, getSession } from "next-auth/react";
+import Link from "next/link";
+import DashboardLayout from "@Dashboard/layout";
 
 const Dashboard = ({ user }) => {
-
-  const session = useSession();
-
+  let session = useSession();
+  console.log(user);
   if (!session) {
     return (
-      <div>
-        You are not logged in!
-        <br />
-        <a href="/login">Login</a>
+      <div className="not_logged_in">
+        <span>You are not logged in!</span>
+        <Link className="btn btn-primary" href="/login">
+          Login
+        </Link>
       </div>
     );
   }
 
   return (
-    <div id="dashboard" className="dashboard-container">
-      <DashboardSidebar />
-      <div className="dashboard-content">
-        <h1>Welcome {user.name}</h1>
-      </div>
-    </div>
+    <DashboardLayout>
+      <h1>Welcome {user.name}</h1>
+    </DashboardLayout>
   );
 };
 
@@ -42,6 +35,7 @@ export const getServerSideProps = async (context) => {
   }
   return {
     props: {
+      session: session,
       user: session.user,
     },
   };
