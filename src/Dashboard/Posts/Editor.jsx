@@ -22,7 +22,7 @@ function Editor({ postData }) {
   const ref = useRef();
   const _titleRef = useRef(null);
 
-  const { mutate: createPost, isLoading } = useMutation({
+  const { mutate: createPost, mutate: editPost, isLoading } = useMutation({
     mutationFn: async (data) => {
       const { title, content, session } = data;
   
