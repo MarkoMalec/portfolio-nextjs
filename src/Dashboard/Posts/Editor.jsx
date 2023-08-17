@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import { uploadFiles } from "@lib/uploadthing";
 import { useSession, getSession, signOut } from "next-auth/react";
 
-function Editor() {
+function Editor({ postData }) {
   const { data: session } = useSession();
   const [isMounted, setIsMounted] = useState(false);
   const { register, handleSubmit } = useForm({

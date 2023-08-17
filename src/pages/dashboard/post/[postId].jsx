@@ -1,5 +1,6 @@
 import { fetchSinglePost } from "@utils/data-fetching";
 import DashboardLayout from "@Dashboard/layout";
+import Editor from "@Dashboard/Posts/Editor";
 import dynamic from "next/dynamic";
 
 const Output = dynamic(
@@ -17,7 +18,8 @@ function SinglePostPage({ post }) {
   return (
     <DashboardLayout>
       <h1>{post.title}</h1>
-      <Output data={contentObject} />
+      {/* <Output data={contentObject} /> */}
+      <Editor postData={post} />
     </DashboardLayout>
   );
 }
