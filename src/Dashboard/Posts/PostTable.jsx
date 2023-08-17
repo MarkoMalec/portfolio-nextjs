@@ -1,5 +1,7 @@
-import Link from "next/link";
 import React from "react";
+import Link from "next/link";
+import PostSettings from "./PostSettings";
+import axios from "axios";
 
 const PostTable = ({ posts }) => {
   // Convert ISO string dates to JavaScript Date objects
@@ -14,7 +16,7 @@ const PostTable = ({ posts }) => {
 
   return (
     <div className="posts_list">
-      <table id="posts_table" >
+      <table id="posts_table">
         <thead>
           <tr>
             <th>ID</th>
@@ -27,8 +29,9 @@ const PostTable = ({ posts }) => {
           {formattedPosts.map((post) => (
             <tr key={post.id}>
               <td>{post.id}</td>
-              <td>
+              <td className="post_name-column">
                 <Link href={`/dashboard/post/${post.id}`}>{post.title}</Link>
+                <PostSettings postid={post.id} />
               </td>
               <td>{post.createdAt}</td>
               <td>{post.updatedAt}</td>

@@ -65,6 +65,26 @@ export default async function handler(req, res) {
         }
     }
 
+    if (req.method === 'DELETE') {
+        const { id } = req.body; // Get the ID from the request body or query params
+      
+        if (!id) {
+          return res.status(400).json({ error: "ID is required." });
+        }
+      
+        try {
+          await prisma.post.delete({
+            where: {
+              id: parseInt(id, 10),
+            },
+          });
+          return res.status(200).json({ message: "Post deleted successfully." });
+        } catch (error) {
+          console.error('Error deleting post:', error);
+          return res.status(500).json({ error: "Failed to delete post." });
+        }
+      }      
+
     // Handle unsupported methods
     return res.status(405).end(); // Method Not Allowed for unsupported methods
 }

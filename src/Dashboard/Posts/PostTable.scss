@@ -1,3 +1,5 @@
+@import '../../styles/colors';
+
 .posts_list {
     overflow-x: auto;
 
@@ -17,7 +19,32 @@
         border: 1px solid black;
         padding: 8px;
         text-align: left;
-        height: 80px;
+        height: 100px;
+
+        &.post_name-column {
+          position: relative;
+
+          .post_toolbar {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            display: flex;
+            gap: 5px;
+            padding: 5px 12px;
+
+            button {
+              padding: 2px 5px;
+              border: none;
+              background-color: $dashboard-blue;
+              border-radius: 5px;
+
+              &:hover {
+                background-color: $dashboard-gray;
+                color: white;
+              }
+            }
+          }
+        }
       }
     }
 }

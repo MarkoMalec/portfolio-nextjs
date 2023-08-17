@@ -129,10 +129,11 @@
   }
 
   .create-article {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    max-width: 800px;
+    max-width: 1600px;
+    height: 100%;
+    background-color: #171717;
+    padding: 25px 35px;
+    border-radius: 12px;
 
     textarea {
       background-color: transparent;
@@ -142,6 +143,8 @@
       font-family: "Arial";
       font-weight: 700;
       color: $dashboard-blue;
+      padding-left: 50px;
+
       &::spelling-error {
         text-decoration: none;
       }
@@ -150,6 +153,23 @@
         border: 0;
         border-bottom: 1px solid white;
         outline: 0;
+      }
+    }
+
+    #editor {
+      // background-color: white;
+      border-top: 1px solid $dashboard-black;
+      font-size: 18px;
+      color: rgb(217, 217, 217);
+
+      .ce-block__content, .ce-toolbar__content { max-width:calc(98% - 80px) !important; } .cdx-block { max-width: 98% !important; }
+
+      .ce-toolbar__plus {
+        color: white;
+
+        &::selection {
+          background-color: $dashboard-blue;
+        }
       }
     }
 

@@ -1,6 +1,7 @@
 import { fetchPosts } from "@utils/data-fetching";
 import DashboardLayout from "@Dashboard/layout";
 import PostTable from "@Dashboard/Posts/PostTable";
+import { PrismaClient } from "@prisma/client";
 
 function PostsPage({ posts }) {
   return (
