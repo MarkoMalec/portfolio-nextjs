@@ -30,7 +30,7 @@ const PostTable = ({ posts }) => {
             <tr key={post.id}>
               <td>{post.id}</td>
               <td className="post_name-column">
-                <Link href={`/dashboard/post/${post.id}`}>{post.title}</Link>
+                <Link href={`/dashboard/post/${post.id}/edit`}>{post.title}</Link>
                 <PostSettings postid={post.id} />
               </td>
               <td>{post.createdAt}</td>

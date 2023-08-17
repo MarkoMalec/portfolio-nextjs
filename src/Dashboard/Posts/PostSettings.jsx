@@ -16,7 +16,7 @@ const PostSettings = ({ postid }) => {
 
   return (
     <div className="post_toolbar">
-      <Link href={`/dashboard/post/${postid}`}>Edit</Link>
+      <Link href={`/dashboard/post/${postid}/edit`}>Edit</Link>
       <button onClick={() => deletePost(postid)}>Delete</button>
     </div>
   );
