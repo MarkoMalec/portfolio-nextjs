@@ -10,7 +10,7 @@ import { useForm } from "react-hook-form";
 import { uploadFiles } from "@lib/uploadthing";
 import { useSession } from "next-auth/react";
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css'
+import "react-toastify/dist/ReactToastify.css";
 
 function Editor({ editPostData }) {
   const { data: session } = useSession();
@@ -63,7 +63,7 @@ function Editor({ editPostData }) {
       // router.refresh();
 
       console.log("Post created:", data);
-      return toast("Post Published!")
+      return toast("Post Published!");
     },
   });
 
@@ -215,26 +215,37 @@ function Editor({ editPostData }) {
   }
 
   return (
-    <div className="create-article">
-      <ToastContainer />
-      <form id="article_form" onSubmit={handleSubmit(onSubmit)}>
-        <TextareaAutosize
-          className="editor_post-title"
-          ref={(e) => {
-            _titleRef(e);
-          }}
-          {...register("title")}
-          spellCheck="false"
-          placeholder="Title"
-          value={editPostTitle}
-          onChange={(e) => setEditPostTitle(e.target.value)}
-        />
-        <div id="editor" />
-      </form>
-      <button type="submit" form="article_form">
-        Submit
+    <>
+      <div className="create-article">
+        <ToastContainer />
+        <form id="article_form" onSubmit={handleSubmit(onSubmit)}>
+          <div className="editor_post-title--wrapper">
+            <TextareaAutosize
+              className="editor_post-title"
+              ref={(e) => {
+                _titleRef(e);
+              }}
+              {...register("title")}
+              spellCheck="false"
+              placeholder="Title"
+              value={editPostTitle}
+              onChange={(e) => setEditPostTitle(e.target.value)}
+            />
+          </div>
+          <div id="editor" />
+          <p className="editor_post--tip">
+            Use <kbd>Tab</kbd> to open the command menu.
+          </p>
+        </form>
+      </div>
+      <button
+        type="submit"
+        form="article_form"
+        className="btn btn-primary editor_post-button"
+      >
+        Publish
       </button>
-    </div>
+    </>
   );
 }
 

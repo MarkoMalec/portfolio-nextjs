@@ -142,39 +142,47 @@
   }
 
   .create-article {
-    max-width: 1600px;
     background-color: #171717;
     padding: 25px 35px;
     border-radius: 12px;
+    margin-bottom: 25px;
 
-    textarea.editor_post-title {
-      background-color: transparent;
-      border: none;
-      // line-height: 1;
-      font-size: 71px;
-      font-family: "Arial";
-      font-weight: 700;
-      color: $dashboard-blue;
-      padding-left: 50px;
+    .editor_post-title--wrapper {
+      min-height: 100px;
+      margin-bottom: 50px;
 
-      &::spelling-error {
-        text-decoration: none;
-      }
+      textarea.editor_post-title {
+        background-color: transparent;
+        border: none;
+        font-size: 71px;
+        font-family: "Arial";
+        font-weight: 700;
+        color: $dashboard-blue;
+        padding-left: 50px;
+        overflow: hidden;
 
-      &:focus {
-        border: 0;
-        border-bottom: 1px solid white;
-        outline: 0;
+        &::spelling-error {
+          text-decoration: none;
+        }
+
+        &:focus {
+          border: 0;
+          outline: 0;
+        }
       }
     }
 
     #editor {
-      // background-color: white;
-      border-top: 1px solid $dashboard-black;
       font-size: 18px;
       color: rgb(217, 217, 217);
 
-      .ce-block__content, .ce-toolbar__content { max-width:calc(98% - 80px) !important; } .cdx-block { max-width: 98% !important; }
+      .ce-block__content,
+      .ce-toolbar__content {
+        max-width: calc(98% - 80px) !important;
+      }
+      .cdx-block {
+        max-width: 98% !important;
+      }
 
       .ce-toolbar__plus {
         color: white;
@@ -185,18 +193,24 @@
       }
     }
 
-    input[type="text"] {
-      font-size: 26px;
-    }
+    .editor_post--tip {
+      color: white;
 
-    button {
-      align-self: flex-end;
+      kbd {
+        background-color: $dashboard-blue;
+        border-radius: 4px;
+        padding: 1px 3px;
+      }
     }
+  }
+
+  .editor_post-button {
+    margin-left: auto;
   }
 
   #posts_table {
     tr:nth-child(even) {
-        background-color: rgba(211, 211, 211, 0.208);
+      background-color: rgba(211, 211, 211, 0.208);
     }
   }
 }
