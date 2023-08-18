@@ -3,16 +3,23 @@
 import React, { useCallback, useRef, useState, useEffect } from "react";
 import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
+// import { useRouter } from 'next/router';
 import TextareaAutosize from "react-textarea-autosize";
 import { useForm } from "react-hook-form";
 import { uploadFiles } from "@lib/uploadthing";
-import { useSession, getSession, signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
 
 function Editor({ editPostData }) {
   const { data: session } = useSession();
+  const router = useRouter();
+  // const pathname = usePathname();
   const [isMounted, setIsMounted] = useState(false);
   const [contentChanged, setContentChanged] = useState(false);
-  const [editPostTitle, setEditPostTitle] = useState('');
+  const [editPostTitle, setEditPostTitle] = useState("");
+
   const { register, handleSubmit } = useForm({
     defaultValues: {
       title: "",
@@ -49,7 +56,14 @@ function Editor({ editPostData }) {
       }
     },
     onSuccess: (data) => {
+      // toast("Post Published!");
+      const newPathname = `/dashboard/post/${data.id}/edit`;
+
+      router.push(newPathname);
+      // router.refresh();
+
       console.log("Post created:", data);
+      return toast("Post Published!")
     },
   });
 
@@ -178,8 +192,6 @@ function Editor({ editPostData }) {
       session: session,
     };
 
-    console.log(editPostTitle);
-
     // Validation
     const missingContent = payload.content.blocks.length === 0;
     const missingTitle = payload.title === "";
@@ -204,8 +216,10 @@ function Editor({ editPostData }) {
 
   return (
     <div className="create-article">
+      <ToastContainer />
       <form id="article_form" onSubmit={handleSubmit(onSubmit)}>
         <TextareaAutosize
+          className="editor_post-title"
           ref={(e) => {
             _titleRef(e);
           }}

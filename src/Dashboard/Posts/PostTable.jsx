@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import PostSettings from "./PostSettings";
 import axios from "axios";
 
-const PostTable = ({ posts }) => {
+const PostTable = ({ postsData }) => {
+  const [posts, setPosts] = useState(postsData);
+
   // Convert ISO string dates to JavaScript Date objects
   const formattedPosts = posts.map((post) => ({
     ...post,
@@ -13,6 +15,12 @@ const PostTable = ({ posts }) => {
 
   // If needed in the future, you can sort them like:
   // formattedPosts.sort((a, b) => b.createdAt - a.createdAt); // For sorting in descending order
+
+  const handleDelete = (deletedPostId) => {
+    setPosts((prevPosts) =>
+      prevPosts.filter((post) => post.id !== deletedPostId)
+    );
+  };
 
   return (
     <div className="posts_list">
@@ -30,8 +38,13 @@ const PostTable = ({ posts }) => {
             <tr key={post.id}>
               <td>{post.id}</td>
               <td className="post_name-column">
-                <Link href={`/dashboard/post/${post.id}/edit`}>{post.title}</Link>
-                <PostSettings postid={post.id} />
+                <Link href={`/dashboard/post/${post.id}/edit`}>
+                  {post.title}
+                </Link>
+                <PostSettings
+                  postid={post.id}
+                  onDelete={() => handleDelete(post.id)}
+                />
               </td>
               <td>{post.createdAt}</td>
               <td>{post.updatedAt}</td>

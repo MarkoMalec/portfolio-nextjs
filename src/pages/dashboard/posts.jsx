@@ -6,7 +6,7 @@ import { PrismaClient } from "@prisma/client";
 function PostsPage({ posts }) {
   return (
     <DashboardLayout>
-      <PostTable posts={posts} />
+      <PostTable postsData={posts} />
     </DashboardLayout>
   );
 }

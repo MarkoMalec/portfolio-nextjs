@@ -1,22 +1,23 @@
-@import '../../styles/colors';
+@import "../../styles/colors";
 
 .posts_list {
-    overflow-x: auto;
+  overflow-x: auto;
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    
-      th {
-        border: 1px solid black;
-        padding: 8px;
-        text-align: left;
-        background-color: #f2f2f2;
-      }
-    
+  table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+      background-color: #f2f2f2;
+    }
+
+    tr {
       td {
         color: white;
-        border: 1px solid black;
+        // border: 1px solid black;
         padding: 8px;
         text-align: left;
         height: 100px;
@@ -27,12 +28,12 @@
           .post_toolbar {
             position: absolute;
             bottom: 0;
-            right: 0;
-            display: flex;
+            left: 0;
+            display: none;
             gap: 5px;
-            padding: 5px 12px;
+            padding: 10px 10px;
 
-            button {
+            a {
               padding: 2px 5px;
               border: none;
               background-color: $dashboard-blue;
@@ -46,5 +47,12 @@
           }
         }
       }
+      // tr {
+      &:hover {
+        td .post_toolbar {
+          display: flex;
+        }
+      }
     }
+  }
 }

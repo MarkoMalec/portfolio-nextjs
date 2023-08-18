@@ -8,11 +8,11 @@ const DashboardSidebar = () => {
 
   return (
     <aside className="sidebar">
-      <div className="user_meta">
         <img 
           src={user?.image || "/"} 
           alt={user ? `${user.name}'s avatar` : "empty image"} 
         />
+      <div className="user_meta">
         <span>{user?.name || "Loading..."}</span>
       </div>
       <nav className="sidebar-nav">

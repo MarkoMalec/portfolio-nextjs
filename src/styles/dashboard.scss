@@ -22,12 +22,22 @@
     width: 250px;
     box-shadow: 5px 0 20px $dashboard-black;
     padding: 25px;
+    overflow: hidden;
+    position: relative;
+
+    > img {
+      top: -100px;
+      left: -80px;
+      z-index: 1;
+      border-radius: 1000px;
+    }
 
     .user_meta {
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 16px;
-      padding: 10px 15px;
+      padding: 16px 15px;
       background-color: $dashboard-gray;
       border-radius: 1000px;
       box-shadow: 5px 6px 16px #0000005c;
@@ -47,6 +57,7 @@
     }
 
     nav.sidebar-nav {
+      z-index: 10;
       ul {
         margin: 0;
         padding: 0;
@@ -95,6 +106,8 @@
   .dashboard-content {
     padding: 25px;
     width: 90%;
+    max-height: 95vh;
+    overflow-y: scroll;
   }
 
   .btn {
@@ -134,7 +147,7 @@
     padding: 25px 35px;
     border-radius: 12px;
 
-    textarea {
+    textarea.editor_post-title {
       background-color: transparent;
       border: none;
       // line-height: 1;
