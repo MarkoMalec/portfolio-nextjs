@@ -19,7 +19,19 @@ const config = {
     locales: ["en"],
     defaultLocale: "en",
   },
-  
+  experimental: {
+    esmExternals: false, // THIS IS THE FLAG THAT MATTERS
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'uploadthing.com',
+        port: '',
+        pathname: '/f/**',
+      },
+    ],
+  },
 };
 
 export default config;

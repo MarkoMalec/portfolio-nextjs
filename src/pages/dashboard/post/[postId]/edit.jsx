@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { fetchSinglePost } from "@utils/data-fetching";
 import DashboardLayout from "@Dashboard/layout";
 import Editor from "@Dashboard/Posts/Editor";
+import FeaturedPhoto from "@Dashboard/Posts/FeaturedPhoto";
 
 const EditPost = ({ post }) => {
   return (
     <DashboardLayout>
+      <FeaturedPhoto />
       <Editor editPostData={post} />
     </DashboardLayout>
   );

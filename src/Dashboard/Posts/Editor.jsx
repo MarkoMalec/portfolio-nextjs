@@ -4,7 +4,6 @@ import React, { useCallback, useRef, useState, useEffect } from "react";
 import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-// import { useRouter } from 'next/router';
 import TextareaAutosize from "react-textarea-autosize";
 import { useForm } from "react-hook-form";
 import { uploadFiles } from "@lib/uploadthing";
@@ -142,8 +141,8 @@ function Editor({ editPostData }) {
               uploader: {
                 async uploadByFile(file) {
                   const [res] = await uploadFiles({
-                    endpoint: "imageUploader",
                     files: [file],
+                    endpoint: "imageUploader",
                   });
 
                   return {

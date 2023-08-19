@@ -14,6 +14,11 @@
   background: $dashboard-gray;
   // overflow: hidden;
 
+  .dashboard-block {
+    border-radius: 12px;
+    padding: 10px;
+  }
+
   aside {
     display: flex;
     flex-direction: column;
@@ -141,11 +146,75 @@
     }
   }
 
+  .post_creation-wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template:
+      "editor editor editor featured"
+      "editor editor editor featured"
+      "none none button fetured";
+    gap: 30px;
+
+    .featured_image-block {
+      // max-width: 300px;
+      background-color: $dashboard-blue;
+
+      h5 {
+        margin: 0;
+        margin-bottom: 16px;
+        color: $dashboard-white;
+      }
+
+      img {
+        width: 100%;
+        max-height: 200px;
+        object-fit: contain;
+      }
+
+      > div.flex {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        justify-content: center;
+        align-items: flex-end;
+
+        label {
+          display: flex;
+          overflow: hidden;
+          position: relative;
+          justify-content: center;
+          align-items: center;
+          border-radius: 0.375rem;
+          width: 9rem;
+          height: 2.5rem;
+          color: $dashboard-black;
+          background-color: $dashboard-white;
+          cursor: pointer;
+
+          input {
+            display: none;
+          }
+        }
+
+        > div {
+          display: none;
+        }
+      }
+
+      .featured_image-preview {
+        border: 1px solid $dashboard-gray;
+        padding-top: 20px;
+        padding-bottom: 18px;
+        margin-bottom: 10px;
+      }
+    }
+  }
+
   .create-article {
     background-color: #171717;
     padding: 25px 35px;
     border-radius: 12px;
-    margin-bottom: 25px;
+    grid-area: editor;
 
     .editor_post-title--wrapper {
       min-height: 100px;
@@ -205,7 +274,7 @@
   }
 
   .editor_post-button {
-    margin-left: auto;
+    grid-area: button;
   }
 
   #posts_table {

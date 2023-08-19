@@ -55,6 +55,7 @@ export default async function handler(req, res) {
           title,
           content: JSON.stringify(content),
           authorId: session.user.id,
+          featuredPhoto: ''
         },
       });
 
