@@ -11,7 +11,7 @@ import { useSession } from "next-auth/react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function Editor({ editPostData }) {
+function Editor({ editPostData, featuredPhoto }) {
   const { data: session } = useSession();
   const router = useRouter();
   // const pathname = usePathname();
@@ -40,6 +40,7 @@ function Editor({ editPostData }) {
           title,
           content,
           session,
+          featuredPhoto
         },
         { withCredentials: true }
       );

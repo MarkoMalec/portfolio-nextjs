@@ -5,10 +5,17 @@ import Editor from "@Dashboard/Posts/Editor";
 import FeaturedPhoto from "@Dashboard/Posts/FeaturedPhoto";
 
 const EditPost = ({ post }) => {
+  const [featuredPhoto, setFeaturedPhoto] = useState(null);
+
   return (
     <DashboardLayout>
-      <FeaturedPhoto />
-      <Editor editPostData={post} />
+      <section className="post_creation-wrapper">
+        <FeaturedPhoto
+          initialPhoto={post.featuredPhoto}
+          setFeaturedPhoto={setFeaturedPhoto}
+        />
+        <Editor editPostData={post} />
+      </section>
     </DashboardLayout>
   );
 };

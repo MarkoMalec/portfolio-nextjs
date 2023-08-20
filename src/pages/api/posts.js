@@ -4,10 +4,10 @@ const prisma = new PrismaClient();
 
 export default async function handler(req, res) {
   if (req.method === "GET") {
-    const { id } = req.query; // Get the id query parameter
+    const { id, title } = req.query; // Get the id query parameter
 
     if (id) {
-      // If an ID is provided, fetch a single post
+      // If an ID or Title is provided, fetch a single post
       try {
         const singlePost = await prisma.post.findUnique({
           where: {
@@ -21,8 +21,25 @@ export default async function handler(req, res) {
 
         return res.status(200).json(singlePost);
       } catch (error) {
-        console.error("Error fetching single post:", error);
-        return res.status(500).json({ error: "Failed to fetch post." });
+        console.error("Error fetching single post by ID:", error);
+        return res.status(500).json({ error: `Failed to fetch post. Reason ${error.message}` });
+      }
+    } else if (title) {
+      try {
+        const singlePost = await prisma.post.findUnique({
+          where: {
+            title: title,
+          },
+        });
+
+        if (!singlePost) {
+          return res.status(404).json({ error: "Post not found." });
+        }
+
+        return res.status(200).json(singlePost);
+      } catch (error) {
+        console.error("Error fetching single post by title:", error);
+        return res.status(500).json({ error: `Failed to fetch post. Reason: ${error.message}` });
       }
     } else {
       // If no ID is provided, fetch all posts
@@ -30,8 +47,8 @@ export default async function handler(req, res) {
         const posts = await prisma.post.findMany();
         return res.status(200).json(posts);
       } catch (error) {
-        console.error("Error fetching posts:", error);
-        return res.status(500).json({ error: "Failed to fetch posts." });
+        console.error("Error fetching posts by whatever:", error);
+        return res.status(500).json({ error: `Failed to fetch posts. reason: ${error.message}` });
       }
     }
   }
@@ -55,7 +72,7 @@ export default async function handler(req, res) {
           title,
           content: JSON.stringify(content),
           authorId: session.user.id,
-          featuredPhoto: ''
+          featuredPhoto: req.body.featuredPhoto,
         },
       });
 

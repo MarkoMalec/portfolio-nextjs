@@ -3,8 +3,8 @@ import { UploadButton } from "@uploadthing/react";
 import placeholder from "@assets/placeholder.svg";
 import Image from "next/image";
 
-function FeaturedPhoto() {
-  const [photo, setPhoto] = useState("");
+function FeaturedPhoto({ initialPhoto, setFeaturedPhoto }) {
+  const [photo, setPhoto] = useState(initialPhoto || "");
 
   return (
     <section className="dashboard-block featured_image-block">
@@ -21,6 +21,7 @@ function FeaturedPhoto() {
         endpoint="imageUploader"
         onClientUploadComplete={(res) => {
           setPhoto(res[0].fileUrl);
+          setFeaturedPhoto(res[0].fileUrl);
         }}
         onUploadError={(error) => {
           alert(`ERROR! ${error.message}`);

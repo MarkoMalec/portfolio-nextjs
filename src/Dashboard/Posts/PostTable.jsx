@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import PostSettings from "./PostSettings";
-import axios from "axios";
 
 const PostTable = ({ postsData }) => {
   const [posts, setPosts] = useState(postsData);
