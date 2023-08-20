@@ -1,6 +1,3 @@
-// import { fetchSinglePost } from "@utils/data-fetching";
-// import DashboardLayout from "@Dashboard/layout";
-// import Editor from "@Dashboard/Posts/Editor";
 // import dynamic from "next/dynamic";
 
 // const Output = dynamic(
@@ -16,10 +13,7 @@
 //   const contentObject = JSON.parse(post.content);
 
 //   return (
-//     <DashboardLayout>
-//       <h1>{post.title}</h1>
 //       {/* <Output data={contentObject} /> */}
-//       <Editor />
 //     </DashboardLayout>
 //   );
 // }
