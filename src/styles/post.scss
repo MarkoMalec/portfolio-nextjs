@@ -1,0 +1,16 @@
+@import '../styles/colors';
+
+.container.post {
+    max-width: 900px;
+    background-color: #1015238f;
+
+    article {
+        color: $dashboard-white;
+        .post_thumbnail {
+            position: relative;
+            width: 800px;
+            height: 360px;
+            margin-inline: auto;
+        }
+    }
+}

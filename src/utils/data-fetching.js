@@ -22,3 +22,4 @@ export async function fetchSinglePost(id, title) {
     }
     return res.json();
 }
+

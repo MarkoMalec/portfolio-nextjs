@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { fetchExperiences, fetchPosts } from "@utils/data-fetching";
 import Cursor from "@components/Cursor/Cursor";
+import AdminBar from "@components/AdminBar/AdminBar";
 import Sidebar from "@components/Sidebar/Sidebar";
 import Hero from "@components/Hero/Hero";
 import Experience from "@components/Experience/Experience";

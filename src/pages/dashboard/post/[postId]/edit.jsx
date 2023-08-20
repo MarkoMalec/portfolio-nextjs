@@ -5,7 +5,9 @@ import Editor from "@Dashboard/Posts/Editor";
 import FeaturedPhoto from "@Dashboard/Posts/FeaturedPhoto";
 
 const EditPost = ({ post }) => {
-  const [featuredPhoto, setFeaturedPhoto] = useState(null);
+  const [featuredPhoto, setFeaturedPhoto] = useState(post.featuredPhoto);
+
+  console.log(featuredPhoto);
 
   return (
     <DashboardLayout>
@@ -14,7 +16,7 @@ const EditPost = ({ post }) => {
           initialPhoto={post.featuredPhoto}
           setFeaturedPhoto={setFeaturedPhoto}
         />
-        <Editor editPostData={post} />
+        <Editor editPostData={post} featuredPhoto={featuredPhoto} />
       </section>
     </DashboardLayout>
   );

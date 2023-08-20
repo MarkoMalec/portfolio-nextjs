@@ -5,6 +5,7 @@
 @import "./src/components/Experience/Experience.scss";
 @import "./src/components/Projects/Projects.scss";
 @import "./blog.scss";
+@import "./post.scss";
 @import "./src/components/elements/PostGrid.scss";
 @import "./src/Dashboard/Posts/PostTable.scss";
 
@@ -65,5 +66,23 @@ button {
 @media (min-width: 1536px) {
   .container {
     max-width: 1356px;
+  }
+}
+
+#adminbar {
+  position: sticky;
+  top: 0;
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  background: $dashboard-black;
+  z-index: 9999999;
+  padding: 5px 10px;
+
+  a {
+    background-color: $dashboard-blue;
+    border-radius: 6px;
+    font-size: 14px;
+    padding: 2px 8px;
   }
 }

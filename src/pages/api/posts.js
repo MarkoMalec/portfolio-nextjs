@@ -6,7 +6,7 @@ export default async function handler(req, res) {
   if (req.method === "GET") {
     const { id, title } = req.query; // Get the id query parameter
 
-    if (id) {
+    if (id && id !== 'undefined') {
       // If an ID or Title is provided, fetch a single post
       try {
         const singlePost = await prisma.post.findUnique({
@@ -22,13 +22,17 @@ export default async function handler(req, res) {
         return res.status(200).json(singlePost);
       } catch (error) {
         console.error("Error fetching single post by ID:", error);
-        return res.status(500).json({ error: `Failed to fetch post. Reason ${error.message}` });
+        return res.status(500).json({ error: `Failed to fetch post. Reasons ${error.message}` });
       }
-    } else if (title) {
+    } else if (title && title.trim() !== "") {
+      const decodedTitle = decodeURIComponent(title);
+
       try {
-        const singlePost = await prisma.post.findUnique({
+        const singlePost = await prisma.post.findFirst({
           where: {
-            title: title,
+            title: {
+              equals: decodedTitle,
+            },
           },
         });
 

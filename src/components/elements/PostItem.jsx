@@ -11,7 +11,7 @@ const PostItem = ({ featuredPhoto, postTitle, postContent }) => {
     <div className="post_item">
       <Link href={`/blog/post/${postTitle}`}>
         <div className="post_thumbnail">
-          <Image src={featuredPhoto} alt="test" layout="fill" sizes="unsized" />
+          <Image src={featuredPhoto} alt={postTitle} layout="fill" sizes="unsized" />
         </div>
         <div className="post_meta">
           <h2>{postTitle}</h2>

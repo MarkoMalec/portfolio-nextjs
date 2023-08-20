@@ -1,22 +1,60 @@
-import React from 'react';
-import { fetchSinglePost } from '@utils/data-fetching';
+import React from "react";
+import Head from "next/head";
+import Image from "next/image";
+import Link from "next/link";
+import { fetchSinglePost } from "@utils/data-fetching";
+import AdminBar from "@components/AdminBar/Adminbar";
 
-function SinglePost({ postTitle }) {
-    console.log(postTitle);
+import dynamic from "next/dynamic";
+
+const Output = dynamic(
+  async () => (await import("editorjs-react-renderer")).default,
+  { ssr: false }
+);
+
+function SinglePost({ post }) {
+  const contentObject = JSON.parse(post.content);
   return (
-    <div>index</div>
-  )
+    <>
+      <Head>
+        <title>{post.title}</title>
+      </Head>
+      <AdminBar>
+        <Link href={`/dashboard/post/${post.id}/edit`}>Edit Post</Link>
+      </AdminBar>
+      <main className="container post">
+        <article>
+          <div className="post_title">
+            <h1>{post.title}</h1>
+          </div>
+          <div className="post_thumbnail">
+            <Image
+              src={post.featuredPhoto}
+              alt="Featured post photo"
+              layout="fill"
+              sizes="unsized"
+              objectFit="cover"
+            />
+          </div>
+          <div className="post_content">
+            <Output data={contentObject} />
+          </div>
+        </article>
+        <Link href="/blog">All articles</Link>
+      </main>
+    </>
+  );
 }
 
 export default SinglePost;
 
 export async function getServerSideProps(context) {
-    console.log(context.params.postTitle)
-    const postTitle = await fetchSinglePost(context.params.postTitle);
-  
-    return {
-      props: {
-        postTitle,
-      },
-    };
-  }
+  console.log(context.params.postTitle);
+  const post = await fetchSinglePost(undefined, context.params.postTitle);
+
+  return {
+    props: {
+      post,
+    },
+  };
+}

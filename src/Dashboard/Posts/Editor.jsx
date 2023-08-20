@@ -69,7 +69,9 @@ function Editor({ editPostData, featuredPhoto }) {
 
   const { mutate: editPost, isLoading: isEditing } = useMutation({
     mutationFn: async (data) => {
-      const { title, content, session } = data;
+      const { title, content, session, featuredPhoto } = data;
+
+      console.log(featuredPhoto);
 
       const { data: responseData } = await axios.patch(
         "/api/posts",
@@ -78,6 +80,7 @@ function Editor({ editPostData, featuredPhoto }) {
           content,
           session,
           id: editPostData.id,
+          featuredPhoto
         },
         { withCredentials: true }
       );
@@ -190,6 +193,7 @@ function Editor({ editPostData, featuredPhoto }) {
       title: data.title,
       content: blocks,
       session: session,
+      featuredPhoto: featuredPhoto,
     };
 
     // Validation
