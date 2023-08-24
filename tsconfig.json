@@ -52,5 +52,5 @@
     "**/*.cjs",
     "**/*.mjs"
 , "src/components/Experience/VerticalTimeline.jsx", "src/components/Experience/VerticalTimeline.jsx"  ],
-  "exclude": ["node_modules", "src/components/*", "src/hooks/*", "src/pages/api/*", "src/Dashboard/*"]
+  "exclude": ["node_modules", "src/components/*", "src/hooks/*", "src/pages/api/*", "src/Dashboard/*", "src/components/Projects/Projects.jsx"]
 }
