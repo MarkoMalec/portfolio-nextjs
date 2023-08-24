@@ -6,6 +6,45 @@
   padding: 25px;
 }
 
+.login-section {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .login_card {
+    background-color: $dashboard-blue;
+    width: 100%;
+    max-width: 450px;
+    padding: 35px 20px;
+    border-radius: 25px;
+
+    h3 {
+      font-size: 21px;
+      color: $dashboard-white;
+      margin-top: 0;
+      margin-bottom: 45px;
+      text-align: center;
+    }
+
+    .login-button-area {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      .btn-login {
+        border: none;
+        background: $dashboard-black;
+        color: $dashboard-white;
+        padding: 16px 20px;
+        width: 100%;
+        font-size: 18px;
+        border-radius: 8px;
+      }
+    }
+  }
+}
+
 #dashboard {
   min-height: 95vh;
   margin: 25px;

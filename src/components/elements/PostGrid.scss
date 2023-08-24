@@ -2,6 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin-top: 100px;
 }
 
 .post_item {
@@ -20,20 +21,43 @@
   }
 
   .post_meta {
-    position: absolute;
-    bottom: 0px;
+    position: relative;
+    // bottom: 0px;
     width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      0deg,
-      rgba(11, 14, 22, 1) 0%,
-      rgba(11, 14, 22, 0) 100%
-    );
+    height: 60px;
+    // height: 100%;
+    // background: linear-gradient(
+    //   0deg,
+    //   rgba(11, 14, 22, 1) 0%,
+    //   rgba(11, 14, 22, 0) 100%
+    // );
+    background: white;
     z-index: 10;
     color: white;
-    transform: translateY(100%);
-    opacity: 0;
+    // transform: translateY(100%);
+    // opacity: 0;
     transition: 0.25s ease-in-out;
+
+    h2 {
+      margin: 0;
+      color: black;
+    }
+
+    &::before {
+      content: '';
+      display: flex;
+      background: url('../../assets/pencil-dynamic-color.svg'), white;
+      background-position: 50% 10%;
+      background-size: 60%;
+      background-repeat: no-repeat;
+      position: absolute;
+      left: 35px;
+      top: -20px;
+      height: 60px;
+      width: 50px;
+      border-radius: 100%;
+      z-index: 999;
+    }
   }
 
   .post_thumbnail {

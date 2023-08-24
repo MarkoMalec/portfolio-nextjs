@@ -6,7 +6,7 @@ export default async function handler(req, res) {
   if (req.method === "GET") {
     const { id, title } = req.query; // Get the id query parameter
 
-    if (id && id !== 'undefined') {
+    if (id && id !== "undefined") {
       // If an ID or Title is provided, fetch a single post
       try {
         const singlePost = await prisma.post.findUnique({
@@ -22,7 +22,9 @@ export default async function handler(req, res) {
         return res.status(200).json(singlePost);
       } catch (error) {
         console.error("Error fetching single post by ID:", error);
-        return res.status(500).json({ error: `Failed to fetch post. Reasons ${error.message}` });
+        return res
+          .status(500)
+          .json({ error: `Failed to fetch post. Reasons ${error.message}` });
       }
     } else if (title && title.trim() !== "") {
       const decodedTitle = decodeURIComponent(title);
@@ -43,7 +45,9 @@ export default async function handler(req, res) {
         return res.status(200).json(singlePost);
       } catch (error) {
         console.error("Error fetching single post by title:", error);
-        return res.status(500).json({ error: `Failed to fetch post. Reason: ${error.message}` });
+        return res
+          .status(500)
+          .json({ error: `Failed to fetch post. Reason: ${error.message}` });
       }
     } else {
       // If no ID is provided, fetch all posts
@@ -52,7 +56,9 @@ export default async function handler(req, res) {
         return res.status(200).json(posts);
       } catch (error) {
         console.error("Error fetching posts by whatever:", error);
-        return res.status(500).json({ error: `Failed to fetch posts. reason: ${error.message}` });
+        return res
+          .status(500)
+          .json({ error: `Failed to fetch posts. reason: ${error.message}` });
       }
     }
   }
@@ -88,7 +94,7 @@ export default async function handler(req, res) {
   }
 
   if (req.method === "PATCH") {
-    const { id, title, content, session } = req.body;
+    const { id, title, content, session, featuredPhoto } = req.body;
 
     // Check if session exists and if it has a user
     if (!session || !session.user) {
@@ -128,6 +134,7 @@ export default async function handler(req, res) {
         data: {
           title,
           content: JSON.stringify(content),
+          featuredPhoto: featuredPhoto,
         },
       });
 

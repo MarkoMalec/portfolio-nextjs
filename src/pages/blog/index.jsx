@@ -6,6 +6,7 @@ import PostItem from "@components/elements/PostItem";
 const Blog = ({ posts }) => {
   return (
     <main id="blog" className="container">
+      <h1>/blog</h1>
       <PostGrid>
         {posts.map((post) => (
           <PostItem

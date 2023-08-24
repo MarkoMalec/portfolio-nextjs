@@ -40,7 +40,7 @@ function Editor({ editPostData, featuredPhoto }) {
           title,
           content,
           session,
-          featuredPhoto
+          featuredPhoto,
         },
         { withCredentials: true }
       );
@@ -69,9 +69,7 @@ function Editor({ editPostData, featuredPhoto }) {
 
   const { mutate: editPost, isLoading: isEditing } = useMutation({
     mutationFn: async (data) => {
-      const { title, content, session, featuredPhoto } = data;
-
-      console.log(featuredPhoto);
+      const { title, content, session } = data;
 
       const { data: responseData } = await axios.patch(
         "/api/posts",
@@ -80,7 +78,7 @@ function Editor({ editPostData, featuredPhoto }) {
           content,
           session,
           id: editPostData.id,
-          featuredPhoto
+          featuredPhoto,
         },
         { withCredentials: true }
       );
@@ -97,6 +95,7 @@ function Editor({ editPostData, featuredPhoto }) {
     },
     onSuccess: (data) => {
       console.log("Post edited:", data);
+      console.log("featured Photo:", data.featuredPhoto);
     },
   });
 
@@ -170,6 +169,10 @@ function Editor({ editPostData, featuredPhoto }) {
   }, []);
 
   useEffect(() => {
+    console.log(featuredPhoto);
+  }, [featuredPhoto]);
+
+  useEffect(() => {
     console.log(editPostData, "editPostData in Editor.jsx");
 
     if (typeof window !== "undefined") {
@@ -193,13 +196,14 @@ function Editor({ editPostData, featuredPhoto }) {
       title: data.title,
       content: blocks,
       session: session,
-      featuredPhoto: featuredPhoto,
+      // featuredPhoto: featuredPhoto,
     };
 
     // Validation
     const missingContent = payload.content.blocks.length === 0;
     const missingTitle = payload.title === "";
     if (missingContent || missingTitle) {
+      console.log(payload.title);
       missingContent && !missingTitle && alert("Content is empty :(");
       missingTitle &&
         !missingContent &&

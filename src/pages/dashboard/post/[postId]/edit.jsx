@@ -7,7 +7,7 @@ import FeaturedPhoto from "@Dashboard/Posts/FeaturedPhoto";
 const EditPost = ({ post }) => {
   const [featuredPhoto, setFeaturedPhoto] = useState(post.featuredPhoto);
 
-  console.log(featuredPhoto);
+  console.log(featuredPhoto, 'this is newly uploaded photo for editing post');
 
   return (
     <DashboardLayout>
