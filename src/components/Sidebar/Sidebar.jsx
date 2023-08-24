@@ -12,7 +12,7 @@ function Sidebar() {
     <div className="container sidebar-wrapper">
       <div className="sidebar fixed">
         <div className="logo">
-          <SmallLogo isShrunk={true} />
+          <SmallLogo />
         </div>
         <div>
           <div className="ttb">Web developer</div>
