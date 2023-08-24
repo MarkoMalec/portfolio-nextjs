@@ -32,7 +32,7 @@ const fillAnimation = {
   }
 }
 
-const SmallLogo = ({ isShrunk }) => {
+const SmallLogo = () => {
 
   return (
     <motion.svg viewBox="0 0 111.87 130.13" xmlns="http://www.w3.org/2000/svg">
