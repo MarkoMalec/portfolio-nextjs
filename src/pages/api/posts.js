@@ -77,14 +77,19 @@ export default async function handler(req, res) {
     }
 
     try {
-      const newPost = await prisma.post.create({
-        data: {
-          title,
-          content: JSON.stringify(content),
-          authorId: session.user.id,
-          featuredPhoto: req.body.featuredPhoto,
+      const postData = {
+        title,
+        content: JSON.stringify(content),
+        author: {
+          connect: { id: session.user.id }
         },
+        featuredPhoto: req.body.featuredPhoto || null
+      };
+      
+      const newPost = await prisma.post.create({
+        data: postData
       });
+      
 
       return res.status(201).json(newPost);
     } catch (error) {

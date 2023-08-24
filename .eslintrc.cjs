@@ -1,6 +1,14 @@
 /** @type {import("eslint").Linter.Config} */
 const config = {
   parser: "@typescript-eslint/parser",
+  overrides: [
+    {
+      files: ['*.jsx'],
+      rules: {
+        '@typescript-eslint/explicit-module-boundary-types': 'off',
+      },
+    },
+  ],
   parserOptions: {
     project: true,
   },
