@@ -14,7 +14,6 @@ import "react-toastify/dist/ReactToastify.css";
 function Editor({ editPostData, featuredPhoto }) {
   const { data: session } = useSession();
   const router = useRouter();
-  // const pathname = usePathname();
   const [isMounted, setIsMounted] = useState(false);
   const [contentChanged, setContentChanged] = useState(false);
   const [editPostTitle, setEditPostTitle] = useState("");
