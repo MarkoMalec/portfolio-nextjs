@@ -10,21 +10,21 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Projects = () => {
 
-  const projects = useProjects();
+  const projects: any[] = useProjects();
   const parallax = useParallaxEffect(100);
-  const projectSection = useRef(null);
+  const projectSection = useRef<HTMLElement | null>(null);
 
   useLayoutEffect(() => {
     if (projectSection.current) {
       projectSection.current.onmousemove = (e) => {
-        for (const card of document.getElementsByClassName("project")) {
-          const cardElement = card; // This line is redundant in JS but can help if the build process is checking types
-          const rect = cardElement.getBoundingClientRect(),
+        const projectCards = document.getElementsByClassName("project") as HTMLCollectionOf<HTMLElement>;
+        for (const card of projectCards) {
+          const rect = card.getBoundingClientRect(),
             x = e.clientX - rect.left,
             y = e.clientY - rect.top;
 
-          cardElement.style.setProperty("--mouse-x", `${x}px`);
-          cardElement.style.setProperty("--mouse-y", `${y}px`);
+          card.style.setProperty("--mouse-x", `${x}px`);
+          card.style.setProperty("--mouse-y", `${y}px`);
         }
       };
     }
