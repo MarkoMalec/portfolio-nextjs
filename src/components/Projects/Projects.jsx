@@ -15,16 +15,19 @@ const Projects = () => {
   const projectSection = useRef(null);
 
   useLayoutEffect(() => {
-    projectSection.current.onmousemove = (e) => {
-      for (const card of document.getElementsByClassName("project")) {
-        const rect = card.getBoundingClientRect(),
-          x = e.clientX - rect.left,
-          y = e.clientY - rect.top;
+    if (projectSection.current) {
+      projectSection.current.onmousemove = (e) => {
+        for (const card of document.getElementsByClassName("project")) {
+          const cardElement = card; // This line is redundant in JS but can help if the build process is checking types
+          const rect = cardElement.getBoundingClientRect(),
+            x = e.clientX - rect.left,
+            y = e.clientY - rect.top;
 
-        card.style.setProperty("--mouse-x", `${x}px`);
-        card.style.setProperty("--mouse-y", `${y}px`);
-      }
-    };
+          cardElement.style.setProperty("--mouse-x", `${x}px`);
+          cardElement.style.setProperty("--mouse-y", `${y}px`);
+        }
+      };
+    }
     const ctx = gsap.context(() => {
       gsap.set(".project", { scale: 0, opacity: 0 });
 
