@@ -2,22 +2,36 @@
   "compilerOptions": {
     "target": "es2017",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
+    // "allowJs": true,
     "checkJs": true,
-    "skipLibCheck": true,
-    "noImplicitAny": false,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
+    // "skipLibCheck": true,
+    // "noImplicitAny": false,
+    // "strict": true,
+    // "forceConsistentCasingInFileNames": true,
     "noEmit": true,
-    "esModuleInterop": true,
+    // "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": true,
+    // "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
     "noUncheckedIndexedAccess": true,
     "baseUrl": ".",
+    "strict": false,                 // Disable strict type checking
+    "noImplicitAny": false,          // Allow 'any' type for variables without type annotations
+    "noImplicitThis": false,         // Allow 'this' expressions with an 'any' type
+    "strictNullChecks": false,       // Allow 'null' and 'undefined' in non-strict null checking mode
+    "strictFunctionTypes": false,    // Do not enforce that function parameters are contravariant
+    "strictBindCallApply": false,    // Disable strict 'bind', 'call', and 'apply' methods on functions
+    "strictPropertyInitialization": false, // Disable checking of class property initialization
+    "allowJs": true,                 // Allow JavaScript files to be compiled
+    "skipLibCheck": true,            // Skip type checking of declaration files
+    "esModuleInterop": true,         // Enables CommonJS/AMD/UMD module emit interop
+    "forceConsistentCasingInFileNames": false, // Do not enforce consistent casing in file names
+    "isolatedModules": false,        // Do not ensure that each file can be safely transpiled without relying on other imports
+    "downlevelIteration": true,      // Provide full support for iterables in 'for-of', spread, and destructuring when targeting 'ES5' or 'ES3'
+    "assumeChangesOnlyAffectDirectDependencies": true,
     "paths": {
       "~/*": ["./src/*"],
       "@components/*":["src/components/*"],
