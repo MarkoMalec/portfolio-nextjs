@@ -12,7 +12,7 @@ function FeaturedPhoto({ initialPhoto, setFeaturedPhoto }) {
       <div className="featured_image-preview">
         <Image
           src={photo ? photo : placeholder}
-          alt="featured image"
+          alt="featured post image"
           width="600"
           height="600"
         />
