@@ -4,7 +4,19 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const VerticalTimeline = ({ data = [] }) => {
+interface ExperienceData {
+  id: number;
+  company: string;
+  timeframe: string;
+  description: string;
+  skills: string;
+}
+
+interface VerticalTimelineProps {
+  data?: ExperienceData[];
+}
+
+const VerticalTimeline: React.FC<VerticalTimelineProps> = ({ data = [] }) => {
   const lineRef = useRef(null);
   const horizontalLine = useRef(null);
   const timelineRef = useRef(null);
@@ -28,7 +40,8 @@ const VerticalTimeline = ({ data = [] }) => {
       });
 
       gsap.set(".timeline-entry", { opacity: 0 });
-      gsap.utils.toArray(".timeline-entry").forEach((timelineBox) =>
+      const timelineBoxes = gsap.utils.toArray(".timeline-entry") as Element[];
+      timelineBoxes.forEach((timelineBox) => {
         gsap.to(timelineBox, {
           opacity: 1,
           scrollTrigger: {
@@ -36,8 +49,8 @@ const VerticalTimeline = ({ data = [] }) => {
             start: "100 60%",
             toggleActions: "play resume none none",
           },
-        })
-      );
+        });
+      });
     }, timelineRef);
     return () => ctx.revert();
   }, []);

@@ -36,6 +36,6 @@
     "**/*.tsx",
     "**/*.cjs",
     "**/*.mjs"
-, "src/components/Experience/VerticalTimeline.jsx", "src/components/Experience/VerticalTimeline.jsx"  ],
+, "src/components/Experience/VerticalTimeline.tsx", "src/components/Experience/VerticalTimeline.tsx"  ],
   "exclude": ["node_modules"]
 }

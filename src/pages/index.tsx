@@ -20,7 +20,7 @@ export default function Home({ experiences = [] }) {
       <Sidebar />
       <Hero />
       <Experience data={experiences} />
-      <Projects />
+      {/* <Projects /> */}
     </>
   );
 }
