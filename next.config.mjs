@@ -42,7 +42,6 @@ const config = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  target: 'serverless'
 };
 
 export default config;
