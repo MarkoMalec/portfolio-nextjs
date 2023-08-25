@@ -1,23 +1,22 @@
 import React, { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import useProjects from "@hooks/useProjects";
 import Image from "next/image";
 import StackIcons from "@assets/stack-icons.svg";
 import { useParallaxEffect } from "@hooks/useMousePosition";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Projects = () => {
-
-  const projects: any[] = useProjects();
+const Projects = ({ projects = [] }) => {
   const parallax = useParallaxEffect(100);
   const projectSection = useRef<HTMLElement | null>(null);
 
   useLayoutEffect(() => {
     if (projectSection.current) {
       projectSection.current.onmousemove = (e) => {
-        const projectCards = document.getElementsByClassName("project") as HTMLCollectionOf<HTMLElement>;
+        const projectCards = document.getElementsByClassName(
+          "project"
+        ) as HTMLCollectionOf<HTMLElement>;
         for (const card of projectCards) {
           const rect = card.getBoundingClientRect(),
             x = e.clientX - rect.left,
@@ -48,10 +47,10 @@ const Projects = () => {
     <section id="project_section" ref={projectSection}>
       <div className="container">
         {projects.slice(0, 4).map((el, i) => (
-          <div className={`project project-${i}`} key={i}>
+          <div className={`project project-${i}`} key={el.id}>
             <div className="project_info">
               <h3>{el.title}</h3>
-              <p>{el.description}</p>
+              <p>{el.excerpt}</p>
               <a
                 href="#"
                 className="btn cursor-hover-item"
@@ -68,7 +67,7 @@ const Projects = () => {
               {i === 3 ? (
                 <Image src={StackIcons} alt="Stack Icons" />
               ) : (
-                <img src={el.imageURL} alt={el.title} />
+                <img src={el.featuredPhoto} alt={el.title} />
               )}
             </div>
           </div>

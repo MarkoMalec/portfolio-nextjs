@@ -30,6 +30,14 @@ model Experience {
     skills      String
 }
 
+model Projects {
+    id         Int @id @default(autoincrement())
+    title          String
+    content        String?
+    excerpt        String?
+    featuredPhoto  String?
+}
+
 model Post {
   id       Int      @id @default(autoincrement())
   title    String

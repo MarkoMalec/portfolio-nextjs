@@ -1,14 +1,16 @@
 import Head from "next/head";
-import { fetchExperiences, fetchPosts } from "@utils/data-fetching";
+import {
+  fetchExperiences,
+  fetchPosts,
+  fetchProjects,
+} from "@utils/data-fetching";
 import Cursor from "@components/Cursor/Cursor";
-import AdminBar from "@components/AdminBar/AdminBar";
 import Sidebar from "@components/Sidebar/Sidebar";
 import Hero from "@components/Hero/Hero";
 import Experience from "@components/Experience/Experience";
 import Projects from "@components/Projects/Projects";
-import Link from "next/link";
 
-export default function Home({ experiences = [] }) {
+export default function Home({ experiences = [], projects = [] }) {
   return (
     <>
       <Head>
@@ -20,7 +22,7 @@ export default function Home({ experiences = [] }) {
       <Sidebar />
       <Hero />
       <Experience data={experiences} />
-      {/* <Projects /> */}
+      <Projects projects={projects} />
     </>
   );
 }
@@ -28,11 +30,13 @@ export default function Home({ experiences = [] }) {
 export async function getServerSideProps() {
   const experiences = await fetchExperiences();
   const posts = await fetchPosts();
+  const projects = await fetchProjects();
 
   return {
     props: {
       experiences,
-      posts
+      posts,
+      projects,
     },
   };
 }

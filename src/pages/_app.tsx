@@ -11,8 +11,6 @@ const MyApp: React.FC<AppProps<{ session: Session | null }>> = ({
   pageProps: { session, ...pageProps },
   router,
 }) => {
-  // const isDashboardRoute = router.pathname.includes("/dashboard");
-
   return (
     <SessionProvider session={session}>
       <QueryClientProvider client={queryClient}>
