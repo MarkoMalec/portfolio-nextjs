@@ -23,7 +23,7 @@ const Experience: React.FC<ExperienceProps> = ({ data = [] }) => {
       <div className="blur-gradient-left" style={parallaxStyle} />
       <div className="reactive-gradient" style={parallaxStyle} />
       <div className="container">
-        <VerticalTimeline data={data} />
+        {/* <VerticalTimeline data={data} /> */}
       </div>
     </section>
   );

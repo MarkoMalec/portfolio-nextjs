@@ -55,6 +55,10 @@ const VerticalTimeline: React.FC<VerticalTimelineProps> = ({ data = [] }) => {
     return () => ctx.revert();
   }, []);
 
+  if (!data) {
+    return <>In development</>
+  }
+
   return (
     <div className="timeline-container" ref={timelineRef}>
       <div className="guide-line" />
