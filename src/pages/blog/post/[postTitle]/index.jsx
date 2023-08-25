@@ -3,7 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { fetchSinglePost } from "@utils/data-fetching";
-import AdminBar from "@components/AdminBar/Adminbar";
+import AdminBar from "../../../../components/AdminBar/AdminBar";
 
 import dynamic from "next/dynamic";
 
