@@ -1,16 +1,15 @@
 # example netlify.toml
 [build]
   command = "next build"
-  functions = "netlify/functions"
   publish = ".next"
 
   ## Uncomment to use this redirect for Single Page Applications like create-react-app.
   ## Not needed for static site generators.
-  [[redirects]]
-  from = "/_next/static/*"
-  to = "/static/:splat"
-  status = 301
-  force = true
+  # [[redirects]]
+  # from = "/_next/static/*"
+  # to = "/static/:splat"
+  # status = 301
+  # force = true
 
   ## (optional) Settings for Netlify Dev
   ## https://github.com/netlify/cli/blob/main/docs/netlify-dev.md#project-detection
