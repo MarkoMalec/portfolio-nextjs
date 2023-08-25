@@ -30,5 +30,6 @@ export async function getStaticProps() {
     props: {
       posts,
     },
+    fallback: 'blocking'
   };
 }
