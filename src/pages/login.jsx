@@ -16,6 +16,7 @@ const Login = () => {
     <section className="login-section">
       <div className="login_card">
         <h3>Login with preferable service</h3>
+        <p>Currently only available one is Discord</p>
         <div className="login-button-area">
           <button className="btn-login" onClick={() => signIn("discord")}>
             Sign in with Discord
