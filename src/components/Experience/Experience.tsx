@@ -19,9 +19,11 @@ const Experience: React.FC<ExperienceProps> = ({ data = [] }) => {
 
   return (
     <section id="experience_wrapper">
-      <div className="blur-gradient" style={parallaxStyle} />
-      <div className="blur-gradient-left" style={parallaxStyle} />
-      <div className="reactive-gradient" style={parallaxStyle} />
+      <div className="gradients-container">
+        <div className="blur-gradient" style={parallaxStyle} />
+        <div className="blur-gradient-left" style={parallaxStyle} />
+        <div className="reactive-gradient" style={parallaxStyle} />
+      </div>
       <div className="container">
         <VerticalTimeline data={data} />
       </div>

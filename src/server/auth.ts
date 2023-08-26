@@ -20,13 +20,13 @@ declare module "next-auth" {
     user: DefaultSession["user"] & {
       id: string;
       // ...other properties
-      // role: UserRole;
+      role: string;
     };
   }
 
   // interface User {
   //   // ...other properties
-  //   // role: UserRole;
+  //   role: UserRole;
   // }
 }
 
@@ -37,20 +37,32 @@ declare module "next-auth" {
  */
 export const authOptions: NextAuthOptions = {
   callbacks: {
-    session: ({ session, user }) => ({
-      ...session,
-      user: {
-        ...session.user,
-        id: user.id,
-      },
-      jwt: false,
-    }),
+    session: async ({ session, user }) => {
+      const dbUser = await prisma.user.findUnique({
+        where: { id: user.id },
+      });
+      console.log(dbUser, "dbUser")
+
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          id: user.id,
+          role: dbUser?.role || "user", // Default to 'user' if role is not found
+        },
+        jwt: false,
+      };
+    },
   },
   adapter: PrismaAdapter(prisma),
   providers: [
     DiscordProvider({
       clientId: env.DISCORD_CLIENT_ID,
       clientSecret: env.DISCORD_CLIENT_SECRET,
+      profile(profile) {
+        // Assuming Discord profile doesn't have a role, default to "user"
+        return { role: "user", ...profile };
+      },
     }),
     /**
      * ...add more providers here.

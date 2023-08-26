@@ -1,7 +1,7 @@
-@import './src/components/Cursor/_cursor.scss';
-@import './dashboard.scss';
-@import './src/components/Sidebar/Sidebar.scss';
-@import './src/components/Hero/Hero.scss';
+@import "./src/components/Cursor/_cursor.scss";
+@import "./dashboard.scss";
+@import "./src/components/Sidebar/Sidebar.scss";
+@import "./src/components/Hero/Hero.scss";
 @import "./src/components/Experience/Experience.scss";
 @import "./src/components/Projects/Projects.scss";
 @import "./blog.scss";
@@ -9,7 +9,7 @@
 @import "./src/components/elements/PostGrid.scss";
 @import "./src/Dashboard/Posts/PostTable.scss";
 
-$dark-background: #0B0E16;
+$dark-background: #0b0e16;
 
 html,
 body {
@@ -17,7 +17,13 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    background-color: $dark-background;
+  background-color: $dark-background;
+  color: #eee;
+  overflow-x: hidden;
+}
+
+p {
+  margin: 0;
 }
 
 a {
@@ -31,6 +37,22 @@ a {
 
 button {
   cursor: pointer;
+}
+
+h3 {
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 40px;
+
+  @media (max-width: $tablet) {
+    font-size: 32px;
+  }
+}
+
+h4 {
+  font-size: 32px;
+  line-height: 30px;
+  margin: 0;
 }
 
 .container {
@@ -85,4 +107,11 @@ button {
     font-size: 14px;
     padding: 2px 8px;
   }
+}
+
+.gradients-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
