@@ -54,8 +54,8 @@ const Projects = ({ projects = [] }) => {
               <a
                 href="#"
                 className="btn cursor-hover-item"
-                data-cursor-text="See more"
-                data-cursor-text-repeat="20"
+                data-cursor-text="see more"
+                data-cursor-text-repeat="4"
               >
                 See more
               </a>
@@ -67,7 +67,7 @@ const Projects = ({ projects = [] }) => {
               {i === 3 ? (
                 <Image src={StackIcons} alt="Stack Icons" />
               ) : (
-                <img src={el.featuredPhoto} alt={el.title} />
+                <Image src={el.featuredPhoto} alt={el.title} width={1600} height={1600} />
               )}
             </div>
           </div>
