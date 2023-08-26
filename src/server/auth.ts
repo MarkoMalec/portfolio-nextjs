@@ -59,10 +59,6 @@ export const authOptions: NextAuthOptions = {
     DiscordProvider({
       clientId: env.DISCORD_CLIENT_ID,
       clientSecret: env.DISCORD_CLIENT_SECRET,
-      profile(profile) {
-        // Assuming Discord profile doesn't have a role, default to "user"
-        return { role: "user", ...profile };
-      },
     }),
     /**
      * ...add more providers here.
