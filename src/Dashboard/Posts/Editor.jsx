@@ -56,14 +56,10 @@ function Editor({ editPostData, featuredPhoto }) {
       }
     },
     onSuccess: (data) => {
-      // toast("Post Published!");
-      const newPathname = `/dashboard/post/${data.id}/edit`;
-
-      router.push(newPathname);
-      // router.refresh();
-
       console.log("Post created:", data);
-      return toast("Post Published!");
+      const newPathname = `/dashboard/post/${data.id}/edit`;
+      sessionStorage.setItem("toastMessage", "Post Published!");
+      router.push(newPathname);
     },
   });
 
@@ -95,7 +91,7 @@ function Editor({ editPostData, featuredPhoto }) {
     },
     onSuccess: (data) => {
       console.log("Post edited:", data);
-      console.log("featured Photo:", data.featuredPhoto);
+      toast("Post edited successfully! :)");
     },
   });
 
@@ -169,12 +165,6 @@ function Editor({ editPostData, featuredPhoto }) {
   }, []);
 
   useEffect(() => {
-    console.log(featuredPhoto);
-  }, [featuredPhoto]);
-
-  useEffect(() => {
-    console.log(editPostData, "editPostData in Editor.jsx");
-
     if (typeof window !== "undefined") {
       setIsMounted(true);
     }
@@ -196,14 +186,12 @@ function Editor({ editPostData, featuredPhoto }) {
       title: data.title,
       content: blocks,
       session: session,
-      // featuredPhoto: featuredPhoto,
     };
 
     // Validation
     const missingContent = payload.content.blocks.length === 0;
     const missingTitle = payload.title === "";
     if (missingContent || missingTitle) {
-      console.log(payload.title);
       missingContent && !missingTitle && alert("Content is empty :(");
       missingTitle &&
         !missingContent &&
@@ -211,7 +199,11 @@ function Editor({ editPostData, featuredPhoto }) {
       missingContent && missingTitle && alert("Bro are you kidding me? xD");
     } else {
       if (editPostData) {
-        editPost(payload);
+        // basically if user role is admin, enable post edit.
+        editPostData.authorId !== session.user.id &&
+        session.user.role !== "admin"
+          ? toast("You are not the author of this post. :(")
+          : editPost(payload);
       } else {
         createPost(payload);
       }
@@ -224,8 +216,8 @@ function Editor({ editPostData, featuredPhoto }) {
 
   return (
     <>
+      <ToastContainer />
       <div className="create-article">
-        <ToastContainer />
         <form id="article_form" onSubmit={handleSubmit(onSubmit)}>
           <div className="editor_post-title--wrapper">
             <TextareaAutosize
