@@ -29,3 +29,11 @@ export async function fetchProjects() {
   const res = await fetch(`${API_URL}/api/projects`);
   return res.json();
 }
+
+export async function fetchDailyStats(baseURL) {
+  const response = await fetch(`${baseURL}/api/posts?type=dailyStats`);
+  if (!response.ok) {
+    throw new Error("Network response was not ok");
+  }
+  return response.json();
+}

@@ -71,7 +71,7 @@ const useSpinningTextCursor = (
       const target = e.currentTarget;
       updateCursorText(target);
 
-      console.log("hovered", cursorTextEl.current);
+      // console.log("hovered", cursorTextEl.current);
 
       gsap.set([cursorTextContainer.current, cursorTextEl.current], {
         height: initialCursorHeight,

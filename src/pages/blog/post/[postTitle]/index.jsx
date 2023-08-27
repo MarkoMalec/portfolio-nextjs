@@ -49,7 +49,6 @@ function SinglePost({ post }) {
 export default SinglePost;
 
 export async function getServerSideProps(context) {
-  console.log(context.params.postTitle);
   const post = await fetchSinglePost(undefined, context.params.postTitle);
 
   return {

@@ -50,7 +50,7 @@
   margin: 25px;
   border-radius: 12px;
   padding-right: 25px;
-  background: $dashboard-gray;
+  background: rgb(22, 22, 22);
   // overflow: hidden;
 
   .dashboard-block {
@@ -62,29 +62,18 @@
     display: flex;
     flex-direction: column;
     gap: 35px;
-    background-color: $dashboard-blue;
+    background-color: rgb(28, 28, 28);
     width: 250px;
-    box-shadow: 5px 0 20px $dashboard-black;
     padding: 25px;
     overflow: hidden;
     position: relative;
-
-    > img {
-      top: -100px;
-      left: -80px;
-      z-index: 1;
-      border-radius: 1000px;
-    }
+    border-right: 1px solid rgba(238, 238, 238, 0.067);
 
     .user_meta {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 16px;
-      padding: 16px 15px;
-      background-color: $dashboard-gray;
-      border-radius: 1000px;
-      box-shadow: 5px 6px 16px #0000005c;
 
       img {
         width: 100%;
@@ -94,9 +83,15 @@
       }
 
       span {
-        color: $dashboard-white;
+        display: block;
+        color: white;
         font-size: 14px;
-        font-weight: 600;
+        font-weight: 400;
+        font-family: "Interim", sans-serif;
+
+        &.user_meta-role {
+          color: rgba(255, 255, 255, 0.364);
+        }
       }
     }
 
@@ -116,7 +111,9 @@
 
             li {
               a {
-                padding: 10px;
+                padding: 8px 12px;
+
+               
               }
             }
           }
@@ -126,14 +123,21 @@
       a {
         display: block;
         width: 100%;
-        padding: 16px;
+        padding: 8px 12px;
+        font-size: 13px;
         line-height: 1;
-        border-bottom: 1px solid #08080844;
+        border-radius: 6px;
         transition: 0.15s ease-out;
-
+        color: rgba(255, 255, 255, 0.604);
+        
         &:hover {
-          color: $dashboard-white;
-          background-color: $dashboard-gray;
+          color: white;
+        }
+        
+        &.active {
+          border: 1px solid rgba(238, 238, 238, 0.056);
+          background-color: rgb(43, 43, 43);
+          box-shadow: rgba(0, 0, 0, 0.036) 0px 0.301615px 0.301615px -0.75px, rgba(0, 0, 0, 0.04) 0px 1.14511px 1.14511px -1.5px, rgba(0, 0, 0, 0.044) 0px 5px 5px -2.25px;
         }
       }
     }
@@ -320,5 +324,22 @@
     tr:nth-child(even) {
       background-color: rgba(211, 211, 211, 0.208);
     }
+  }
+}
+
+.welcome_title {
+  text-transform: capitalize;
+  margin-bottom: 50px;
+}
+
+.daily-posts-block {
+  max-width: 600px;
+  padding: 16px;
+  background-color: rgb(33, 33, 33);
+  border-radius: 12px;
+  border: 1px solid rgba(207, 207, 207, 0.068);
+
+  canvas {
+    width: 100%;
   }
 }

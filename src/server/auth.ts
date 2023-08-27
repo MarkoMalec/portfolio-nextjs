@@ -41,7 +41,7 @@ export const authOptions: NextAuthOptions = {
       const dbUser = await prisma.user.findUnique({
         where: { id: user.id },
       });
-      console.log(dbUser, "dbUser")
+      // console.log(dbUser, "dbUser")
 
       return {
         ...session,

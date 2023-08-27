@@ -4,10 +4,28 @@ const prisma = new PrismaClient();
 
 export default async function handler(req, res) {
   if (req.method === "GET") {
-    const { id, title } = req.query; // Get the id query parameter
+    const { id, title, type } = req.query;
+    console.log("Incoming request:", req.query);
 
-    if (id && id !== "undefined") {
-      // If an ID or Title is provided, fetch a single post
+    if (type === "dailyStats") {
+      try {
+        const dailyStats =
+          await prisma.$queryRaw`SELECT DATE(createdAt) as date, COUNT(*) as post_count FROM Post GROUP BY DATE(createdAt) ORDER BY DATE(createdAt) DESC;`;
+        console.log(dailyStats, "dailyStats");
+        const serializedStats = dailyStats.map(stat => ({
+          ...stat,
+          post_count: stat.post_count.toString()
+        }));
+        
+        return res.status(200).json(serializedStats);
+        
+      } catch (error) {
+        console.error("Error fetching daily statistics:", error);
+        return res.status(500).json({
+          error: `Failed to fetch daily statistics. Reason: ${error.message}`,
+        });
+      }
+    } else if (id && id !== "undefined") {
       try {
         const singlePost = await prisma.post.findUnique({
           where: {
@@ -50,15 +68,14 @@ export default async function handler(req, res) {
           .json({ error: `Failed to fetch post. Reason: ${error.message}` });
       }
     } else {
-      // If no ID is provided, fetch all posts
       try {
         const posts = await prisma.post.findMany();
         return res.status(200).json(posts);
       } catch (error) {
-        console.error("Error fetching posts by whatever:", error);
+        console.error("Error fetching posts:", error);
         return res
           .status(500)
-          .json({ error: `Failed to fetch posts. reason: ${error.message}` });
+          .json({ error: `Failed to fetch posts. Reason: ${error.message}` });
       }
     }
   }
@@ -81,15 +98,14 @@ export default async function handler(req, res) {
         title,
         content: JSON.stringify(content),
         author: {
-          connect: { id: session.user.id }
+          connect: { id: session.user.id },
         },
-        featuredPhoto: req.body.featuredPhoto || null
+        featuredPhoto: req.body.featuredPhoto || null,
       };
-      
+
       const newPost = await prisma.post.create({
-        data: postData
+        data: postData,
       });
-      
 
       return res.status(201).json(newPost);
     } catch (error) {
