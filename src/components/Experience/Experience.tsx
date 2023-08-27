@@ -13,6 +13,8 @@ const Experience = ({ data = [] }) => {
         <div className="reactive-gradient" style={parallaxStyle} />
       </div>
       <div className="container">
+        <h4 className="section-subtitle">Work</h4>
+        <h2 className="section-title">My Experience</h2>
         <VerticalTimeline data={data} />
       </div>
     </section>

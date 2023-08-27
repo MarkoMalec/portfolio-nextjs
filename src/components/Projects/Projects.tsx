@@ -46,32 +46,41 @@ const Projects = ({ projects = [] }) => {
   return (
     <section id="project_section" ref={projectSection}>
       <div className="container">
-        {projects.slice(0, 4).map((el, i) => (
-          <div className={`project project-${i}`} key={el.id}>
-            <div className="project_info">
-              <h3>{el.title}</h3>
-              <p>{el.excerpt}</p>
-              <a
-                href="#"
-                className="btn cursor-hover-item"
-                data-cursor-text="see more"
-                data-cursor-text-repeat="4"
+        <h4 className="section-subtitle">Portfolio</h4>
+        <h2 className="section-title">Recent Projects</h2>
+        <div className="projects-grid">
+          {projects.slice(0, 4).map((el, i) => (
+            <div className={`project project-${i}`} key={el.id}>
+              <div className="project_info">
+                <h3>{el.title}</h3>
+                <p>{el.excerpt}</p>
+                <a
+                  href="#"
+                  className="btn cursor-hover-item"
+                  data-cursor-text="see more"
+                  data-cursor-text-repeat="4"
+                >
+                  See more
+                </a>
+              </div>
+              <div
+                className="project_image-wrapper"
+                style={i === 3 ? parallax : undefined}
               >
-                See more
-              </a>
+                {i === 3 ? (
+                  <Image src={StackIcons} alt="Stack Icons" />
+                ) : (
+                  <Image
+                    src={el.featuredPhoto}
+                    alt={el.title}
+                    width={1600}
+                    height={1600}
+                  />
+                )}
+              </div>
             </div>
-            <div
-              className="project_image-wrapper"
-              style={i === 3 ? parallax : undefined}
-            >
-              {i === 3 ? (
-                <Image src={StackIcons} alt="Stack Icons" />
-              ) : (
-                <Image src={el.featuredPhoto} alt={el.title} width={1600} height={1600} />
-              )}
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

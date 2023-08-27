@@ -52,36 +52,38 @@ const VerticalTimeline = ({ data = [] }) => {
   }, []);
 
   return (
-    <div className="timeline-container" ref={timelineRef}>
-      <div className="guide-line" />
-      <div className="thin-line" ref={lineRef} />
-      {data.map((item: Experience, index: React.Key | null | undefined) => (
-        <div key={index} className={`timeline-entry`}>
-          <div className="cube_wrapper">
-            <div className="box">
-              <div className={`cube ${item.company}`}>
-                <div className="front" />
-                <div className="back" />
-                <div className="right" />
-                <div className="left" />
-                <div className="top" />
-                <div className="bottom" />
+    <div className="timeline-section">
+      <div className="timeline-container" ref={timelineRef}>
+        <div className="guide-line" />
+        <div className="thin-line" ref={lineRef} />
+        {data.map((item: Experience, index: React.Key | null | undefined) => (
+          <div key={index} className={`timeline-entry`}>
+            <div className="cube_wrapper">
+              <div className="box">
+                <div className={`cube ${item.company}`}>
+                  <div className="front" />
+                  <div className="back" />
+                  <div className="right" />
+                  <div className="left" />
+                  <div className="top" />
+                  <div className="bottom" />
+                </div>
+              </div>
+            </div>
+            <div className="text-box">
+              <h4>{item.company}</h4>
+              <p className="date">{item.timeframe}</p>
+              <p className="skill_description">{item.description}</p>
+              <div className="skills_used">
+                {item.skills.split(", ").map((skill, i) => (
+                  <span key={i}>{skill}</span>
+                ))}
               </div>
             </div>
           </div>
-          <div className="text-box">
-            <h4>{item.company}</h4>
-            <p className="date">{item.timeframe}</p>
-            <p className="skill_description">{item.description}</p>
-            <div className="skills_used">
-              {item.skills.split(", ").map((skill, i) => (
-                <span key={i}>{skill}</span>
-              ))}
-            </div>
-          </div>
-        </div>
-      ))}
-      <div className="horizontal-line" ref={horizontalLine} />
+        ))}
+        <div className="horizontal-line" ref={horizontalLine} />
+      </div>
     </div>
   );
 };
