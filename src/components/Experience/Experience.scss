@@ -215,7 +215,7 @@
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
-        background-color: rgba(0, 0, 0, 0.681);
+        background-color: rgba(0, 0, 0, 0.146);
         border-radius: 100px;
         transform: translateY(-150%) translateX(-5px) translateZ(0px);
       }
@@ -236,8 +236,8 @@
       &.Saleswizard {
         &::before {
           background-image: url("../../assets/saleswizard.png");
-          width: 40px;
-          height: 40px;
+          width: 32px;
+          height: 32px;
           background-size: cover;
         }
       }

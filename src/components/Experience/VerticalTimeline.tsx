@@ -4,19 +4,15 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface ExperienceData {
-  id: number;
-  company: string;
-  timeframe: string;
-  description: string;
-  skills: string;
+interface Experience {
+  id: Number;
+  company: String;
+  timeframe: String;
+  description: String;
+  skills: String;
 }
 
-interface VerticalTimelineProps {
-  data?: ExperienceData[];
-}
-
-const VerticalTimeline: React.FC<VerticalTimelineProps> = ({ data = [] }) => {
+const VerticalTimeline = ({ data = [] }) => {
   const lineRef = useRef(null);
   const horizontalLine = useRef(null);
   const timelineRef = useRef(null);
@@ -55,15 +51,11 @@ const VerticalTimeline: React.FC<VerticalTimelineProps> = ({ data = [] }) => {
     return () => ctx.revert();
   }, []);
 
-  if (!data) {
-    return <>In development</>
-  }
-
   return (
     <div className="timeline-container" ref={timelineRef}>
       <div className="guide-line" />
       <div className="thin-line" ref={lineRef} />
-      {data.map((item, index) => (
+      {data.map((item: Experience, index: React.Key | null | undefined) => (
         <div key={index} className={`timeline-entry`}>
           <div className="cube_wrapper">
             <div className="box">
@@ -82,9 +74,9 @@ const VerticalTimeline: React.FC<VerticalTimelineProps> = ({ data = [] }) => {
             <p className="date">{item.timeframe}</p>
             <p className="skill_description">{item.description}</p>
             <div className="skills_used">
-              {/* {item.skills.map((skill, i) => (
+              {item.skills.split(", ").map((skill, i) => (
                 <span key={i}>{skill}</span>
-              ))} */}
+              ))}
             </div>
           </div>
         </div>

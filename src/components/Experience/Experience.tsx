@@ -2,19 +2,7 @@ import React from "react";
 import VerticalTimeline from "./VerticalTimeline";
 import { useParallaxEffect } from "@hooks/useMousePosition";
 
-interface ExperienceData {
-  id: number;
-  company: string;
-  timeframe: string;
-  description: string;
-  skills: string;
-}
-
-interface ExperienceProps {
-  data?: ExperienceData[];
-}
-
-const Experience: React.FC<ExperienceProps> = ({ data = [] }) => {
+const Experience = ({ data = [] }) => {
   const parallaxStyle = useParallaxEffect(20);
 
   return (

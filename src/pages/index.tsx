@@ -27,7 +27,7 @@ export default function Home({ experiences = [], projects = [] }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const experiences = await fetchExperiences();
   const posts = await fetchPosts();
   const projects = await fetchProjects();
