@@ -95,11 +95,13 @@
     }
 
     .text-box {
-      background: rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(5px);
+      background: rgba(255, 255, 255, 0.01);
+      backdrop-filter: blur(10px);
       padding: 16px 16px;
       border-radius: 6px;
       border: 1px solid #ffffff18;
+      overflow: hidden;
+      position: relative;
 
       h4 {
         font-size: 1.1em;
@@ -125,10 +127,45 @@
         // }
       }
 
+      &::after {
+        content: '';
+        display: block;
+        width: 93px;
+        height: 80px;
+        border-radius: 10px;
+        border: 1px solid #0f1a31;
+        background-color: #000316cf;
+        position: absolute;
+        top: 50%;
+        right: -40px;
+        transform: translateY(-50%);
+        // opacity: .9;
+      }
+
+      &::before {
+        content: '';
+        display: block;
+        width: 93px;
+        height: 80px;
+        border-radius: 10px;
+        border: 1px solid #0f1a31;
+        background-color: #00031688;
+        position: absolute;
+        top: 50%;
+        right: 80px;
+        transform: translateY(-50%);
+        z-index: -1;
+        // opacity: .6;
+      }
+
       .skill_description {
         font-size: 1.1em;
         line-height: 1.5;
         color: #dddada;
+        
+        @media (min-width: 768px) {
+          max-width: 80%;
+        }
       }
     }
 

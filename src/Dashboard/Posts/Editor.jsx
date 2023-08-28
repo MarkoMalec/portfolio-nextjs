@@ -197,13 +197,20 @@ function Editor({ editPostData, featuredPhoto }) {
         !missingContent &&
         alert("You can't just leave the title empty :(");
       missingContent && missingTitle && alert("Bro are you kidding me? xD");
+      // everything filled in? continue:
     } else {
+      // are we editing post?
       if (editPostData) {
         // basically if user role is admin, enable post edit.
-        editPostData.authorId !== session.user.id &&
-        session.user.role !== "admin"
-          ? toast("You are not the author of this post. :(")
-          : editPost(payload);
+        if (session.user.role === "admin") {
+          editPost(payload);
+        } else if (editPostData.authorId !== session.user.id) {
+          console.log("you are NOT author");
+          toast("You are not the author of this post. :(");
+        } else {
+          toast("You don't have privileges to edit this post!");
+        }
+        // If we are not editing post, create it.
       } else {
         createPost(payload);
       }

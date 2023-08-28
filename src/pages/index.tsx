@@ -38,5 +38,6 @@ export async function getStaticProps() {
       posts,
       projects,
     },
+    revalidate: 300,
   };
 }

@@ -141,11 +141,11 @@ export default async function handler(req, res) {
         return res.status(404).json({ error: "Post not found." });
       }
 
-      if (existingPost.authorId !== session.user.id) {
-        return res
-          .status(403)
-          .json({ error: "You don't have permission to edit this post." });
-      }
+      // if (existingPost.authorId !== session.user.id) {
+      //   return res
+      //     .status(403)
+      //     .json({ error: "You don't have permission to edit this post." });
+      // }
 
       // Update the post
       const updatedPost = await prisma.post.update({
