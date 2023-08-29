@@ -1,5 +1,5 @@
 @import "../../styles/colors";
-@import "../../styles/responsive";
+@import "../../styles/_responsive.scss";
 
 #experience_wrapper {
   padding-top: 100px;
@@ -44,6 +44,11 @@
     filter: blur(140px);
     opacity: 0.5;
   }
+
+  @media (max-width: $medium) {
+    padding-top: 20px;
+    padding-bottom: 0;
+  }
 }
 
 .timeline-container {
@@ -71,6 +76,12 @@
     width: 1px;
     height: 100%;
     background: #cccccc67;
+
+  }
+  @media (max-width: $medium) {
+    .thin-line, .guide-line {
+      height: 93%;
+    }
   }
 
   .timeline-entry {
@@ -139,6 +150,7 @@
         top: 50%;
         right: -40px;
         transform: translateY(-50%);
+        z-index: -1;
         // opacity: .9;
       }
 

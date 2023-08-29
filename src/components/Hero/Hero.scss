@@ -1,3 +1,5 @@
+@import "../../styles/responsive.scss";
+
 $background-gradient-herotext: -webkit-linear-gradient(
   40deg,
   rgba(249, 85, 176, 1) 0%,
@@ -114,13 +116,6 @@ $background-gradient-herotext: -webkit-linear-gradient(
     0% 0%
   );
 
-  .logo_wrapper {
-    width: 100px;
-    position: absolute;
-    top: 2rem;
-    right: 2rem;
-  }
-
   @media (max-width: 768px) {
     align-items: center;
   }
@@ -130,7 +125,11 @@ $background-gradient-herotext: -webkit-linear-gradient(
     background-position-x: center;
     background-repeat: no-repeat;
     align-items: flex-end;
-    padding-bottom: 15rem;
+    // padding-bottom: 2rem;
+
+    .particle {
+      display: none;
+    }
   }
 
   .hero-inner {
@@ -248,8 +247,19 @@ $background-gradient-herotext: -webkit-linear-gradient(
       }
     }
 
-    @media (max-width: 476px) {
-      flex-direction: column-reverse;
+    @media (max-width: $small) {
+      p {
+        font-size: 18px;
+        line-height: 34px;
+      }
+
+      h1 {
+        font-size: 72px;
+      }
+
+      a.btn::before {
+        width: 80px;
+      }
     }
   }
 }

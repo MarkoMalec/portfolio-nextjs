@@ -9,6 +9,7 @@
 @import "./post.scss";
 @import "./src/components/elements/PostGrid.scss";
 @import "./src/Dashboard/Posts/PostTable.scss";
+@import "_responsive.scss";
 
 $dark-background: #0b0e16;
 
@@ -89,7 +90,7 @@ h4 {
 
 @media (min-width: 1280px) {
   .container {
-    max-width: 1280px;
+    max-width: 1024px;
   }
 }
 
@@ -109,6 +110,12 @@ h4 {
   line-height: 16px;
   letter-spacing: 8.16px;
   text-transform: uppercase;
+
+  @media (max-width: $small) {
+    font-size: 12px;
+    // line-height: 45px;
+    letter-spacing: 6.16px;
+  }
 }
 
 .section-title {
@@ -122,6 +129,13 @@ h4 {
   text-transform: capitalize;
   margin-bottom: 160px;
   margin-top: 45px;
+
+  @media (max-width: $small) {
+    font-size: 42px;
+    line-height: 45px;
+    margin-bottom: 100px;
+    margin-top: 20px;
+  }
 }
 
 #adminbar {
