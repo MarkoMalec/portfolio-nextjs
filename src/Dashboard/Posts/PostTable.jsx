@@ -4,6 +4,10 @@ import PostSettings from "./PostSettings";
 
 const PostTable = ({ postsData }) => {
   const [posts, setPosts] = useState(postsData);
+  const [sortConfig, setSortConfig] = useState({
+    key: 'id', // default sort by id
+    direction: 'descending'
+  });
 
   // Convert ISO string dates to JavaScript Date objects
   const formattedPosts = posts.map((post) => ({
@@ -12,8 +16,15 @@ const PostTable = ({ postsData }) => {
     updatedAt: new Date(post.updatedAt).toDateString(),
   }));
 
-  // If needed in the future, you can sort them like:
-  // formattedPosts.sort((a, b) => b.createdAt - a.createdAt); // For sorting in descending order
+  const sortedPosts = [...formattedPosts].sort((a, b) => {
+    if (a[sortConfig.key] < b[sortConfig.key]) {
+      return sortConfig.direction === 'ascending' ? -1 : 1;
+    }
+    if (a[sortConfig.key] > b[sortConfig.key]) {
+      return sortConfig.direction === 'ascending' ? 1 : -1;
+    }
+    return 0;
+  });
 
   const handleDelete = (deletedPostId) => {
     setPosts((prevPosts) =>
@@ -21,19 +32,35 @@ const PostTable = ({ postsData }) => {
     );
   };
 
+  const requestSort = key => {
+    let direction = 'ascending';
+    if (sortConfig.key === key && sortConfig.direction === 'ascending') {
+      direction = 'descending';
+    }
+    setSortConfig({ key, direction });
+  };
+
   return (
     <div className="posts_list">
       <table id="posts_table">
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Created At</th>
-            <th>Updated At</th>
+            <th>
+              <button onClick={() => requestSort('id')}>ID</button>
+            </th>
+            <th>
+              <button onClick={() => requestSort('title')}>Title</button>
+            </th>
+            <th>
+              <button onClick={() => requestSort('createdAt')}>Created At</button>
+            </th>
+            <th>
+              <button onClick={() => requestSort('updatedAt')}>Updated At</button>
+            </th>
           </tr>
         </thead>
         <tbody>
-          {formattedPosts.map((post) => (
+          {sortedPosts.map((post) => (
             <tr key={post.id}>
               <td>{post.id}</td>
               <td className="post_name-column">
