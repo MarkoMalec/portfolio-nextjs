@@ -23,16 +23,6 @@ const Blog = ({ posts }) => {
 
 export default Blog;
 
-// export async function getStaticProps() {
-//   const posts = await fetchPosts();
-
-//   return {
-//     props: {
-//       posts,
-//     },
-//     revalidate: 60,
-//   };
-// }
 export async function getServerSideProps() {
   try {
     const posts = await fetchPosts();
@@ -50,4 +40,3 @@ export async function getServerSideProps() {
     };
   }
 }
-
