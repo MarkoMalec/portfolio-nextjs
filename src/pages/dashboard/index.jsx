@@ -65,31 +65,42 @@ const Dashboard = ({ user, postStats }) => {
 };
 
 export const getServerSideProps = async (context) => {
-  const session = await getSession(context);
+  try {
+    const session = await getSession(context);
 
-  if (!session) {
+    if (!session) {
+      return {
+        redirect: {
+          destination: "/login",
+          permanent: false,
+        },
+      };
+    }
+
+    const protocol = context.req.headers["x-forwarded-proto"] || "http";
+    const host =
+      context.req.headers["x-forwarded-host"] || context.req.headers.host;
+    const baseURL = `${protocol}://${host}`;
+
+    const postStats = await fetchDailyStats(baseURL);
+
     return {
-      redirect: {
-        destination: "/login",
-        permanent: false,
+      props: {
+        session: session,
+        user: session.user,
+        postStats,
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return {
+      props: {
+        session: null,
+        user: null,
+        postStats: [],
       },
     };
   }
-
-  const protocol = context.req.headers["x-forwarded-proto"] || "http";
-  const host =
-    context.req.headers["x-forwarded-host"] || context.req.headers.host;
-  const baseURL = `${protocol}://${host}`;
-
-  const postStats = await fetchDailyStats(baseURL);
-
-  return {
-    props: {
-      session: session,
-      user: session.user,
-      postStats,
-    },
-  };
 };
 
 export default Dashboard;

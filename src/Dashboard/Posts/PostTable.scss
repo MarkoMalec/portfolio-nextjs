@@ -1,5 +1,7 @@
 @import "../../styles/colors";
 
+
+
 .posts_list {
   overflow-x: auto;
 
@@ -8,15 +10,20 @@
     border-collapse: collapse;
 
     th {
-      border: 1px solid black;
+      border: 1px solid $dashboard-white-border;
       padding: 8px;
       text-align: left;
-      background-color: #f2f2f2;
+      background-color: $dashboard-light-gray;
     }
 
     tr {
+
+      &:nth-child(even) {
+        background-color: $dashboard-light-gray;
+      }
+
       td {
-        color: white;
+        color: $dashboard-white;
         // border: 1px solid black;
         padding: 8px;
         text-align: left;
@@ -36,7 +43,7 @@
             a {
               padding: 2px 5px;
               border: none;
-              background-color: $dashboard-blue;
+              background-color: $dashboard-light-gray;
               border-radius: 5px;
 
               &:hover {

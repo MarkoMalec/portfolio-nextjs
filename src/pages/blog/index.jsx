@@ -34,11 +34,20 @@ export default Blog;
 //   };
 // }
 export async function getServerSideProps() {
-  const posts = await fetchPosts();
-
-  return {
-    props: {
-      posts,
-    },
-  };
+  try {
+    const posts = await fetchPosts();
+    return {
+      props: {
+        posts,
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+    return {
+      props: {
+        posts: [],
+      },
+    };
+  }
 }
+
