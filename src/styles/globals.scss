@@ -5,6 +5,7 @@
 @import "./src/components/Hero/Hero.scss";
 @import "./src/components/Experience/Experience.scss";
 @import "./src/components/Projects/Projects.scss";
+@import "./src/components/Footer/Footer.scss";
 @import "./blog.scss";
 @import "./post.scss";
 @import "./src/components/elements/PostGrid.scss";
@@ -165,4 +166,30 @@ h4 {
 
 .btn {
   width: fit-content;
+}
+
+.transition-div {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 100%;
+  width: 100vw;
+  height: 100vh;
+  background-color: aquamarine;
+  // z-index: 5000;
+
+  &.one {
+    background: #2e2257;
+    z-index: 6000;
+  }
+
+  &.two {
+    background: #3b2d71;
+    z-index: 7000;
+  }
+
+  &.three {
+    background: #4b3792;
+    z-index: 8000;
+  }
 }

@@ -17,7 +17,6 @@ const useSpinningTextCursor = (
     const hoverEffectDuration = 0.1;
     let isHovered = false;
     let initialCursorHeight;
-
     const cursorRotationDuration = 7;
 
     let circleType = new CircleType(cursorTextEl.current);
@@ -45,13 +44,17 @@ const useSpinningTextCursor = (
       mouse.y = e.clientY;
     }
 
-    function updateCursor() {
-      gsap.set(cursorTextContainer.current, {
-        x: mouse.x,
-        y: mouse.y,
-      });
+    let animationFrameId;
 
-      if (!isHovered) {
+    function updateCursor() {
+      if (cursorTextContainer.current) {
+        gsap.set(cursorTextContainer.current, {
+          x: mouse.x,
+          y: mouse.y,
+        });
+      }
+
+      if (!isHovered && cursorTextContainer.current) {
         gsap.to(cursorTextContainer.current, {
           duration: hoverEffectDuration * 0.5,
           opacity: 0,
@@ -60,51 +63,48 @@ const useSpinningTextCursor = (
           rotate: 0,
         });
       }
-      requestAnimationFrame(updateCursor);
+      animationFrameId = requestAnimationFrame(updateCursor);
     }
 
     updateCursor();
 
     function handlePointerEnter(e) {
       isHovered = true;
-
       const target = e.currentTarget;
       updateCursorText(target);
 
-      // console.log("hovered", cursorTextEl.current);
+      if (cursorTextContainer.current && cursorTextEl.current) {
+        gsap.set([cursorTextContainer.current, cursorTextEl.current], {
+          height: initialCursorHeight,
+          width: initialCursorHeight,
+        });
 
-      gsap.set([cursorTextContainer.current, cursorTextEl.current], {
-        height: initialCursorHeight,
-        width: initialCursorHeight,
-      });
+        gsap.fromTo(
+          cursorTextContainer.current,
+          { rotate: 0 },
+          {
+            duration: cursorRotationDuration,
+            rotate: 360,
+            transformOrigin: 'center',
+            ease: "none",
+            repeat: -1,
+          }
+        );
 
-      gsap.fromTo(
-        cursorTextContainer.current,
-        {
-          rotate: 0,
-        },
-        {
-          duration: cursorRotationDuration,
-          rotate: 360,
-          transformOrigin: 'center',
-          ease: "none",
-          repeat: -1,
-        }
-      );
-
-      gsap.fromTo(
-        cursorTextContainer.current,
-        {
-          duration: hoverEffectDuration,
-          scale: 1.2,
-          opacity: 0,
-        },
-        {
-          delay: hoverEffectDuration * 0.75,
-          scale: 1.2,
-          opacity: 1,
-        }
-      );
+        gsap.fromTo(
+          cursorTextContainer.current,
+          {
+            duration: hoverEffectDuration,
+            scale: 1.2,
+            opacity: 0,
+          },
+          {
+            delay: hoverEffectDuration * 0.75,
+            scale: 1.2,
+            opacity: 1,
+          }
+        );
+      }
     }
 
     function handlePointerLeave() {
@@ -112,9 +112,7 @@ const useSpinningTextCursor = (
     }
 
     function updateCursorText(textEl) {
-      const cursorTextRepeatTimes = textEl.getAttribute(
-        "data-cursor-text-repeat"
-      );
+      const cursorTextRepeatTimes = textEl.getAttribute("data-cursor-text-repeat");
       const cursorText = returnMultipleString(
         textEl.getAttribute("data-cursor-text"),
         cursorTextRepeatTimes
@@ -133,7 +131,19 @@ const useSpinningTextCursor = (
       }
       return s;
     }
+
+    return () => {
+      cancelAnimationFrame(animationFrameId); // Stop the loop
+
+      hoverItems.forEach((item) => {
+        item.removeEventListener("pointerenter", handlePointerEnter);
+        item.removeEventListener("pointerleave", handlePointerLeave);
+      });
+      document.body.removeEventListener("pointermove", updateCursorPosition);
+    };
+
   }, [cursorTextContainer, cursorTextEl]);
 };
+
 
 export default useSpinningTextCursor;

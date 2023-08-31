@@ -1,5 +1,6 @@
 import React from "react";
 import { useParallaxEffect } from "~/hooks/useMousePosition";
+import Link from "next/link";
 // import "./Hero.scss";
 
 const Hero = () => {
@@ -19,14 +20,14 @@ const Hero = () => {
             Enthusiastic web developer with a passion for front-end
             <br /> with big interest in back-end, based in Arnhem, NL
           </p>
-          <a
-            href="#"
+          <Link
+            href="/blog"
             className="btn cursor-hover-item"
             data-cursor-text="JUST SCROLL"
             data-cursor-text-repeat="3"
           >
             Learn more
-          </a>
+          </Link>
         </div>
       </div>
     </div>

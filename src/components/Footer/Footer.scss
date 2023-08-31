@@ -1,0 +1,11 @@
+footer#footer {
+    padding: 26px 0;
+    svg {
+        width: 100%;
+        filter: blur(150px)
+    }
+    .container {
+        display: flex;
+        justify-content: space-between;
+    }
+}

@@ -4,6 +4,9 @@ import { AppProps } from "next/app";
 import DashboardLayout from "@Dashboard/layout";
 import "~/styles/globals.scss";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import Transition from "@components/Transition/Transition";
+import { useRouter } from "next/router";
+import { AnimatePresence, motion } from "framer-motion";
 
 const queryClient = new QueryClient();
 
@@ -12,6 +15,8 @@ const MyApp: React.FC<AppProps<{ session: Session | null }>> = ({
   pageProps: { session, ...pageProps },
   router,
 }) => {
+  const routerino = useRouter();
+
   const isDashboardRoute = (pathname: string) => {
     return pathname.startsWith("/dashboard");
   };
@@ -30,7 +35,12 @@ const MyApp: React.FC<AppProps<{ session: Session | null }>> = ({
   return (
     <SessionProvider session={session}>
       <QueryClientProvider client={queryClient}>
-        <Component {...pageProps} />
+        <AnimatePresence mode="wait">
+          <motion.div key={routerino.route} className="motion_transition_div">
+            <Transition />
+            <Component {...pageProps} />
+          </motion.div>
+        </AnimatePresence>
       </QueryClientProvider>
     </SessionProvider>
   );
