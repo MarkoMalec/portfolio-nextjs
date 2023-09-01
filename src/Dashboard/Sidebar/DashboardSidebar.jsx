@@ -3,6 +3,17 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useSession, signOut } from "next-auth/react";
 
+const ActiveLink = ({ href, children }) => {
+  const router = useRouter();
+  const isActive = router.pathname === href;
+
+  return (
+    <Link href={href} className={isActive ? "active" : ""}>
+      {children}
+    </Link>
+  );
+};
+
 const DashboardSidebar = () => {
   const { data: session } = useSession();
   const user = session?.user;
@@ -11,35 +22,35 @@ const DashboardSidebar = () => {
   return (
     <aside className="sidebar">
       <div className="user_meta">
-        <img 
-          src={user?.image || "/"} 
-          alt={user ? `${user.name}'s avatar` : "empty image"} 
+        <img
+          src={user?.image || "/"}
+          alt={user ? `${user.name}'s avatar` : "empty image"}
         />
         <div>
-        <span>{user?.name || "Loading..."}</span>
-        <span className="user_meta-role">{user?.role}</span>
+          <span>{user?.name || "Loading..."}</span>
+          <span className="user_meta-role">{user?.role}</span>
         </div>
       </div>
       <nav className="sidebar-nav">
         <ul>
           <li>
-          <Link href="/dashboard" className={router.pathname === "/dashboard" ? "active" : ""}>Home</Link>
-
+            <ActiveLink href="/dashboard">Home</ActiveLink>
           </li>
           <li>
-            <Link href="/dashboard/posts" className={router.pathname === "/dashboard/posts" ? "active" : ""}>Posts</Link>
+            <ActiveLink href="/dashboard/posts">Posts</ActiveLink>
             <ul>
               <li>
-                <Link href="/dashboard/create" className={router.pathname === "/dashboard/create"  ? "active" : ""}>+ New post</Link>
+                <ActiveLink href="/dashboard/create">+ New post</ActiveLink>
               </li>
               <li>
-                <Link href="/dashboard/posts"  className={router.pathname === "dashboard/posts"  ? "active" : ""}>See all</Link>
+                <ActiveLink href="/dashboard/posts">See all</ActiveLink>
               </li>
             </ul>
           </li>
         </ul>
-        <a href="/dashboard">Projects</a>
-        <a href="/dashboard">Experiences</a>
+        <ActiveLink href="/dashboard">Projects</ActiveLink>
+        <ActiveLink href="/dashboard">Experiences</ActiveLink>
+        <ActiveLink href="/dashboard/users">Users</ActiveLink>
       </nav>
       <button className="btn btn-secondary" onClick={() => signOut()}>
         Sign out

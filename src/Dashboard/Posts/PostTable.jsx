@@ -9,6 +9,8 @@ const PostTable = ({ postsData }) => {
     direction: 'descending'
   });
 
+  // console.log(postsData);
+
   // Convert ISO string dates to JavaScript Date objects
   const formattedPosts = posts.map((post) => ({
     ...post,
@@ -45,9 +47,9 @@ const PostTable = ({ postsData }) => {
       <table id="posts_table">
         <thead>
           <tr>
-            <th>
+            {/* <th>
               <button onClick={() => requestSort('id')}>ID</button>
-            </th>
+            </th> */}
             <th>
               <button onClick={() => requestSort('title')}>Title</button>
             </th>
@@ -57,12 +59,15 @@ const PostTable = ({ postsData }) => {
             <th>
               <button onClick={() => requestSort('updatedAt')}>Updated At</button>
             </th>
+            <th>
+              <button onClick={() => requestSort('Author')}>Author</button>
+            </th>
           </tr>
         </thead>
         <tbody>
           {sortedPosts.map((post) => (
             <tr key={post.id}>
-              <td>{post.id}</td>
+              {/* <td>{post.id}</td> */}
               <td className="post_name-column">
                 <Link href={`/dashboard/post/${post.id}/edit`}>
                   {post.title}
@@ -74,6 +79,7 @@ const PostTable = ({ postsData }) => {
               </td>
               <td>{post.createdAt}</td>
               <td>{post.updatedAt}</td>
+              <td>{post.author.name}</td>
             </tr>
           ))}
         </tbody>

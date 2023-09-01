@@ -73,8 +73,8 @@ const Projects = ({ projects = [] }) => {
                   <Image
                     src={el.featuredPhoto}
                     alt={el.title}
-                    width={1600}
-                    height={1600}
+                    width={1000}
+                    height={1000}
                   />
                 )}
               </div>

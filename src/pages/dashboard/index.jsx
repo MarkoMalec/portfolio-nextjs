@@ -1,16 +1,13 @@
 import { useSession, getSession } from "next-auth/react";
 import { fetchDailyStats } from "@utils/data-fetching";
-import { Chart as ChartJS, registerables } from "chart.js";
-import { Chart, Line } from "react-chartjs-2";
+import DailyPosts from "@Charts/DailyPosts";
 import Link from "next/link";
-
-ChartJS.register(...registerables);
 
 const Dashboard = ({ user, postStats }) => {
   let session = useSession();
 
   console.log(user);
-
+  console.log(postStats);
   if (!session) {
     return (
       <div className="not_logged_in">
@@ -22,44 +19,11 @@ const Dashboard = ({ user, postStats }) => {
     );
   }
 
-  const chartData = {
-    labels: postStats?.map((stat) => new Date(stat.date).toLocaleDateString()),
-    datasets: [
-      {
-        label: "Posts",
-        data: postStats?.map((stat) => stat.post_count),
-        fill: false,
-        backgroundColor: "rgb(75, 192, 192)",
-        borderColor: "rgba(75, 192, 192, 0.2)",
-      },
-    ],
-  };
-
-  const options = {
-    scales: {
-      x: {
-        type: "category",
-        title: {
-          display: true,
-          text: "Date",
-        },
-      },
-      y: {
-        title: {
-          display: true,
-          text: "Post Count",
-        },
-      },
-    },
-  };
 
   return (
     <>
       <h1 className="welcome_title">Welcome {user.name}</h1>
-      <section className="daily-posts-block">
-        <h5>Daily post count</h5>
-        <Line data={chartData} options={options} />
-      </section>
+      <DailyPosts postStats={postStats} />
     </>
   );
 };

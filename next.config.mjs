@@ -6,8 +6,8 @@ await import("./src/env.mjs");
 
 /** @type {import("next").NextConfig} */
 const config = {
-  transpilePackages: ['gsap'],
-  transpile: ['gsap'],
+  transpilePackages: ["gsap"],
+  transpile: ["gsap"],
   reactStrictMode: true,
 
   /**
@@ -25,17 +25,23 @@ const config = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'uploadthing.com',
-        port: '',
-        pathname: '/f/**',
+        protocol: "https",
+        hostname: "uploadthing.com",
+        port: "",
+        pathname: "/f/**",
       },
       {
-        protocol: 'https',
-        hostname: 'utfs.io',
-        port: '',
-        pathname: '/f/**',
-      }
+        protocol: "https",
+        hostname: "utfs.io",
+        port: "",
+        pathname: "/f/**",
+      },
+      {
+        protocol: "https",
+        hostname: "**",
+        port: "",
+        pathname: "**",
+      },
     ],
   },
   typescript: {

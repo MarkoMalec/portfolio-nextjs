@@ -12,7 +12,5 @@ export default async function handler(req, res) {
     }
   } catch (error) {
     res.status(500).json({ error: "Unable to fetch experiences." });
-  } finally {
-    await prisma.$disconnect(); // Ensure that the Prisma Client connection is closed after the call
   }
 }

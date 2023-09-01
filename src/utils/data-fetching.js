@@ -37,3 +37,8 @@ export async function fetchDailyStats(baseURL) {
   }
   return response.json();
 }
+
+export async function fetchUsers() {
+  const res = await fetch(`${API_URL}/api/users`);
+  return res.json();
+}

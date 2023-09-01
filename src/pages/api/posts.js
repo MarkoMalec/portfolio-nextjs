@@ -11,14 +11,13 @@ export default async function handler(req, res) {
       try {
         const dailyStats =
           await prisma.$queryRaw`SELECT DATE(createdAt) as date, COUNT(*) as post_count FROM Post GROUP BY DATE(createdAt) ORDER BY DATE(createdAt) DESC;`;
-        console.log(dailyStats, "dailyStats");
-        const serializedStats = dailyStats.map(stat => ({
+
+        const serializedStats = dailyStats.map((stat) => ({
           ...stat,
-          post_count: stat.post_count.toString()
+          post_count: stat.post_count.toString(),
         }));
-        
+
         return res.status(200).json(serializedStats);
-        
       } catch (error) {
         console.error("Error fetching daily statistics:", error);
         return res.status(500).json({
@@ -30,6 +29,9 @@ export default async function handler(req, res) {
         const singlePost = await prisma.post.findUnique({
           where: {
             id: parseInt(id, 10),
+          },
+          include: {
+            author: true,
           },
         });
 
@@ -54,6 +56,9 @@ export default async function handler(req, res) {
               equals: decodedTitle,
             },
           },
+          include: {
+            author: true,
+          },
         });
 
         if (!singlePost) {
@@ -69,7 +74,11 @@ export default async function handler(req, res) {
       }
     } else {
       try {
-        const posts = await prisma.post.findMany();
+        const posts = await prisma.post.findMany({
+          include: {
+            author: true,
+          },
+        });
         return res.status(200).json(posts);
       } catch (error) {
         console.error("Error fetching posts:", error);
@@ -140,12 +149,6 @@ export default async function handler(req, res) {
       if (!existingPost) {
         return res.status(404).json({ error: "Post not found." });
       }
-
-      // if (existingPost.authorId !== session.user.id) {
-      //   return res
-      //     .status(403)
-      //     .json({ error: "You don't have permission to edit this post." });
-      // }
 
       // Update the post
       const updatedPost = await prisma.post.update({
