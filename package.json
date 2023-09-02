@@ -27,6 +27,7 @@
     "chart.js": "^4.4.0",
     "circletype": "^2.3.0",
     "cors": "^2.8.5",
+    "devicon-react-svg": "^0.2.4",
     "editorjs-react-renderer": "^3.5.1",
     "firebase": "^10.1.0",
     "framer-motion": "^10.15.1",

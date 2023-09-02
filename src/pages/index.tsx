@@ -9,6 +9,7 @@ import Sidebar from "@components/Sidebar/Sidebar";
 import Hero from "@components/Hero/Hero";
 import Experience from "@components/Experience/Experience";
 import Projects from "@components/Projects/Projects";
+import Stack from "@components/Stack/Stack";
 import Footer from "@components/Footer/Footer";
 
 export default function Home({ experiences = [], projects = [] }) {
@@ -24,6 +25,7 @@ export default function Home({ experiences = [], projects = [] }) {
       <Hero />
       <Experience data={experiences} />
       <Projects projects={projects} />
+      <Stack />
       <Footer />
     </>
   );

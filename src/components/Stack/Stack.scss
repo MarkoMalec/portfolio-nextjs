@@ -1,0 +1,45 @@
+#stack_section {
+    padding-top: 100px;
+    padding-bottom: 100px;
+
+    .section-title {
+        margin-bottom: 100px;
+    }
+}
+
+.stack-icon-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+
+    &:hover img {
+        filter: grayscale(0);
+    }
+
+    div {
+        display: block;
+        flex: 0 0 calc(100% / 10);
+        box-sizing: border-box;
+        margin-bottom: 100px;
+        text-align: center;
+        border-radius: 25px;
+        padding-top: 20px;
+        padding-bottom: 15px;
+        
+        &:hover {
+            background: rgba(255, 255, 255, 0.022);
+        }
+
+        img {
+            filter: grayscale(1);
+            transition: filter .5s ease-in-out;
+        }
+    }
+
+    @for $i from 1 through 16 {
+        div:nth-child(#{$i}) img {
+            transition-delay: .1s * $i;
+        }
+    }
+}

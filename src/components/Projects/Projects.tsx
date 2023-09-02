@@ -60,7 +60,7 @@ const Projects = ({ projects = [] }) => {
                   data-cursor-text="see more"
                   data-cursor-text-repeat="4"
                 >
-                  See more
+                  see more
                 </a>
               </div>
               <div
