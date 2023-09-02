@@ -25,6 +25,7 @@ const Hero = () => {
             className="btn cursor-hover-item"
             data-cursor-text="JUST SCROLL"
             data-cursor-text-repeat="3"
+            scroll={false}
           >
             Learn more
           </Link>

@@ -22,11 +22,6 @@ function SinglePost({ post }) {
       <AdminBar>
         <Link href={`/dashboard/post/${post.id}/edit`}>Edit Post</Link>
       </AdminBar>
-      <main className="container post">
-        <article>
-          <div className="post_title">
-            <h1>{post.title}</h1>
-          </div>
           <div className="post_thumbnail">
             <Image
               src={post.featuredPhoto}
@@ -35,6 +30,11 @@ function SinglePost({ post }) {
               sizes="unsized"
               objectFit="cover"
             />
+          </div>
+      <main className="container post">
+        <article>
+          <div className="post_title">
+            <h1>{post.title}</h1>
           </div>
           <div className="post_content">
             <Output data={contentObject} />
