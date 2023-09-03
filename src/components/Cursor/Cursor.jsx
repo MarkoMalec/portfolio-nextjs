@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { useContext } from "react";
 import { useMousePosition } from "@hooks/useMousePosition";
 import { MouseContext } from "@context/MouseContext";

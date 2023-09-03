@@ -1,11 +1,8 @@
 import React from "react";
 import { useParallaxEffect } from "~/hooks/useMousePosition";
 import Link from "next/link";
-// import "./Hero.scss";
 
 const Hero = () => {
-  // const parallaxStyle = useParallaxEffect(50);
-
   return (
     <div className="hero-wrapper">
       <div className="hero-inner">

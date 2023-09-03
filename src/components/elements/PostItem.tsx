@@ -2,19 +2,23 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-const PostItem = ({ featuredPhoto, postTitle, postContent }) => {
-  const content = JSON.parse(postContent);
+type PostItemProps = {
+  featuredPhoto: string;
+  postTitle: string;
+  postContent: string;
+};
 
-  // console.log(content);
+const PostItem = ({ featuredPhoto, postTitle, postContent }: PostItemProps) => {
+  const content = JSON.parse(postContent);
 
   return (
     <div className="post_item">
       <Link href={`/blog/post/${postTitle}`}>
         <div className="post_thumbnail">
           <Image
-            src={featuredPhoto ? featuredPhoto : "../assets/github.svg"}
+            src={featuredPhoto ? featuredPhoto : "../assets/placeholder.svg"}
             alt={postTitle}
-            layout="fill"
+            fill
             sizes="unsized"
           />
         </div>

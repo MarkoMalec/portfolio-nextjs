@@ -1,24 +1,9 @@
-import { useSession, getSession } from "next-auth/react";
+import { getSession } from "next-auth/react";
 import { fetchDailyStats } from "@utils/data-fetching";
 import DailyPosts from "@Charts/DailyPosts";
-import Link from "next/link";
 
 const Dashboard = ({ user, postStats }) => {
-  let session = useSession();
-
-  console.log(user);
-  console.log(postStats);
-  if (!session) {
-    return (
-      <div className="not_logged_in">
-        <span>You are not logged in!</span>
-        <Link className="btn btn-primary" href="/login">
-          Login
-        </Link>
-      </div>
-    );
-  }
-
+  console.table(user);
 
   return (
     <>

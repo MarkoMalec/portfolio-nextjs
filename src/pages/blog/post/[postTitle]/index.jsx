@@ -3,7 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { fetchSinglePost } from "@utils/data-fetching";
-import AdminBar from "../../../../components/AdminBar/AdminBar";
+import AdminBar from "@components/AdminBar/AdminBar";
 
 import dynamic from "next/dynamic";
 
@@ -22,15 +22,14 @@ function SinglePost({ post }) {
       <AdminBar>
         <Link href={`/dashboard/post/${post.id}/edit`}>Edit Post</Link>
       </AdminBar>
-          <div className="post_thumbnail">
-            <Image
-              src={post.featuredPhoto}
-              alt="Featured post photo"
-              layout="fill"
-              sizes="unsized"
-              objectFit="cover"
-            />
-          </div>
+      <div className="post_thumbnail">
+        <Image
+          src={post.featuredPhoto}
+          alt="Featured post photo"
+          fill
+          sizes="unsized"
+        />
+      </div>
       <main className="container post">
         <article>
           <div className="post_title">

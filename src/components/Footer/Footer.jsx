@@ -1,12 +1,9 @@
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
-import Ellipse from "@assets/EllipseFooter.svg";
 
 const Footer = () => {
   return (
     <footer id="footer">
-      {/* <Image src={Ellipse} width={2600} height={1600} /> */}
       <section className="above-footer">
         <div className="container">
           <div className="contact-block">
@@ -20,7 +17,9 @@ const Footer = () => {
               the bold move. Send a message, and let's transform ideas into
               achievements.
             </p>
-            <Link href="/contact" className="btn">message now</Link>
+            <Link href="/contact" className="btn">
+              message now
+            </Link>
           </div>
         </div>
       </section>

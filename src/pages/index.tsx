@@ -11,8 +11,26 @@ import Experience from "@components/Experience/Experience";
 import Projects from "@components/Projects/Projects";
 import Stack from "@components/Stack/Stack";
 import Footer from "@components/Footer/Footer";
+import BlogHome from "~/components/BlogHome/BlogHome";
 
-export default function Home({ experiences = [], projects = [] }) {
+type Posts = {
+  id: number;
+  featuredPhoto: string;
+  title: string;
+  content: string;
+};
+
+type HomeProps = {
+  experiences: [];
+  projects: [];
+  posts: Posts[];
+};
+
+export default function Home({
+  experiences = [],
+  projects = [],
+  posts,
+}: HomeProps) {
   return (
     <>
       <Head>
@@ -26,6 +44,7 @@ export default function Home({ experiences = [], projects = [] }) {
       <Experience data={experiences} />
       <Projects projects={projects} />
       <Stack />
+      <BlogHome posts={posts} />
       <Footer />
     </>
   );

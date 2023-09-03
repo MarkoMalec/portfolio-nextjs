@@ -37,6 +37,6 @@
     "**/*.tsx",
     "**/*.cjs",
     "**/*.mjs"
-, "src/components/Experience/VerticalTimeline.tsx", "src/components/Experience/VerticalTimeline.tsx", "src/components/AdminBar/AdminBar.jsx"  ],
+, "src/components/Experience/VerticalTimeline.tsx", "src/components/Experience/VerticalTimeline.tsx", "src/components/AdminBar/AdminBar.tsx"  ],
   "exclude": ["node_modules"]
 }

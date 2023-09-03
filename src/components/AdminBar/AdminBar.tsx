@@ -1,7 +1,7 @@
 import React from "react";
 import { useSession } from "next-auth/react";
 
-const AdminBar = ({ children }) => {
+const AdminBar = ({ children }: any) => {
   const { data: session } = useSession();
   if (session) {
     return <div id="adminbar">{children}</div>;

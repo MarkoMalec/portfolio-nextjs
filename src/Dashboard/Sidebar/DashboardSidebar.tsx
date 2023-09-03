@@ -3,7 +3,12 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useSession, signOut } from "next-auth/react";
 
-const ActiveLink = ({ href, children }) => {
+type ActiveLinkProps = {
+  href: string;
+  children: React.ReactNode;
+}
+
+const ActiveLink = ({ href, children }: ActiveLinkProps) => {
   const router = useRouter();
   const isActive = router.pathname === href;
 
@@ -17,7 +22,6 @@ const ActiveLink = ({ href, children }) => {
 const DashboardSidebar = () => {
   const { data: session } = useSession();
   const user = session?.user;
-  const router = useRouter();
 
   return (
     <aside className="sidebar">
