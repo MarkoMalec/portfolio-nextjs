@@ -88,4 +88,4 @@ const VerticalTimeline = ({ data = [] }) => {
   );
 };
 
-export default VerticalTimeline;
+export default React.memo(VerticalTimeline);

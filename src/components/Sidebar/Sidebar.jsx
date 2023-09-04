@@ -5,7 +5,7 @@ import CodePen from "@assets/codepen.svg";
 import Github from "@assets/github.svg";
 import Linkedin from "@assets/linkedin.svg";
 import Twitter from "@assets/twitter.svg";
-import Login from "@assets/login.svg";
+import Login from "@assets/icons/login-icon.svg";
 
 function Sidebar() {
   return (
