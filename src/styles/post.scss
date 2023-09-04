@@ -1,46 +1,48 @@
 @import "../styles/colors";
 
-.post_thumbnail {
-  position: relative;
-  width: 100%;
-  max-width: 1200px;
-  height: 460px;
-  margin-inline: auto;
-  margin-top: 45px;
+.single_post {
+  .post_thumbnail {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    height: 460px;
+    margin-inline: auto;
+    margin-top: 45px;
 
-  img {
-    border-radius: 20px;
-    object-fit: cover;
+    img {
+      border-radius: 20px;
+      object-fit: cover;
+    }
   }
-}
-.container.post {
-  max-width: 900px;
-  // background-color: #1015238f;
+  .container.post {
+    max-width: 900px;
+    // background-color: #1015238f;
 
-  article {
-    color: $dashboard-white;
+    article {
+      color: $dashboard-white;
 
-    .post_title {
-      margin-bottom: 50px;
-      h1 {
-        font-size: 52px;
-        text-align: center;
+      .post_title {
+        margin-bottom: 50px;
+        h1 {
+          font-size: 52px;
+          text-align: center;
+        }
       }
-    }
 
-    p {
+      p {
         color: rgb(177, 177, 177);
-        margin-bottom: 20px!important;
-    }
+        margin-bottom: 20px !important;
+      }
 
-    ol {
+      ol {
         background: $dashboard-gray;
         border-radius: 10px;
         padding: 21px 25px 10px 35px;
-    }
+      }
 
-    li {
+      li {
         margin-bottom: 10px;
+      }
     }
   }
 }

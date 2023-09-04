@@ -3,12 +3,28 @@
 
   .blog-loop {
     max-width: 1000px;
+
     .post_grid {
       margin-top: 0;
 
       .post_item {
         flex-basis: calc(33.3333% - 40px);
         margin: 20px;
+        
+        .post_thumbnail {
+
+          img {
+            filter: grayscale(1);
+            transition: .25s ease-out;
+          }
+
+          &:hover {
+            img {
+              filter: grayscale(0);
+              scale: 1.1;
+            }
+          }
+        }
 
         @media (max-width: 1000px) {
             flex: 1 1 calc(50% - 40px);
@@ -19,7 +35,8 @@
         }
 
         .post_meta {
-            display: none;
+            // display: none;
+            // position: absolute;
         }
       }
     }

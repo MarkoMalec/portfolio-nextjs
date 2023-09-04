@@ -476,6 +476,7 @@ html:has(.wrapper-404) {
   height: 100%;
   text-align: center;
   margin-top: 70px;
+  z-index: 1;
 }
 
 .error__overlay {
@@ -506,7 +507,7 @@ html:has(.wrapper-404) {
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 5px;
-  font-size: 5.6rem;
+  font-size: 3.6rem;
   padding-bottom: 40px;
   max-width: 960px;
   margin: 0 auto;
@@ -514,7 +515,7 @@ html:has(.wrapper-404) {
 
 .message__text {
   font-family: "Montserrat", sans-serif;
-  line-height: 42px;
+  line-height: 32px;
   font-size: 18px;
   padding: 0 60px;
   max-width: 680px;
@@ -656,24 +657,23 @@ html:has(.wrapper-404) {
   align-items: center;
   transform-origin: center top;
   animation-timing-function: cubic-bezier(0.6, 0, 0.38, 1);
-  animation: move 5.1s infinite;
+  // animation: move 5.1s infinite;
 }
 
-@keyframes move {
-  0% {
-    transform: rotate(40deg);
-  }
-  50% {
-    transform: rotate(-40deg);
-  }
-  100% {
-    transform: rotate(40deg);
-  }
+@keyframes flicker {
+	0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
+		//text-shadow: none;
+    opacity: .99;
+		
+	}
+	20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
+		opacity: 0.1;
+	}
 }
 
 .cable {
   width: 8px;
-  height: 248px;
+  height: 148px;
   background-image: linear-gradient(rgb(32 148 218 / 70%), rgb(193 65 25)),
     linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
@@ -717,14 +717,15 @@ html:has(.wrapper-404) {
     -75px 0 30px 15px rgba(0, 255, 255, 0.2);
   box-shadow: 0 0 25px 7px rgb(127 255 255 / 80%),
     0 0 64px 47px rgba(0, 255, 255, 0.5), 0px 0 30px 15px rgba(0, 255, 255, 0.2);
+    animation: flicker 6s ease infinite;
 }
 
 .light {
   width: 400px;
   height: 0px;
-  border-bottom: 900px solid rgb(44 255 255 / 24%);
-  border-left: 115px solid transparent;
-  border-right: 220px solid transparent;
+  border-bottom: 1000px solid rgb(44 255 255 / 24%);
+  border-left: 10px solid transparent;
+  border-right: 110px solid transparent;
   position: absolute;
   left: 0px;
   right: 0px;
@@ -732,6 +733,8 @@ html:has(.wrapper-404) {
   margin: 0px auto;
   z-index: 1;
   border-radius: 90px 90px 0px 0px;
+  animation: flicker 6s ease infinite;
+  filter: blur(70px)
 }
 /* 2.3. END Lamp */
 /***********************************

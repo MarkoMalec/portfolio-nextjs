@@ -22,24 +22,26 @@ function SinglePost({ post }) {
       <AdminBar>
         <Link href={`/dashboard/post/${post.id}/edit`}>Edit Post</Link>
       </AdminBar>
-      <div className="post_thumbnail">
-        <Image
-          src={post.featuredPhoto}
-          alt="Featured post photo"
-          fill
-          sizes="unsized"
-        />
-      </div>
-      <main className="container post">
-        <article>
-          <div className="post_title">
-            <h1>{post.title}</h1>
-          </div>
-          <div className="post_content">
-            <Output data={contentObject} />
-          </div>
-        </article>
-        <Link href="/blog">All articles</Link>
+      <main className="single_post">
+        <div className="post_thumbnail">
+          <Image
+            src={post.featuredPhoto}
+            alt="Featured post photo"
+            fill
+            sizes="unsized"
+          />
+        </div>
+        <section className="container post">
+          <article>
+            <div className="post_title">
+              <h1>{post.title}</h1>
+            </div>
+            <div className="post_content">
+              <Output data={contentObject} />
+            </div>
+          </article>
+          <Link href="/blog">All articles</Link>
+        </section>
       </main>
     </>
   );
