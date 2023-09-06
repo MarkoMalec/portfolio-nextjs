@@ -13,11 +13,11 @@ $background-gradient-herotext: -webkit-linear-gradient(
   width: 100%;
   overflow-x: hidden;
   overflow-y: hidden;
-  background: url(../../assets/hero-bg-3.png);
-  transform: scaleX(-1);
-  background-size: cover;
-  background-position-x: -200px;
-  background-repeat: no-repeat;
+  // background: url(../../assets/marko_malec.webp);
+  // // transform: scaleX(-1);
+  // background-size: cover;
+  // background-position-x: -200px;
+  // background-repeat: no-repeat;
   clip-path: polygon(
     0% 91%,
     0% 91%,
@@ -116,6 +116,12 @@ $background-gradient-herotext: -webkit-linear-gradient(
     0% 0%
   );
 
+  canvas {
+    z-index: 5;
+    position: absolute;
+    // filter: blur(0px);
+  }
+
   @media (max-width: 768px) {
     align-items: center;
   }
@@ -138,8 +144,32 @@ $background-gradient-herotext: -webkit-linear-gradient(
     display: flex;
     align-items: center;
     width: 100%;
-    transform: scaleX(-1);
+    // transform: scaleX(-1);
     z-index: 10;
+    pointer-events: none;
+
+    .hero-photo {
+      @media (min-width: 1280px) {
+        background-size: contain;
+      }
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 100vw;
+      height: 100vh;
+      background: url(../../assets/marko_malec.webp);
+      background-repeat: no-repeat;
+      transform: scaleX(-1);
+      background-size: cover;
+      // background-size: 50%;
+      background-position-x: -300px;
+      z-index: -1;
+      opacity: .2;
+
+      @media (max-width: $smaller) {
+        // background-position-x: -400px;
+      }
+    }
 
     h4 {
       color: #9c9d9f;
