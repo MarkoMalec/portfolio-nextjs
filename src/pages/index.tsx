@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { Project } from "~/types";
 import {
   fetchExperiences,
   fetchPosts,
@@ -22,13 +23,13 @@ type Posts = {
 
 type HomeProps = {
   experiences: [];
-  projects: [];
+  projects: Project[];
   posts: Posts[];
 };
 
 export default function Home({
   experiences = [],
-  projects = [],
+  projects,
   posts,
 }: HomeProps) {
   return (
@@ -53,8 +54,8 @@ export default function Home({
 export async function getStaticProps() {
   const experiences = await fetchExperiences();
   const posts = await fetchPosts();
-  const projects = await fetchProjects();
-
+  const projects: Project[] = await fetchProjects();
+  
   return {
     props: {
       experiences,

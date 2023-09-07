@@ -1,4 +1,5 @@
 import React, { useLayoutEffect, useRef } from "react";
+import { Project } from "~/types";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
@@ -7,7 +8,11 @@ import { useParallaxEffect } from "@hooks/useMousePosition";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Projects = ({ projects = [] }) => {
+interface ProjectsProps {
+  projects: Project[];
+}
+
+const Projects: React.FC<ProjectsProps> = ({ projects }) => {
   const parallax = useParallaxEffect(100);
   const projectSection = useRef<HTMLElement | null>(null);
 
@@ -73,8 +78,8 @@ const Projects = ({ projects = [] }) => {
                   <Image
                     src={el.featuredPhoto}
                     alt={el.title}
-                    width={1000}
-                    height={1000}
+                    width={900}
+                    height={900}
                   />
                 )}
               </div>
