@@ -1,18 +1,15 @@
 import React, { useLayoutEffect, useRef } from "react";
+import { ExperienceType } from "~/types";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface Experience {
-  id: Number;
-  company: String;
-  timeframe: String;
-  description: String;
-  skills: String;
+interface ExperienceProps {
+  data: ExperienceType[];
 }
 
-const VerticalTimeline = ({ data = [] }) => {
+const VerticalTimeline = ({ data }: ExperienceProps) => {
   const lineRef = useRef(null);
   const horizontalLine = useRef(null);
   const timelineRef = useRef(null);
@@ -56,7 +53,7 @@ const VerticalTimeline = ({ data = [] }) => {
       <div className="timeline-container" ref={timelineRef}>
         <div className="guide-line" />
         <div className="thin-line" ref={lineRef} />
-        {data.map((item: Experience, index: React.Key | null | undefined) => (
+        {data.map((item, index: React.Key | null | undefined) => (
           <div key={index} className={`timeline-entry`}>
             <div className="cube_wrapper">
               <div className="box">

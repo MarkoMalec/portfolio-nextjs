@@ -9,11 +9,16 @@ type PostItemProps = {
 };
 
 const PostItem = ({ featuredPhoto, postTitle, postContent }: PostItemProps) => {
-  const content = JSON.parse(postContent);
+  // const content = JSON.parse(postContent);
 
   return (
     <div className="post_item">
-      <Link href={`/blog/post/${postTitle}`}>
+      <Link
+        href={`/blog/post/${postTitle}`}
+        className="social cursor-hover-item"
+        data-cursor-text="READ"
+        data-cursor-text-repeat="6"
+      >
         <div className="post_thumbnail">
           <Image
             src={featuredPhoto ? featuredPhoto : "../assets/placeholder.svg"}

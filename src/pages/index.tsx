@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { Project } from "~/types";
+import { HomeProps, Project, ExperienceType, Post } from "~/types";
 import {
   fetchExperiences,
   fetchPosts,
@@ -14,24 +14,7 @@ import Stack from "@components/Stack/Stack";
 import Footer from "@components/Footer/Footer";
 import BlogHome from "~/components/BlogHome/BlogHome";
 
-type Posts = {
-  id: number;
-  featuredPhoto: string;
-  title: string;
-  content: string;
-};
-
-type HomeProps = {
-  experiences: [];
-  projects: Project[];
-  posts: Posts[];
-};
-
-export default function Home({
-  experiences = [],
-  projects,
-  posts,
-}: HomeProps) {
+export default function Home({ experiences, projects, posts }: HomeProps) {
   return (
     <>
       <Head>
@@ -52,10 +35,10 @@ export default function Home({
 }
 
 export async function getStaticProps() {
-  const experiences = await fetchExperiences();
-  const posts = await fetchPosts();
+  const experiences: ExperienceType[] = await fetchExperiences();
+  const posts: Post[] = await fetchPosts();
   const projects: Project[] = await fetchProjects();
-  
+
   return {
     props: {
       experiences,

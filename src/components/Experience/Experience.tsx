@@ -1,8 +1,13 @@
 import React from "react";
+import { ExperienceType } from "~/types";
 import VerticalTimeline from "./VerticalTimeline";
 import { useParallaxEffect } from "@hooks/useMousePosition";
 
-const Experience = ({ data = [] }) => {
+interface ExperiencesProps {
+  data: ExperienceType[];
+}
+
+const Experience = ({ data }: ExperiencesProps) => {
   const parallaxStyle = useParallaxEffect(20);
 
   return (

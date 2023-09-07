@@ -6,9 +6,9 @@ import Link from "next/link";
 const Hero = () => {
   return (
     <div className="hero-wrapper">
-      {/* <div className="3d"> */}
-        {/* <Spline scene="https://draft.spline.design/AiO5KRYqrs4vQVeF/scene.splinecode" /> */}
-      {/* </div> */}
+      {/* <div className="3d">
+        <Spline scene="https://draft.spline.design/RewajS75ujUQv-UP/scene.splinecode" />
+      </div> */}
       <div className="hero-inner">
         <div className="particle square" style={useParallaxEffect(60)} />
         <div className="particle square small" style={useParallaxEffect(50)} />
