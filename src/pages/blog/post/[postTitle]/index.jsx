@@ -50,7 +50,8 @@ function SinglePost({ post }) {
 export default SinglePost;
 
 export async function getServerSideProps(context) {
-  const post = await fetchSinglePost(undefined, context.params.postTitle);
+  const postTitle = context.params.postTitle.replace(/-/g, ' ');
+  const post = await fetchSinglePost(undefined, postTitle);
 
   return {
     props: {

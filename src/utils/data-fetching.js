@@ -15,7 +15,8 @@ export async function fetchSinglePost(id, title) {
   if (id) {
     url = `${API_URL}/api/posts?id=${id}`;
   } else if (title) {
-    url = `${API_URL}/api/posts?title=${encodeURIComponent(title)}`;
+    const formattedTitle = title.replace(/ /g, "-");
+    url = `${API_URL}/api/posts?title=${encodeURIComponent(formattedTitle)}`;
   }
 
   const res = await fetch(url);

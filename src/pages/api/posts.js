@@ -48,12 +48,13 @@ export default async function handler(req, res) {
       }
     } else if (title && title.trim() !== "") {
       const decodedTitle = decodeURIComponent(title);
+      const formattedTitle = decodedTitle.replace(/-/g, ' ');
 
       try {
         const singlePost = await prisma.post.findFirst({
           where: {
             title: {
-              equals: decodedTitle,
+              equals: formattedTitle,
             },
           },
           include: {
