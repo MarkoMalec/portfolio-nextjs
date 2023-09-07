@@ -1,14 +1,14 @@
 import React from "react";
 import { useParallaxEffect } from "~/hooks/useMousePosition";
 import Link from "next/link";
-import Spline from "@splinetool/react-spline";
+// import Spline from "@splinetool/react-spline";
 
 const Hero = () => {
   return (
     <div className="hero-wrapper">
-      <div className="3d">
-        <Spline scene="https://draft.spline.design/AiO5KRYqrs4vQVeF/scene.splinecode" />
-      </div>
+      {/* <div className="3d"> */}
+        {/* <Spline scene="https://draft.spline.design/AiO5KRYqrs4vQVeF/scene.splinecode" /> */}
+      {/* </div> */}
       <div className="hero-inner">
         <div className="particle square" style={useParallaxEffect(60)} />
         <div className="particle square small" style={useParallaxEffect(50)} />
