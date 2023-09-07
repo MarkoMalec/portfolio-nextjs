@@ -38,8 +38,8 @@ const MyApp: React.FC<AppProps<{ session: Session | null }>> = ({
         <AnimatePresence mode="wait">
           <motion.div key={routerino.route} className="motion_transition_div">
             <Transition />
-            <Component {...pageProps} />
           </motion.div>
+          <Component {...pageProps} />
         </AnimatePresence>
       </QueryClientProvider>
     </SessionProvider>
