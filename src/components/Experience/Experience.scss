@@ -207,6 +207,10 @@
         }
       }
     }
+
+    @media (max-width: $small) {
+      margin-bottom: 100px;
+    }
   }
   .gradient-child-1::before {
     content: "";

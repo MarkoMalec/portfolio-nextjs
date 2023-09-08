@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import PostGrid from "../elements/PostGrid";
 import PostItem from "../elements/PostItem";
 
@@ -29,6 +30,9 @@ const BlogHome = ({ posts }: BlogHomeProps) => {
             />
           ))}
         </PostGrid>
+        <Link href="/blog" className="btn btn-primary">
+            See more posts
+        </Link>
       </div>
     </section>
   );

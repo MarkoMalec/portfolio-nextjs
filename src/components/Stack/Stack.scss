@@ -1,9 +1,16 @@
+@import '../../styles/responsive.scss';
+
 #stack_section {
     padding-top: 100px;
     padding-bottom: 100px;
 
-    .section-title {
-        margin-bottom: 100px;
+    // .section-title {
+    //     margin-bottom: 100px;
+    // }
+
+    @media (max-width: $small) {
+        padding-top: 30px;
+        padding-bottom: 30px;
     }
 }
 
