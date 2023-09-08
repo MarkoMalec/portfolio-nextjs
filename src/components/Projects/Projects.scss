@@ -234,6 +234,8 @@
   }
 
   @media (max-width: $small) {
+    padding-bottom: 70px;
+
     .projects-grid {
       grid-template-rows: 481px 406px 381px;
       gap: 20px;
@@ -285,10 +287,16 @@
         
         &.project-3 {
           .project_image-wrapper {
-            height: 100%;
-            scale: 1.3;
-            width: 100%;
-            top: 0;
+            height: auto;
+            width: 640px;
+            // scale: 1.95;
+            // width: 100%;
+            // top: -50px;
+            // bottom: -10px;
+            top: -29px;
+            right: -70px;
+            z-index: -1;
+            filter: brightness(.6);
           }
         }
 

@@ -12,7 +12,7 @@ function DevIcon({ icon }) {
     return null;
   }
 
-  return <Image src={iconSrc} alt={`${icon} logo`} width={70} height={70} />;
+  return <Image src={iconSrc} alt={`${icon} logo`} className={`${icon}`} width={70} height={70} />;
 }
 
 export default DevIcon;
