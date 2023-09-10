@@ -19,7 +19,6 @@ const PostSettings = ({ postid, onDelete }) => {
 
   return (
     <div className="post_toolbar">
-      {session?.user.role === 'admin' ? 'youre admin' : 'youre not admin'}
       <Link href={`/dashboard/post/${postid}/edit`}>Edit</Link>
       <Link href="" onClick={() => deletePost(postid)}>Delete</Link>
     </div>

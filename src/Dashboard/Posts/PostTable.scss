@@ -1,63 +1,67 @@
 @import "../../styles/colors";
 
+#dashboard {
+  .posts_list {
+    overflow-x: auto;
 
+    table {
+      width: 100%;
+      border-collapse: collapse;
 
-.posts_list {
-  overflow-x: auto;
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-
-    th {
-      border: 1px solid $dashboard-white-border;
-      padding: 8px;
-      text-align: left;
-      background-color: $dashboard-light-gray;
-    }
-
-    tr {
-
-      &:nth-child(even) {
-        background-color: $dashboard-light-gray;
-      }
-
-      td {
-        color: $dashboard-white;
-        // border: 1px solid black;
+      th {
+        border: 1px solid $dashboard-white-border;
         padding: 8px;
         text-align: left;
-        height: 100px;
+        background-color: $dashboard-light-gray;
 
-        &.post_name-column {
-          position: relative;
+        button.btn {
+          background: transparent;
+          color: white;
+        }
+      }
 
-          .post_toolbar {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            display: none;
-            gap: 5px;
-            padding: 10px 10px;
+      tr {
+        &:nth-child(even) {
+          background-color: $dashboard-light-gray;
+        }
 
-            a {
-              padding: 2px 5px;
-              border: none;
-              background-color: $dashboard-light-gray;
-              border-radius: 5px;
+        td {
+          color: $dashboard-white;
+          // border: 1px solid black;
+          padding: 8px;
+          text-align: left;
+          height: 100px;
 
-              &:hover {
-                background-color: $dashboard-gray;
-                color: white;
+          &.post_name-column {
+            position: relative;
+
+            .post_toolbar {
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              display: none;
+              gap: 5px;
+              padding: 10px 10px;
+
+              a {
+                padding: 2px 5px;
+                border: none;
+                background-color: $dashboard-light-gray;
+                border-radius: 5px;
+
+                &:hover {
+                  background-color: $dashboard-gray;
+                  color: white;
+                }
               }
             }
           }
         }
-      }
-      // tr {
-      &:hover {
-        td .post_toolbar {
-          display: flex;
+        // tr {
+        &:hover {
+          td .post_toolbar {
+            display: flex;
+          }
         }
       }
     }

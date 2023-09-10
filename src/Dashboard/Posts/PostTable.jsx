@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import PostSettings from "./PostSettings";
+import { BiSort } from 'react-icons/bi';
 
 const PostTable = ({ postsData }) => {
   const [posts, setPosts] = useState(postsData);
@@ -51,16 +52,16 @@ const PostTable = ({ postsData }) => {
               <button onClick={() => requestSort('id')}>ID</button>
             </th> */}
             <th>
-              <button onClick={() => requestSort('title')}>Title</button>
+             <button className="btn" onClick={() => requestSort('title')}>Title <BiSort /></button>
             </th>
             <th>
-              <button onClick={() => requestSort('createdAt')}>Created At</button>
+              <button className="btn" onClick={() => requestSort('createdAt')}>Created At <BiSort /></button>
             </th>
             <th>
-              <button onClick={() => requestSort('updatedAt')}>Updated At</button>
+              <button className="btn" onClick={() => requestSort('updatedAt')}>Updated At <BiSort /></button>
             </th>
             <th>
-              <button onClick={() => requestSort('Author')}>Author</button>
+              <button className="btn" onClick={() => requestSort('Author')}>Author <BiSort /></button>
             </th>
           </tr>
         </thead>
@@ -84,6 +85,7 @@ const PostTable = ({ postsData }) => {
           ))}
         </tbody>
       </table>
+
     </div>
   );
 };

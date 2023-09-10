@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
+import Card from "@Dashboard/Card";
 
 const PostExcerpt = ({ initialExcerpt, setExcerpt }: any) => {
   const [postExcerpt, setPostExcerpt] = useState(initialExcerpt || "");
@@ -17,13 +18,15 @@ const PostExcerpt = ({ initialExcerpt, setExcerpt }: any) => {
   };
 
   return (
-    <TextareaAutosize
-      className="editor_post-title"
-      spellCheck="false"
-      placeholder="A short description..."
-      value={postExcerpt}
-      onChange={handleChange}
-    />
+    <Card title="Short description" className="post_editor--excerpt">
+      <TextareaAutosize
+        className="editor_post--excerpt"
+        spellCheck="false"
+        placeholder="A short description..."
+        value={postExcerpt}
+        onChange={handleChange}
+      />
+    </Card>
   );
 };
 

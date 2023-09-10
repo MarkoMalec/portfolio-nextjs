@@ -2,11 +2,15 @@ import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useSession, signOut } from "next-auth/react";
+import { FaHome, FaPencilAlt, FaProjectDiagram } from 'react-icons/fa';
+import { FaListOl, FaUsers } from 'react-icons/fa6';
+import { GrArticle } from 'react-icons/gr';
+import { AiTwotoneExperiment } from 'react-icons/ai';
 
 type ActiveLinkProps = {
   href: string;
   children: React.ReactNode;
-}
+};
 
 const ActiveLink = ({ href, children }: ActiveLinkProps) => {
   const router = useRouter();
@@ -38,25 +42,25 @@ const DashboardSidebar = () => {
       <nav className="sidebar-nav">
         <ul>
           <li>
-            <ActiveLink href="/dashboard">Home</ActiveLink>
+            <ActiveLink href="/dashboard"><FaHome />Home</ActiveLink>
           </li>
           <li>
-            <ActiveLink href="/dashboard/posts">Posts</ActiveLink>
+            <ActiveLink href="/dashboard/posts"><GrArticle />Posts</ActiveLink>
             <ul>
               <li>
-                <ActiveLink href="/dashboard/create">+ New post</ActiveLink>
+                <ActiveLink href="/dashboard/create"><FaPencilAlt /> New post</ActiveLink>
               </li>
               <li>
-                <ActiveLink href="/dashboard/posts">See all</ActiveLink>
+                <ActiveLink href="/dashboard/posts"><FaListOl />See all</ActiveLink>
               </li>
             </ul>
           </li>
         </ul>
-        <ActiveLink href="/dashboard">Projects</ActiveLink>
-        <ActiveLink href="/dashboard">Experiences</ActiveLink>
-        <ActiveLink href="/dashboard/users">Users</ActiveLink>
+        <ActiveLink href="/dashboard"><FaProjectDiagram />Projects</ActiveLink>
+        <ActiveLink href="/dashboard"><AiTwotoneExperiment />Experiences</ActiveLink>
+        <ActiveLink href="/dashboard/users"><FaUsers />Users</ActiveLink>
       </nav>
-      <button className="btn btn-secondary" onClick={() => signOut()}>
+      <button className="btn btn-primary" onClick={() => signOut()}>
         Sign out
       </button>
     </aside>

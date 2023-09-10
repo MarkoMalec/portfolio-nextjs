@@ -1,6 +1,7 @@
 import React from "react";
 import { Chart as ChartJS, registerables } from "chart.js";
 import { Chart, Line } from "react-chartjs-2";
+import Card from "@Dashboard/Card";
 
 ChartJS.register(...registerables);
 
@@ -54,10 +55,9 @@ const DailyPosts: React.FC<DailyPostsProps> = ({ postStats }) => {
   };
 
   return (
-    <section className="daily-posts-block">
-      <h5>Daily post count</h5>
+    <Card title="Daily posts" className="daily-posts-block">
       <Line data={chartData} options={options} />
-    </section>
+    </Card>
   );
 };
 

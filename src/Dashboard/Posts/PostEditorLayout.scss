@@ -1,0 +1,114 @@
+.post_editor--wrapper {
+  display: grid;
+  grid-template-columns: auto 300px;
+  gap: 30px;
+
+  .featured_image-block {
+
+    h5 {
+      margin: 0;
+      margin-bottom: 16px;
+      color: $dashboard-white;
+    }
+
+    .featured_image-preview {
+      border: 1px solid $dashboard-gray;
+      padding: 20px;
+      width: 100%;
+      max-width: 350px;
+      margin-bottom: 10px;
+      max-height: 500px;
+      margin-inline: auto;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+
+  .post_editor--excerpt {
+    textarea {
+      width: 100%;
+      resize: none;
+      background-color: rgb(53, 53, 53);
+      color: rgb(208, 208, 208);
+      border-radius: 6px;
+      border: none;
+      padding: 8px;
+    }
+  }
+
+  .post_editor--actions {
+    .dashboard_card--contents {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
+
+.post_editor--editor {
+  background-color: #171717;
+  padding: 25px 35px;
+  border-radius: 12px;
+  width: 100%;
+  min-width: 100%;
+
+  .editor_post-title--wrapper {
+    min-height: 100px;
+    margin-bottom: 50px;
+
+    textarea.editor_post-title {
+      width: 100%;
+      resize: none;
+      background-color: transparent;
+      border: none;
+      font-size: 71px;
+      font-family: "Poppins", sans-serif;
+      font-weight: 700;
+      color: $dashboard-blue;
+      padding-left: 50px;
+      overflow: hidden;
+
+      &::spelling-error {
+        text-decoration: none;
+      }
+
+      &:focus {
+        border: 0;
+        outline: 0;
+      }
+    }
+  }
+
+  #editor {
+    font-size: 18px;
+    color: rgb(217, 217, 217);
+
+    .ce-block__content,
+    .ce-toolbar__content {
+      max-width: calc(98% - 80px) !important;
+    }
+    .cdx-block {
+      max-width: 98% !important;
+    }
+
+    .ce-toolbar__plus {
+      color: white;
+
+      &::selection {
+        background-color: $dashboard-light-gray;
+      }
+    }
+  }
+
+  .editor_post--tip {
+    color: white;
+
+    kbd {
+      background-color: $dashboard-light-gray;
+      border-radius: 4px;
+      padding: 1px 3px;
+    }
+  }
+}

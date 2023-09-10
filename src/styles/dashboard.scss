@@ -1,4 +1,5 @@
 @import "./colors";
+@import '../Dashboard/Posts/PostEditorLayout.scss';
 
 .logged_in {
   height: 100vh;
@@ -98,18 +99,21 @@
 
 #dashboard {
   min-height: 100vh;
-  // margin: 25px;
-  // border-radius: 12px;
-  // padding-right: 25px;
   background: rgb(22, 22, 22);
-  // overflow: hidden;
 
-  .dashboard-block {
+  .dashboard_card {
     border-radius: 12px;
     padding: 10px;
+    background-color: rgb(28, 28, 28);
+    border: 1px solid rgba(238, 238, 238, 0.067);
+    margin-bottom: 25px;
+
+    h5 {
+      margin-bottom: 16px;
+    }
   }
 
-  aside {
+  aside.sidebar {
     display: flex;
     flex-direction: column;
     gap: 35px;
@@ -170,7 +174,9 @@
       }
 
       a {
-        display: block;
+        display: flex;
+        align-items: center;
+        gap: 8px;
         width: 100%;
         padding: 8px 12px;
         font-size: 13px;
@@ -178,6 +184,17 @@
         border-radius: 6px;
         transition: 0.15s ease-out;
         color: rgba(255, 255, 255, 0.604);
+
+        svg {
+          color: white;
+          stroke: white;
+          width: 13px;
+          height:13px;
+
+          path {
+            stroke: white;
+          }
+        }
 
         &:hover {
           color: white;
@@ -191,6 +208,8 @@
             rgba(0, 0, 0, 0.044) 0px 5px 5px -2.25px;
         }
       }
+
+      
     }
 
     button {
@@ -239,8 +258,11 @@
     border: none;
     padding: 10px 21px;
     color: $dashboard-gray;
-    font-size: 18px;
-    border-radius: 50px;
+    font-family: sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1;
+    border-radius: 6px;
     display: block;
     cursor: pointer;
     transition: 0.15s ease-in-out;
@@ -250,7 +272,7 @@
 
       &:hover {
         color: $dashboard-white;
-        background-color: $dashboard-gray;
+        background-color: $dashboard-blue;
         box-shadow: 5px 5px 20px $dashboard-black;
       }
     }
@@ -264,108 +286,12 @@
         color: $dashboard-white;
       }
     }
-  }
 
-  .post_creation-wrapper {
-    display: grid;
-    // grid-template-columns: repeat(4, 1fr);
-    // grid-template-rows: 1fr 1fr;
-    grid-template:
-      "editor editor editor editor featured"
-      "editor editor editor editor featured"
-      "none none  none button featured";
-    gap: 30px;
-
-    .featured_image-block {
-      // max-height: 500px;
-      background-color: $dashboard-light-gray;
-      border: 1px solid rgba(238, 238, 238, 0.067);
-
-      h5 {
-        margin: 0;
-        margin-bottom: 16px;
-        color: $dashboard-white;
-      }
-
-      .featured_image-preview {
-        border: 1px solid $dashboard-gray;
-        padding: 20px;
-        width: 100%;
-        max-width: 350px;
-        margin-bottom: 10px;
-        max-height: 500px;
-        margin-inline: auto;
-
-        img {
-          width: 100%;
-          height: auto;
-        }
-      }
+    &::before {
+      display: none;
     }
   }
 
-  .create-article {
-    background-color: #171717;
-    padding: 25px 35px;
-    border-radius: 12px;
-    grid-area: editor;
-
-    .editor_post-title--wrapper {
-      min-height: 100px;
-      margin-bottom: 50px;
-
-      textarea.editor_post-title {
-        background-color: transparent;
-        border: none;
-        font-size: 71px;
-        font-family: "Poppins", sans-serif;
-        font-weight: 700;
-        color: $dashboard-blue;
-        padding-left: 50px;
-        overflow: hidden;
-
-        &::spelling-error {
-          text-decoration: none;
-        }
-
-        &:focus {
-          border: 0;
-          outline: 0;
-        }
-      }
-    }
-
-    #editor {
-      font-size: 18px;
-      color: rgb(217, 217, 217);
-
-      .ce-block__content,
-      .ce-toolbar__content {
-        max-width: calc(98% - 80px) !important;
-      }
-      .cdx-block {
-        max-width: 98% !important;
-      }
-
-      .ce-toolbar__plus {
-        color: white;
-
-        &::selection {
-          background-color: $dashboard-light-gray;
-        }
-      }
-    }
-
-    .editor_post--tip {
-      color: white;
-
-      kbd {
-        background-color: $dashboard-light-gray;
-        border-radius: 4px;
-        padding: 1px 3px;
-      }
-    }
-  }
 
   .editor_post-button {
     grid-area: button;

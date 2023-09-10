@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { UploadButton } from "@uploadthing/react";
 import placeholder from "@assets/placeholder.svg";
 import Image from "next/image";
+import Card from "@Dashboard/Card";
 
 function FeaturedPhoto({ initialPhoto, setFeaturedPhoto }) {
   const [photo, setPhoto] = useState(initialPhoto || "");
 
   return (
-    <section className="dashboard-block featured_image-block">
-      <h5>Featured photo</h5>
+    <Card title="Featured photo" className="featured_image-block">
       <div className="featured_image-preview">
         <Image
           src={photo ? photo : placeholder}
@@ -27,7 +27,7 @@ function FeaturedPhoto({ initialPhoto, setFeaturedPhoto }) {
           alert(`ERROR! ${error.message}`);
         }}
       />
-    </section>
+    </Card>
   );
 }
 

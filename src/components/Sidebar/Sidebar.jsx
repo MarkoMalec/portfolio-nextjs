@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import SmallLogo from "@assets/SmallLogo";
 import CodePen from "@assets/codepen.svg";
 import Github from "@assets/github.svg";
@@ -18,42 +19,51 @@ function Sidebar() {
           <div className="ttb">Web developer</div>
         </div>
         <div className="socials">
-          <a
+          <Link
             className="social cursor-hover-item codepen"
             data-cursor-text="CODEPEN"
             data-cursor-text-repeat="4"
+            href="https://codepen.io/CroPsychooo"
+            rel="noopener noreferrer" target="_blank"
           >
             <Image src={CodePen} alt="codepen" />
-          </a>
-          <div
+          </Link>
+          <Link
             className="social cursor-hover-item github"
             data-cursor-text="GITHUB"
             data-cursor-text-repeat="5"
+            href="https://github.com/MarkoMalec"
+            rel="noopener noreferrer" target="_blank"
           >
             <Image src={Github} alt="github" />
-          </div>
-          <div
+          </Link>
+          <Link
             className="social cursor-hover-item twitter"
             data-cursor-text="TWITTER"
             data-cursor-text-repeat="4"
+            href="https://twitter.com/Marko7147751283"
+            rel="noopener noreferrer" target="_blank"
           >
             <Image src={Twitter} alt="twitter" />
-          </div>
-          <div
+          </Link>
+          <Link
             className="social cursor-hover-item linkedin"
             data-cursor-text="LINKEDIN"
             data-cursor-text-repeat="4"
+            href="https://www.linkedin.com/in/lecmarko/"
+            rel="noopener noreferrer" target="_blank"
           >
             <Image src={Linkedin} alt="linkedin" />
-          </div>
-          <a
+          </Link>
+          <Link
             className="social cursor-hover-item login"
             data-cursor-text="LOG IN!"
             data-cursor-text-repeat="5"
             href="/login"
+            rel="noopener noreferrer" target="_blank"
           >
             <Image src={Login} alt="Login into an account" />
-          </a>
+          </Link>
         </div>
       </div>
     </div>

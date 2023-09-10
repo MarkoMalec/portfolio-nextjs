@@ -17,13 +17,15 @@ const PostTitle = ({ setTitle, initialTitle, isEditMode }: any) => {
   };
 
   return (
-    <TextareaAutosize
-      className="editor_post-title"
-      spellCheck="false"
-      placeholder="Title"
-      value={postTitle}
-      onChange={handleChange}
-    />
+    <div className="editor_post-title--wrapper">
+      <TextareaAutosize
+        className="editor_post-title"
+        spellCheck="false"
+        placeholder="Title"
+        value={postTitle}
+        onChange={handleChange}
+      />
+    </div>
   );
 };
 

@@ -70,11 +70,14 @@
 
   .cursor--text {
     --cursor-size: fit-content;
-    font-size: 0.75rem;
-    color: #fff;
     opacity: 0;
     .text {
-      font-family: sans-serif;
+      text-shadow: 1px 1px 5px black;
+      -webkit-text-stroke: 1px;
+      -webkit-text-stroke-color: rgba(8, 8, 8, 0.578);
+      font-size: 0.75rem;
+      color: #fff;
+      font-family: "Poppins", sans-serif;
       font-weight: bold;
     }
   }
