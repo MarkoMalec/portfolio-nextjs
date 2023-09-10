@@ -46,12 +46,7 @@ const PostItem = ({
 
   return (
     <div className="post_item">
-      <Link
-        href={`/blog/post/${formattedPostTitle}`}
-        className="social cursor-hover-item"
-        data-cursor-text="READ"
-        data-cursor-text-repeat="8"
-      >
+      <Link href={`/blog/post/${formattedPostTitle}`}>
         <div className="post_thumbnail">
           <Image
             src={featuredPhoto ? featuredPhoto : "../assets/placeholder.svg"}
@@ -62,8 +57,13 @@ const PostItem = ({
         </div>
         <div className="post_meta">
           <h2>{postTitle}</h2>
-          <p className="read_time"><HiOutlineClock className='inline-block text-base' />10 min read</p>
-          <p suppressHydrationWarning={true} className="date">{formattedDate}</p>
+          <p className="read_time">
+            <HiOutlineClock className="inline-block text-base" />
+            10 min read
+          </p>
+          <p suppressHydrationWarning={true} className="date">
+            {formattedDate}
+          </p>
           <p className="excerpt">{postExcerpt}</p>
         </div>
       </Link>

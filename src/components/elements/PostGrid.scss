@@ -56,9 +56,20 @@
       img {
         object-fit: cover;
         object-position: center 30%;
+        scale: 1.1;
+      }
+    }
+    &:hover {
+      .post_thumbnail {
+        img {
+          scale: 1;
+          object-position: center 35%;
+          filter: contrast(1.2);
+        }
       }
     }
   }
+
 }
 
 $breakpoints: (
