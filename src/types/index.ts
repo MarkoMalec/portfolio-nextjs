@@ -10,6 +10,8 @@ export type Post = {
     title: string;
     content: string;
     authorId: string;
+    excerpt: string,
+    createdAt: string,
 };
 
 export type ExperienceType = {

@@ -63,7 +63,7 @@ const PostItem = ({
         <div className="post_meta">
           <h2>{postTitle}</h2>
           <p className="read_time"><HiOutlineClock className='inline-block text-base' />10 min read</p>
-          <p className="date">{formattedDate}</p>
+          <p suppressHydrationWarning={true} className="date">{formattedDate}</p>
           <p className="excerpt">{postExcerpt}</p>
         </div>
       </Link>
