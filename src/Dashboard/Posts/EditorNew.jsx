@@ -1,21 +1,34 @@
-import React, { useState, useEffect } from "react";
+"use client";
+
+import React, { useCallback, useRef, useState, useEffect } from "react";
 import axios from "axios";
-import dynamic from "next/dynamic";
-// import { Editor } from "react-draft-wysiwyg";
-import { EditorState, convertToRaw } from "draft-js";
 import { useMutation } from "@tanstack/react-query";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
+import TextareaAutosize from "react-textarea-autosize";
 import { useForm } from "react-hook-form";
+import { uploadFiles } from "@lib/uploadthing";
+import { useSession } from "next-auth/react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { useSession } from "next-auth/react";
+import "@uploadthing/react/styles.css";
 
-function EditorNew({ editPostData, featuredPhoto }) {
-    const {data: session} = useSession();
-  const { register, handleSubmit } = useForm();
-  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+function Editor({ editPostData, featuredPhoto }) {
+  const { data: session } = useSession();
   const router = useRouter();
+  const [isMounted, setIsMounted] = useState(false);
+  const [contentChanged, setContentChanged] = useState(false);
+  const [editPostTitle, setEditPostTitle] = useState("");
+
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      title: "",
+      content: null,
+      session,
+      // formState: { errors },
+    },
+  });
+  const ref = useRef();
+  const _titleRef = useRef(null);
 
   const { mutate: createPost, isLoading } = useMutation({
     mutationFn: async (data) => {
@@ -82,37 +95,114 @@ function EditorNew({ editPostData, featuredPhoto }) {
     },
   });
 
-  const Editor = dynamic(
-    () => import("react-draft-wysiwyg").then((module) => module.Editor),
-    { ssr: false }
-  );
+  const initializeEditor = useCallback(async () => {
+    const EditorJS = (await import("@editorjs/editorjs")).default;
+    const Header = (await import("@editorjs/header")).default;
+    const Embed = (await import("@editorjs/embed")).default;
+    const Table = (await import("@editorjs/table")).default;
+    const List = (await import("@editorjs/list")).default;
+    const Code = (await import("@editorjs/code")).default;
+    const LinkTool = (await import("@editorjs/link")).default;
+    const InlineCode = (await import("@editorjs/inline-code")).default;
+    const ImageTool = (await import("@editorjs/image")).default;
 
-  const onEditorStateChange = (editorState) => {
-    setEditorState(editorState);
-  };
+    if (editPostData) {
+      setEditPostTitle(editPostData.title);
+    }
+
+    if (!ref.current) {
+      const existingContent = editPostData
+        ? JSON.parse(editPostData.content)
+        : { blocks: [] };
+
+      const editor = new EditorJS({
+        holder: "editor",
+        onReady: () => {
+          ref.current = editor;
+        },
+        onChange: () => {
+          setContentChanged(true);
+        },
+        placeholder: "Type here to write your post...",
+        inlineToolbar: true,
+        data: existingContent,
+        tools: {
+          header: Header,
+          linkTool: {
+            class: LinkTool,
+            config: {
+              endpoint: "/api/link",
+            },
+          },
+          image: {
+            class: ImageTool,
+            config: {
+              uploader: {
+                async uploadByFile(file) {
+                  const [res] = await uploadFiles({
+                    files: [file],
+                    endpoint: "imageUploader",
+                  });
+
+                  return {
+                    success: 1,
+                    file: {
+                      url: res.fileUrl,
+                    },
+                  };
+                },
+              },
+            },
+          },
+          list: List,
+          code: Code,
+          inlineCode: InlineCode,
+          table: Table,
+          embed: Embed,
+        },
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setIsMounted(true);
+    }
+  }, [editPostTitle]);
+
+  useEffect(() => {
+    const editorId = document.getElementById('editor');
+    console.log(editorId)
+    if (isMounted) {
+      return () => {
+        ref.current?.destroy();
+        ref.current = undefined;
+      };
+    }
+  }, [isMounted, initializeEditor]);
 
   const onSubmit = async (data) => {
-    // Convert the editorState to raw JS object
-    const rawContentState = convertToRaw(editorState.getCurrentContent());
-  
+    const blocks = await ref.current?.save();
     const payload = {
       title: data.title,
-      content: JSON.stringify(rawContentState),
+      content: blocks,
       session: session,
     };
-  
+
     // Validation
-    const missingContent = !editorState.getCurrentContent().hasText();
+    const missingContent = payload.content.blocks.length === 0;
     const missingTitle = payload.title === "";
-  
     if (missingContent || missingTitle) {
       missingContent && !missingTitle && alert("Content is empty :(");
       missingTitle &&
         !missingContent &&
         alert("You can't just leave the title empty :(");
       missingContent && missingTitle && alert("Bro are you kidding me? xD");
+      // everything filled in? continue:
     } else {
+      // are we editing post?
       if (editPostData) {
+        // basically if user role is admin, enable post edit.
         if (session.user.role === "admin") {
           editPost(payload);
         } else if (editPostData.authorId !== session.user.id) {
@@ -121,59 +211,50 @@ function EditorNew({ editPostData, featuredPhoto }) {
         } else {
           toast("You don't have privileges to edit this post!");
         }
+        // If we are not editing post, create it.
       } else {
         createPost(payload);
       }
     }
   };
-  
+
+  if (!isMounted) {
+    return null;
+  }
 
   return (
     <>
       <ToastContainer />
-      <form id="article_form" onSubmit={handleSubmit(onSubmit)}>
-        <input
-          type="text"
-          placeholder="Title"
-          {...register("title")}
-        />
-        <Editor
-          editorState={editorState}
-          onEditorStateChange={onEditorStateChange}
-          toolbar={{
-            image: {
-              uploadCallback: uploadImageCallBack,
-              alt: { present: true, mandatory: false },
-            },
-          }}
-        />
-        <button type="submit">Publish</button>
-      </form>
+      <div className="create-article">
+        <form id="article_form" onSubmit={handleSubmit(onSubmit)}>
+          <div className="editor_post-title--wrapper">
+            <TextareaAutosize
+              className="editor_post-title"
+              ref={(e) => {
+                _titleRef(e);
+              }}
+              {...register("title")}
+              spellCheck="false"
+              placeholder="Title"
+              value={editPostTitle}
+              onChange={(e) => setEditPostTitle(e.target.value)}
+            />
+          </div>
+          <div id="editor" />
+          <p className="editor_post--tip">
+            Use <kbd>Tab</kbd> to open the command menu.
+          </p>
+        </form>
+      </div>
+      <button
+        type="submit"
+        form="article_form"
+        className="btn btn-primary editor_post-button"
+      >
+        Publish
+      </button>
     </>
   );
-
-  // Function to handle image uploads.
-  // You might have to rewrite this based on how you handle uploads in your application.
-  function uploadImageCallBack(file) {
-    return new Promise(
-      (resolve, reject) => {
-        const xhr = new XMLHttpRequest();
-        xhr.open('POST', '/api/upload/image');
-        const formData = new FormData();
-        formData.append('image', file);
-        xhr.setRequestHeader('Authorization', 'Client-ID XXXXX');
-        xhr.send(formData);
-        xhr.addEventListener('load', () => {
-          const response = JSON.parse(xhr.responseText);
-          resolve(response);
-        });
-        xhr.addEventListener('error', () => {
-          const error = JSON.parse(xhr.responseText);
-          reject(error);
-        });
-      }
-    );
-  }
 }
 
-export default EditorNew;
+export default Editor;

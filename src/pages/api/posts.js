@@ -91,7 +91,7 @@ export default async function handler(req, res) {
   }
 
   if (req.method === "POST") {
-    const { title, content, session } = req.body;
+    const { title, content, session, excerpt } = req.body;
 
     // Check if session exists and if it has a user
     if (!session || !session.user) {
@@ -111,6 +111,7 @@ export default async function handler(req, res) {
           connect: { id: session.user.id },
         },
         featuredPhoto: req.body.featuredPhoto || null,
+        excerpt,
       };
 
       const newPost = await prisma.post.create({
@@ -125,7 +126,8 @@ export default async function handler(req, res) {
   }
 
   if (req.method === "PATCH") {
-    const { id, title, content, session, featuredPhoto } = req.body;
+    console.log("PATCH request body:", req.body);
+    const { id, title, content, session, featuredPhoto, excerpt } = req.body;
 
     // Check if session exists and if it has a user
     if (!session || !session.user) {
@@ -158,8 +160,9 @@ export default async function handler(req, res) {
         },
         data: {
           title,
-          content: JSON.stringify(content),
+          content: content,
           featuredPhoto: featuredPhoto,
+          excerpt: excerpt
         },
       });
 

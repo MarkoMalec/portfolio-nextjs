@@ -1,6 +1,4 @@
 import React, { useEffect, useRef } from "react";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import DashboardSidebar from "@Dashboard/Sidebar/DashboardSidebar";
@@ -8,14 +6,7 @@ import DashboardSidebar from "@Dashboard/Sidebar/DashboardSidebar";
 const DashboardLayout = ({ children }: any) => {
   const prevChildrenRef = useRef();
 
-  const { data: session } = useSession();
-  const router = useRouter();
-
   useEffect(() => {
-    if (!session) {
-      router.push("/login");
-    }
-
     if (prevChildrenRef.current !== children) {
       const message = sessionStorage.getItem("toastMessage");
       if (message) {

@@ -1,60 +1,88 @@
 .post_grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
   margin-top: 100px;
 
   .post_item {
-    flex: 1 1 calc(33.3333% - 20px);
     position: relative;
-    margin: 10px;
-    border-radius: 12px;
+    border-radius: 5px;
+    border: 1px solid rgba(89, 89, 89, 0.558);
     overflow: hidden;
 
-    @media (max-width: 1000px) {
-      flex: 1 1 calc(50% - 20px);
-    }
-
-    @media (max-width: 600px) {
-      flex: 1 1 100%;
-    }
-
     .post_meta {
-      position: absolute;
-      display: flex;
-      align-items: flex-end;
-      bottom: 0;
-      padding: 0 12px;
-      width: 100%;
-      height: 100%;
-      z-index: 10;
-      color: white;
-      transform: translateX(-100%);
-      transition: 0.25s ease-in-out;
-      pointer-events: none;
+      padding: 1rem;
 
       h2 {
+        font-size: 1.2em;
+        font-weight: 500;
         margin: 0;
         color: white;
+      }
+
+      .date {
+        font-size: 0.8em;
+        font-weight: 500;
+        margin-bottom: 5px;
+      }
+
+      .read_time {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        background: #7e00ec;
+        background: linear-gradient(to right, #7e00ec 50%, #2080e0 100%);
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        width: fit-content;
+        font-weight: 500;
+        font-size: 0.9em;
+        color: rgb(194, 194, 194);
+        margin-top: 8px;
+        margin-bottom: 10px;
+      }
+
+      .excerpt {
+        font-size: 0.8em;
+        color: rgb(175, 175, 175);
       }
     }
 
     .post_thumbnail {
       position: relative;
       width: 100%;
-      height: 180px;
+      height: 140px;
       margin-top: 0;
+      overflow: hidden;
       z-index: 1;
 
       img {
         object-fit: cover;
+        object-position: center 30%;
       }
     }
+  }
+}
 
-    &:hover {
-      .post_meta {
-        transform: translateX(0);
-        opacity: 1;
+$breakpoints: (
+  "sm": 640px,
+  "xl": 1280px,
+);
+
+// Base grid style
+.post_grid {
+  display: grid;
+  gap: 1rem;
+}
+
+// Responsive grid columns
+@each $break, $size in $breakpoints {
+  @media (min-width: #{$size}) {
+    @if $break == "sm" {
+      .post_grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @if $break == "xl" {
+      .post_grid {
+        grid-template-columns: repeat(3, 1fr);
       }
     }
   }

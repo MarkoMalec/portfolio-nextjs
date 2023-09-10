@@ -2,36 +2,23 @@
     padding-bottom: 190px;
 
   .blog-loop {
-    max-width: 1000px;
+    max-width: 1100px;
 
     .post_grid {
       margin-top: 0;
 
       .post_item {
-        flex-basis: calc(33.3333% - 40px);
-        margin: 20px;
         
         .post_thumbnail {
 
           img {
-            filter: grayscale(1);
+            // filter: grayscale(1);
             transition: .25s ease-out;
           }
 
           &:hover {
-            img {
-              filter: grayscale(0);
-              scale: 1.1;
-            }
+            
           }
-        }
-
-        @media (max-width: 1000px) {
-            flex: 1 1 calc(50% - 40px);
-        }
-
-        @media (max-width: 576px) {
-            flex: 1 1 100%;
         }
 
         .post_meta {

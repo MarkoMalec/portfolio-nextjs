@@ -7,7 +7,8 @@ type Posts = {
   id: number;
   featuredPhoto: string;
   title: string;
-  content: string;
+  excerpt: string;
+  createdAt: string;
 };
 
 type BlogHomeProps = {
@@ -26,7 +27,8 @@ const BlogHome = ({ posts }: BlogHomeProps) => {
               key={post.id}
               featuredPhoto={post.featuredPhoto}
               postTitle={post.title}
-              postContent={post.content}
+              postExcerpt={post.excerpt}
+              date={post.createdAt}
             />
           ))}
         </PostGrid>

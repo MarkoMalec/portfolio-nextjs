@@ -47,6 +47,9 @@ model Post {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   featuredPhoto String?
+  excerpt String?
+  category String?
+  test String?
 }
 
 // Necessary for Next auth

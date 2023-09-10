@@ -13,7 +13,8 @@ const Blog = ({ posts }) => {
             key={post.id}
             featuredPhoto={post.featuredPhoto}
             postTitle={post.title}
-            postContent={post.content}
+            postExcerpt={post.excerpt}
+            date={post.PublishedAt}
           />
         ))}
       </PostGrid>
