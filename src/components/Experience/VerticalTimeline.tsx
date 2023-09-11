@@ -28,6 +28,7 @@ const VerticalTimeline = ({ data }: ExperienceProps) => {
       tl.to(lineRef.current, {
         duration: 2,
         scaleY: 1,
+        rotate: 0.1,
         ease: "none",
         transformOrigin: "top",
       });
