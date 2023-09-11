@@ -48,7 +48,7 @@ const DashboardSidebar = () => {
             <ActiveLink href="/dashboard/posts"><GrArticle />Posts</ActiveLink>
             <ul>
               <li>
-                <ActiveLink href="/dashboard/create"><FaPencilAlt /> New post</ActiveLink>
+                <ActiveLink href="/dashboard/post/create"><FaPencilAlt /> New post</ActiveLink>
               </li>
               <li>
                 <ActiveLink href="/dashboard/posts"><FaListOl />See all</ActiveLink>
@@ -56,7 +56,7 @@ const DashboardSidebar = () => {
             </ul>
           </li>
         </ul>
-        <ActiveLink href="/dashboard"><FaProjectDiagram />Projects</ActiveLink>
+        <ActiveLink href="/dashboard/projects"><FaProjectDiagram />Projects</ActiveLink>
         <ActiveLink href="/dashboard"><AiTwotoneExperiment />Experiences</ActiveLink>
         <ActiveLink href="/dashboard/users"><FaUsers />Users</ActiveLink>
       </nav>

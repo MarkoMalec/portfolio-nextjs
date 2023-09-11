@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
-import { usePostActions } from "../../hooks/posts/usePostActions";
-import { handlePostSubmit } from "../../hooks/posts/postActions";
+import { usePostActions } from "@hooks/posts/usePostActions";
+import { handlePostSubmit } from "@hooks/posts/postActions";
 import { useSession } from "next-auth/react";
 import PostEditorLayout from "@Dashboard/Posts/PostEditorLayout";
 import PostTitle from "@Dashboard/Posts/PostTitle";
