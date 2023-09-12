@@ -71,3 +71,11 @@
 // };
 
 // export default NewPost;
+import React from 'react'
+
+export const newProject = () => {
+  return (
+    <div>create</div>
+  )
+}
+
