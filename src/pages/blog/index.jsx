@@ -3,8 +3,21 @@ import Head from "next/head";
 import { fetchPosts } from "@utils/data-fetching";
 import PostGrid from "@components/elements/PostGrid";
 import PostItem from "@components/elements/PostItem";
+import usePagination from "@hooks/usePagination";
+import { BiFirstPage, BiLastPage } from "react-icons/bi";
 
 const Blog = ({ posts }) => {
+  const { currentPage, currentItems, totalPages, paginate } = usePagination(
+    1,
+    9,
+    posts
+  );
+
+  const pageNumbers = [];
+  for (let i = 1; i <= totalPages; i++) {
+    pageNumbers.push(i);
+  }
+
   return (
     <>
       <Head>
@@ -17,7 +30,7 @@ const Blog = ({ posts }) => {
       <main id="blog" className="container">
         <h1>/blog</h1>
         <PostGrid>
-          {posts.map((post) => (
+          {currentItems.map((post) => (
             <PostItem
               key={post.id}
               featuredPhoto={post.featuredPhoto}
@@ -27,6 +40,31 @@ const Blog = ({ posts }) => {
             />
           ))}
         </PostGrid>
+        <button
+          className="btn-pagination"
+          disabled={currentPage === 1}
+          onClick={() => paginate(currentPage - 1)}
+        >
+          <BiFirstPage />
+        </button>
+        {pageNumbers.map((number) => (
+          <button
+            key={number}
+            onClick={() => paginate(number)}
+            className={`btn-pagination ${
+              currentPage === number ? "active" : ""
+            }`}
+          >
+            {number}
+          </button>
+        ))}
+        <button
+          className="btn-pagination"
+          disabled={currentPage === totalPages}
+          onClick={() => paginate(currentPage + 1)}
+        >
+          <BiLastPage />
+        </button>
       </main>
     </>
   );

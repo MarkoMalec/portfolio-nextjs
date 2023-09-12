@@ -5,7 +5,11 @@ type PostGridProp = {
 };
 
 const PostGrid = ({ children }: PostGridProp) => {
-  return <section className="post_grid">{children}</section>;
+  return (
+    <section className="blog_grid--wrapper">
+      <div className="post_grid">{children}</div>
+    </section>
+  ); 
 };
 
 export default PostGrid;

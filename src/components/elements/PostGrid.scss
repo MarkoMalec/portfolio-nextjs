@@ -1,3 +1,5 @@
+@import '../../styles/colors';
+
 .post_grid {
   margin-top: 100px;
 
@@ -96,5 +98,23 @@ $breakpoints: (
         grid-template-columns: repeat(3, 1fr);
       }
     }
+  }
+}
+
+.btn-pagination {
+  background: none;
+  border: $white-border;
+  color: white;
+  margin: 10px 6px 0 0;
+  padding: 4px 8px;
+  border-radius: 3px;
+  transition: .25s ease-in-out;
+
+  &.active {
+    background: rgba(0, 0, 0, 0.596);
+  }
+
+  @media (max-width: 768px) {
+    display: none;
   }
 }

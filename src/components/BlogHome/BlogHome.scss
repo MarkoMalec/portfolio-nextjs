@@ -4,6 +4,10 @@
   .blog-loop {
     max-width: 1100px;
 
+    .blog_grid--wrapper {
+      min-height: 626px;
+    }
+
     .post_grid {
       margin-top: 0;
 
