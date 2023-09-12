@@ -168,14 +168,16 @@ $background-gradient-herotext: -webkit-linear-gradient(
       width: 100vw;
       height: 100vh;
       background: url(../../assets/marko_malec.webp);
+      // background: url(../../assets/hero-right.png);
       background-repeat: no-repeat;
       transform: scaleX(-1);
       background-size: cover;
       // background-size: 50%;
       background-position-x: -300px;
+      // background-position-x: 100%;
       // z-index: -1;
       // opacity: .2;
-      filter: brightness(.2);
+      filter: brightness(.5);
 
       @media (max-width: $smaller) {
         // background-position-x: -400px;
