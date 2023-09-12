@@ -19,7 +19,12 @@ export default function Home({ experiences, projects, posts }: HomeProps) {
     <>
       <Head>
         <title>Marko Malec - Web developer</title>
-        <meta name="description" content="Created by Marko Malec" />
+        <meta property='og:description' content='Portfolio created by Marko Malec.'/>
+        <meta property="og:image" content="https://utfs.io/f/ac32a312-1b8a-42db-a01c-369ed91646dc_IMG_20221001_152017_204.jpg" />
+        <meta property="og:url" content="https://markomalec.com" />
+        <meta property='og:image:width' content='927' />
+        <meta property='og:image:height' content='927' />
+        <meta property="og:type" content='website' />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Cursor />

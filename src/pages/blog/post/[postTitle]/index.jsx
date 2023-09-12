@@ -18,6 +18,10 @@ function SinglePost({ post }) {
     <>
       <Head>
         <title>{post.title}</title>
+        <meta property="og:image" content={`${post.featuredPhoto}`} />
+        <meta property="og:image:width" content="927" />
+        <meta property="og:image:height" content="927" />
+        <meta property="og:type" content="article" />
       </Head>
       <AdminBar>
         <Link href={`/dashboard/post/${post.id}/edit`}>Edit Post</Link>
@@ -50,7 +54,7 @@ function SinglePost({ post }) {
 export default SinglePost;
 
 export async function getServerSideProps(context) {
-  const postTitle = context.params.postTitle.replace(/-/g, ' ');
+  const postTitle = context.params.postTitle.replace(/-/g, " ");
   const post = await fetchSinglePost(undefined, postTitle);
 
   return {
