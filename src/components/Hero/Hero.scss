@@ -167,7 +167,7 @@ $background-gradient-herotext: -webkit-linear-gradient(
       right: 0;
       width: 100vw;
       height: 100vh;
-      background: url(../../assets/marko_malec.webp);
+      background: url(../../assets/hero-opt.webp);
       // background: url(../../assets/hero-right.png);
       background-repeat: no-repeat;
       transform: scaleX(-1);
@@ -177,7 +177,7 @@ $background-gradient-herotext: -webkit-linear-gradient(
       // background-position-x: 100%;
       // z-index: -1;
       // opacity: .2;
-      filter: brightness(.5);
+      filter: brightness(.55);
 
       @media (max-width: $smaller) {
         // background-position-x: -400px;
