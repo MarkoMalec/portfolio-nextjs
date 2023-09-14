@@ -13,123 +13,19 @@ $background-gradient-herotext: -webkit-linear-gradient(
   width: 100%;
   overflow-x: hidden;
   overflow-y: hidden;
-  // background: url(../../assets/marko_malec.webp);
-  // // transform: scaleX(-1);
-  // background-size: cover;
-  // background-position-x: -200px;
-  // background-repeat: no-repeat;
-  // clip-path: polygon(
-  //   0% 91%,
-  //   0% 91%,
-  //   0% 91%,
-  //   1% 91%,
-  //   1% 92%,
-  //   1% 92%,
-  //   2% 92%,
-  //   2% 92%,
-  //   3% 93%,
-  //   3% 93%,
-  //   4% 94%,
-  //   4% 94%,
-  //   5% 94%,
-  //   5% 94%,
-  //   5% 95%,
-  //   6% 95%,
-  //   6% 95%,
-  //   7% 96%,
-  //   7% 96%,
-  //   9% 96%,
-  //   10% 96%,
-  //   11% 97%,
-  //   12% 97%,
-  //   14% 96%,
-  //   16% 96%,
-  //   19% 96%,
-  //   20% 96%,
-  //   21% 96%,
-  //   22% 95%,
-  //   23% 95%,
-  //   24% 95%,
-  //   25% 95%,
-  //   26% 94%,
-  //   27% 93%,
-  //   28% 93%,
-  //   30% 92%,
-  //   31% 92%,
-  //   33% 92%,
-  //   35% 93%,
-  //   37% 93%,
-  //   38% 94%,
-  //   40% 95%,
-  //   41% 96%,
-  //   42% 97%,
-  //   44% 98%,
-  //   47% 98%,
-  //   49% 98%,
-  //   50% 98%,
-  //   51% 97%,
-  //   52% 97%,
-  //   54% 96%,
-  //   55% 95%,
-  //   56% 95%,
-  //   57% 94%,
-  //   58% 93%,
-  //   60% 93%,
-  //   61% 92%,
-  //   62% 92%,
-  //   64% 92%,
-  //   65% 94%,
-  //   66% 94%,
-  //   68% 95%,
-  //   69% 96%,
-  //   71% 97%,
-  //   74% 98%,
-  //   77% 99%,
-  //   79% 98%,
-  //   79% 98%,
-  //   80% 98%,
-  //   82% 98%,
-  //   84% 97%,
-  //   86% 96%,
-  //   87% 96%,
-  //   90% 95%,
-  //   92% 95%,
-  //   93% 95%,
-  //   93% 94%,
-  //   94% 94%,
-  //   96% 93%,
-  //   97% 93%,
-  //   97% 92%,
-  //   98% 92%,
-  //   98% 92%,
-  //   98% 92%,
-  //   99% 91%,
-  //   99% 91%,
-  //   99% 91%,
-  //   99% 91%,
-  //   99% 92%,
-  //   99% 92%,
-  //   100% 92%,
-  //   100% 92%,
-  //   100% 92%,
-  //   100% 0%,
-  //   0% 0%
-  // );
+
+  @media (max-width: $smaller) {
+    clip-path: circle(1000px at center -220px);
+  }
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     width: 100%;
     height: 100px;
     bottom: 0;
     background: linear-gradient(0deg, #0b0e16 20%, transparent 100%);
     z-index: 20;
-  }
-
-  canvas {
-    z-index: 5;
-    position: absolute;
-    // filter: blur(0px);
   }
 
   @media (max-width: 768px) {
@@ -141,7 +37,6 @@ $background-gradient-herotext: -webkit-linear-gradient(
     background-position-x: center;
     background-repeat: no-repeat;
     align-items: flex-end;
-    // padding-bottom: 2rem;
 
     .particle {
       display: none;
@@ -154,7 +49,6 @@ $background-gradient-herotext: -webkit-linear-gradient(
     display: flex;
     align-items: center;
     width: 100%;
-    // transform: scaleX(-1);
     z-index: 10;
     pointer-events: none;
 
@@ -166,21 +60,15 @@ $background-gradient-herotext: -webkit-linear-gradient(
       bottom: 0;
       right: 0;
       width: 100vw;
-      height: 100vh;
-      background: url(../../assets/marko_malec.webp);
-      // background: url(../../assets/hero-right.png);
+      height: 110vh;
+      background: url(../../assets/marko-overlay-dark.png);
       background-repeat: no-repeat;
       transform: scaleX(-1);
       background-size: cover;
-      // background-size: 50%;
-      background-position-x: -300px;
-      // background-position-x: 100%;
-      // z-index: -1;
-      // opacity: .2;
-      filter: brightness(.5);
+      background-position-x: -100px;
 
       @media (max-width: $smaller) {
-        // background-position-x: -400px;
+        background-position-x: -300px;
       }
     }
 

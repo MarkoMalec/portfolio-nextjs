@@ -36,6 +36,8 @@ model Projects {
     content        String?
     excerpt        String?
     featuredPhoto  String?
+    authorId       String?
+    author   User?     @relation(fields: [authorId], references: [id])
 }
 
 model Post {
@@ -89,6 +91,7 @@ model User {
     avatar        String?
     accounts      Account[]
     posts         Post[]
+    projects      Projects[]
     sessions      Session[]
     role          String?   @default("member")
 }

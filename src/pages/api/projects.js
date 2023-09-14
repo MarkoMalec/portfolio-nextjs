@@ -66,5 +66,40 @@ export default async function handler(req, res) {
     }
   }
 
+  if (req.method === "POST") {
+    const { title, content, session, excerpt } = req.body;
+
+    // Check if session exists and if it has a user
+    if (!session || !session.user) {
+      return res.status(401).json({ error: "Not authenticated" });
+    }
+
+    // Check if title and content are provided
+    if (!title || !content) {
+      return res.status(400).json({ error: "Title and content are required." });
+    }
+
+    try {
+      const projectData = {
+        title,
+        content: JSON.stringify(content),
+        author: {
+          connect: { id: session.user.id },
+        },
+        featuredPhoto: req.body.featuredPhoto || null,
+        excerpt,
+      };
+
+      const newPost = await prisma.projects.create({
+        data: projectData,
+      });
+
+      return res.status(201).json(newPost);
+    } catch (error) {
+      console.error("Error creating a project:", error);
+      return res.status(500).json({ error: "Failed to create project." });
+    }
+  }
+
   return res.status(405).end();
 }
