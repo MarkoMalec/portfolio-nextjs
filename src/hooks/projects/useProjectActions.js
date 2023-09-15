@@ -57,11 +57,13 @@ export const useProjectActions = () => {
       return responseData;
     },
     {
-      onError: (err) => {
+      onError: (err, data) => {
+        console.table(data);
         if (err.response?.status === 401) {
           console.error("User is not authenticated");
           return;
         }
+        toast("Ooops, something went wrong, try again later :/");
         console.error("Failed to edit the project:", err.message);
       },
       onSuccess: (data) => {

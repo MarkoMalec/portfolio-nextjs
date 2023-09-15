@@ -53,7 +53,7 @@ $background-gradient-herotext: -webkit-linear-gradient(
     pointer-events: none;
 
     .hero-photo {
-      @media (min-width: 1280px) {
+      @media (min-width: 1480px) {
         background-size: contain;
       }
       position: absolute;
@@ -61,7 +61,7 @@ $background-gradient-herotext: -webkit-linear-gradient(
       right: 0;
       width: 100vw;
       height: 110vh;
-      background: url(../../assets/marko-overlay-dark.png);
+      background: url(../../assets/marko-overlay-dark.webp);
       background-repeat: no-repeat;
       transform: scaleX(-1);
       background-size: cover;

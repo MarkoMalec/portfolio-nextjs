@@ -31,6 +31,22 @@ export async function fetchProjects() {
   return res.json();
 }
 
+export async function fetchSingleProject(id, title) {
+  let url;
+  if (id) {
+    url = `${API_URL}/api/projects?id=${id}`;
+  } else if (title) {
+    const formattedTitle = title.replace(/ /g, "-");
+    url = `${API_URL}/api/projects?title=${encodeURIComponent(formattedTitle)}`;
+  }
+
+  const res = await fetch(url);
+  if(!res.ok) {
+    throw new Error(`Failed to fetch a project. Status: ${res.status}`)
+  }
+  return res.json();
+}
+
 export async function fetchDailyStats(baseURL) {
   const response = await fetch(`${baseURL}/api/posts?type=dailyStats`);
   if (!response.ok) {
