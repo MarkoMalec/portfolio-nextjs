@@ -2,11 +2,11 @@ import React, { useState, useRef } from "react";
 import { useProjectActions } from "@hooks/projects/useProjectActions";
 import { handleProjectSubmit } from "@hooks/projects/projectActions";
 import { useSession } from "next-auth/react";
-import PostEditorLayout from "@Dashboard/Posts/PostEditorLayout";
-import PostTitle from "@Dashboard/Posts/PostTitle";
-import Editor from "@Dashboard/Posts/Editor";
-import PostExcerpt from "@Dashboard/Posts/Excerpt";
-import FeaturedPhoto from "@Dashboard/Posts/FeaturedPhoto";
+import PostEditorLayout from "@Dashboard/Content/PostEditorLayout";
+import PostTitle from "@Dashboard/Content/PostTitle";
+import Editor from "@Dashboard/Content/Editor";
+import PostExcerpt from "@Dashboard/Content/Excerpt";
+import FeaturedPhoto from "@Dashboard/Content/FeaturedPhoto";
 import Card from "@Dashboard/Card";
 
 const NewProject = () => {

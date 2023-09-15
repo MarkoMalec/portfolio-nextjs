@@ -162,10 +162,10 @@ export default async function handler(req, res) {
           id: parseInt(id, 10),
         },
       });
-      return res.status(200).json({ message: "Post deleted successfully." });
+      return res.status(200).json({ message: "Project deleted successfully." });
     } catch (error) {
-      console.error("Error deleting post:", error);
-      return res.status(500).json({ error: "Failed to delete post." });
+      console.error("Error deleting a project:", error);
+      return res.status(500).json({ error: "Failed to delete a project." });
     }
   }
 

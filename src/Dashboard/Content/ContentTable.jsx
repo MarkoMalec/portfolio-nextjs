@@ -1,24 +1,17 @@
 import React, { useState } from "react";
 import Link from "next/link";
-// import TableSettings from "./TableSettings";
+import TableSettings from "./TableSettings";
 import { BiSort } from "react-icons/bi";
 
-const ProjectsTable = ({ data }: any) => {
-  const [projects, setProjects] = useState(projectsData);
-  console.log(projects);
+const ContentTable = ({ data }) => {
+  const [contents, setContents] = useState(data);
   const [sortConfig, setSortConfig] = useState({
-    key: "id", // default sort by id
+    key: "id",
     direction: "descending",
   });
 
-  //   Convert ISO string dates to JavaScript Date objects
-  const formattedProjects = projects.map((project) => ({
-    ...project,
-    createdAt: new Date(project.createdAt).toDateString(),
-    updatedAt: new Date(project.updatedAt).toDateString(),
-  }));
-
-  const sortedProjects = [...formattedProjects].sort((a, b) => {
+  // Sorting function
+  const sortedContents = [...contents].sort((a, b) => {
     if (a[sortConfig.key] < b[sortConfig.key]) {
       return sortConfig.direction === "ascending" ? -1 : 1;
     }
@@ -28,9 +21,9 @@ const ProjectsTable = ({ data }: any) => {
     return 0;
   });
 
-  const handleDelete = (deletedPostId) => {
-    setProjects((prevProjects) =>
-      prevProjects.filter((project) => project.id !== deletedPostId)
+  const handleDelete = (deletedContentId) => {
+    setContents((prevContent) =>
+      prevContent.filter((content) => content.id !== deletedContentId)
     );
   };
 
@@ -43,8 +36,8 @@ const ProjectsTable = ({ data }: any) => {
   };
 
   return (
-    <div className="projects_list">
-      <table id="projects_table">
+    <div className="contents_list">
+      <table id="contents_table">
         <thead>
           <tr>
             <th>
@@ -67,22 +60,25 @@ const ProjectsTable = ({ data }: any) => {
                 Author <BiSort />
               </button>
             </th>
+            <th>ID</th>
           </tr>
         </thead>
         <tbody>
-          {projects.map((project) => (
-            <tr key={project.id}>
-              <td className="project_name-column">
-                <Link href={`/dashboard/project/${project.id}/edit`}>
-                  {project.title}
+          {sortedContents.map((content) => (
+            <tr key={content.id}>
+              <td className="content_name-column">
+                <Link href={`/dashboard/content/${content.id}/edit`}>
+                  {content.title}
                 </Link>
-                {/* <TableSettings
-                  projectid={project.id}
-                  onDelete={() => handleDelete(project.id)}
-                /> */}
+                <TableSettings
+                  postid={content.id}
+                  onDelete={() => handleDelete(content.id)}
+                />
               </td>
-              <td>{project.createdAt}</td>
-              <td>{project.updatedAt}</td>
+              <td>{content.createdAt}</td>
+              <td>{content.updatedAt}</td>
+              <td>{content.author?.name}</td>
+              <td>{content.id}</td>
             </tr>
           ))}
         </tbody>
@@ -91,4 +87,4 @@ const ProjectsTable = ({ data }: any) => {
   );
 };
 
-export default ProjectsTable;
+export default ContentTable;

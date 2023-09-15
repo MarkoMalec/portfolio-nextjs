@@ -1,8 +1,8 @@
 import { fetchProjects } from "@utils/data-fetching";
-import ProjectsTable from "@Dashboard/Projects/ProjectsTable";
+import ContentTable from "@Dashboard/Content/ContentTable";
 
 function PostsPage({ projects }: any) {
-  return <ProjectsTable projectsData={projects} />;
+  return <ContentTable data={projects} />;
 }
 
 export default PostsPage;

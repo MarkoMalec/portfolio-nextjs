@@ -3,11 +3,11 @@ import Link from "next/link";
 import { fetchSingleProject } from "@utils/data-fetching";
 import { useProjectActions } from "@hooks/projects/useProjectActions";
 import { useSession } from "next-auth/react";
-import PostEditorLayout from "@Dashboard/Posts/PostEditorLayout";
-import PostTitle from "@Dashboard/Posts/PostTitle";
-import Editor from "@Dashboard/Posts/Editor";
-import FeaturedPhoto from "@Dashboard/Posts/FeaturedPhoto";
-import PostExcerpt from "@Dashboard/Posts/Excerpt";
+import PostEditorLayout from "@Dashboard/Content/PostEditorLayout";
+import PostTitle from "@Dashboard/Content/PostTitle";
+import Editor from "@Dashboard/Content/Editor";
+import FeaturedPhoto from "@Dashboard/Content/FeaturedPhoto";
+import PostExcerpt from "@Dashboard/Content/Excerpt";
 import Card from "@Dashboard/Card";
 
 const EditProject = ({ project }) => {

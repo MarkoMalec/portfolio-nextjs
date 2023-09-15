@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useSession, signOut } from "next-auth/react";
-import { FaHome, FaPencilAlt, FaProjectDiagram } from 'react-icons/fa';
-import { FaListOl, FaUsers } from 'react-icons/fa6';
-import { GrArticle } from 'react-icons/gr';
-import { AiTwotoneExperiment } from 'react-icons/ai';
+import { FaHome, FaPencilAlt, FaProjectDiagram } from "react-icons/fa";
+import { FaListOl, FaUsers } from "react-icons/fa6";
+import { GrArticle } from "react-icons/gr";
+import { AiTwotoneExperiment, AiOutlineAppstoreAdd } from "react-icons/ai";
+import { BsChevronExpand } from "react-icons/bs";
 
 type ActiveLinkProps = {
   href: string;
@@ -24,8 +25,17 @@ const ActiveLink = ({ href, children }: ActiveLinkProps) => {
 };
 
 const DashboardSidebar = () => {
+  const [expandedSections, setExpandedSections] = useState({});
+
   const { data: session } = useSession();
   const user = session?.user;
+
+  const toggleExpand = (section: any) => {
+    setExpandedSections((prevState) => ({
+      ...prevState,
+      [section]: !prevState[section],
+    }));
+  };
 
   return (
     <aside className="sidebar">
@@ -42,23 +52,75 @@ const DashboardSidebar = () => {
       <nav className="sidebar-nav">
         <ul>
           <li>
-            <ActiveLink href="/dashboard"><FaHome />Home</ActiveLink>
+            <ActiveLink href="/dashboard">
+              <FaHome />
+              Home
+            </ActiveLink>
           </li>
-          <li>
-            <ActiveLink href="/dashboard/posts"><GrArticle />Posts</ActiveLink>
-            <ul>
+          <li className="has_children">
+            <ActiveLink href="/dashboard/posts">
+              <GrArticle />
+              Posts
+              <BsChevronExpand
+                className="expand"
+                onClick={() => toggleExpand("Posts")}
+              />
+            </ActiveLink>
+            <ul
+              className={`submenu ${
+                expandedSections["Posts"] ? "submenu-open" : "submenu-closed"
+              }`}
+            >
               <li>
-                <ActiveLink href="/dashboard/post/create"><FaPencilAlt /> New post</ActiveLink>
+                <ActiveLink href="/dashboard/post/create">
+                  <FaPencilAlt /> New post
+                </ActiveLink>
               </li>
               <li>
-                <ActiveLink href="/dashboard/posts"><FaListOl />See all</ActiveLink>
+                <ActiveLink href="/dashboard/posts">
+                  <FaListOl />
+                  See all
+                </ActiveLink>
               </li>
             </ul>
           </li>
+          <li className="has_children">
+            <ActiveLink href="/dashboard/projects">
+              <AiTwotoneExperiment />
+              Projects
+              <BsChevronExpand
+                className="expand"
+                onClick={() => toggleExpand("Projects")}
+              />
+            </ActiveLink>
+            <ul
+              className={`submenu ${
+                expandedSections["Projects"] ? "submenu-open" : "submenu-closed"
+              }`}
+            >
+              <li>
+                <ActiveLink href="/dashboard/project/create">
+                  <AiOutlineAppstoreAdd />
+                  New Project
+                </ActiveLink>
+              </li>
+              <li>
+                <ActiveLink href="/dashboard/projects">
+                  <FaListOl />
+                  See all
+                </ActiveLink>
+              </li>
+            </ul>
+          </li>
+          <ActiveLink href="/dashboard">
+            <FaProjectDiagram />
+            Experiences
+          </ActiveLink>
+          <ActiveLink href="/dashboard/users">
+            <FaUsers />
+            Users
+          </ActiveLink>
         </ul>
-        <ActiveLink href="/dashboard/projects"><FaProjectDiagram />Projects</ActiveLink>
-        <ActiveLink href="/dashboard"><AiTwotoneExperiment />Experiences</ActiveLink>
-        <ActiveLink href="/dashboard/users"><FaUsers />Users</ActiveLink>
       </nav>
       <button className="btn btn-primary" onClick={() => signOut()}>
         Sign out

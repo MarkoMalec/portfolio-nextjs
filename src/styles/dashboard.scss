@@ -1,5 +1,5 @@
 @import "./colors";
-@import '../Dashboard/Posts/PostEditorLayout.scss';
+@import '../Dashboard/Content/PostEditorLayout.scss';
 
 .logged_in {
   height: 100vh;
@@ -151,6 +151,28 @@
     }
 
     nav.sidebar-nav {
+
+      .submenu {
+        overflow: hidden;
+        transition: height 0.3s ease-in-out;
+      }
+      
+      .submenu-closed {
+        height: 0;
+      }
+      
+      .submenu-open {
+        height: 70px;
+      }
+
+      li.has_children {
+
+        .expand {
+          margin-left: auto;
+        }
+
+      }
+
       z-index: 10;
       ul {
         margin: 0;
@@ -208,8 +230,6 @@
             rgba(0, 0, 0, 0.044) 0px 5px 5px -2.25px;
         }
       }
-
-      
     }
 
     button {

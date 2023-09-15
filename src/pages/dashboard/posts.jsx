@@ -1,8 +1,8 @@
 import { fetchPosts } from "@utils/data-fetching";
-import PostTable from "@Dashboard/Posts/PostTable";
+import ContentTable from "@Dashboard/Content/ContentTable";
 
 function PostsPage({ posts }) {
-  return <PostTable postsData={posts} />;
+  return <ContentTable data={posts} />;
 }
 
 export default PostsPage;

@@ -3,6 +3,15 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export default async function handler(req, res) {
+
+  const formatDates = (post) => {
+    return {
+      ...post,
+      createdAt: new Date(post.createdAt).toDateString(),
+      updatedAt: new Date(post.updatedAt).toDateString(),
+    };
+  };
+
   if (req.method === "GET") {
     const { id, title, type } = req.query;
     console.log("Incoming request:", req.query);
@@ -39,7 +48,9 @@ export default async function handler(req, res) {
           return res.status(404).json({ error: "Post not found." });
         }
 
-        return res.status(200).json(singlePost);
+        const formattedSinglePost = formatDates(singlePost);
+
+        return res.status(200).json(formattedSinglePost);
       } catch (error) {
         console.error("Error fetching single post by ID:", error);
         return res
@@ -80,7 +91,10 @@ export default async function handler(req, res) {
             author: true,
           },
         });
-        return res.status(200).json(posts);
+
+        const formattedPosts = posts.map(formatDates);
+
+        return res.status(200).json(formattedPosts);
       } catch (error) {
         console.error("Error fetching posts:", error);
         return res

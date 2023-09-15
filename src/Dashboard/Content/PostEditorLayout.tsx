@@ -1,5 +1,5 @@
 import React from "react";
-import PostEditorSidebar from "@Dashboard/Posts/PostEditorSidebar";
+import PostEditorSidebar from "~/Dashboard/Content/PostEditorSidebar";
 
 const PostEditorLayout: React.FC<{
   children: React.ReactNode;
