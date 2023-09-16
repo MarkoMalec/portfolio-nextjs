@@ -55,28 +55,29 @@
       }
     }
 
-    @media (max-width: 1247px) {
+    @media (max-width: 1307px) {
       width: 120px;
       left: -115px;
     }
 
-    @media (max-width: 1121px) {
-      width: 95px;
-      left: -90px;
+    @media (max-width: 1240px) {
+      left: -82px;
+      width: 100px;
     }
 
-    @media (max-width: 940px) {
+    @media (max-width: 1174px) {
       display: none;
     }
+
   }
+
+  @media (max-width: 1306px) {}
 }
 
 .ttb {
   width: max-content;
   margin-left: auto;
   margin-right: auto;
-  // margin-bottom: 10px;
-  // padding-bottom: 50px;
   font-size: 24px;
   line-height: 1;
   color: #9c9d9f;
