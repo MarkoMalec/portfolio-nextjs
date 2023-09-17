@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import TableSettings from "./TableSettings";
+import { useRouter } from "next/router";
 import { BiSort } from "react-icons/bi";
 
 const ContentTable = ({ data }) => {
@@ -9,6 +10,17 @@ const ContentTable = ({ data }) => {
     key: "id",
     direction: "descending",
   });
+
+  const router = useRouter();
+  const { asPath } = router;
+
+  const contentType = asPath.includes("posts")
+    ? "post"
+    : asPath.includes("projects")
+    ? "project"
+    : asPath.includes("experiences")
+    ? "experience"
+    : undefined;
 
   // Sorting function
   const sortedContents = [...contents].sort((a, b) => {
@@ -67,7 +79,7 @@ const ContentTable = ({ data }) => {
           {sortedContents.map((content) => (
             <tr key={content.id}>
               <td className="content_name-column">
-                <Link href={`/dashboard/content/${content.id}/edit`}>
+                <Link href={`/dashboard/${contentType}/${content.id}/edit`}>
                   {content.title}
                 </Link>
                 <TableSettings

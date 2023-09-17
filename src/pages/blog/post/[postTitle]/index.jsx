@@ -53,13 +53,8 @@ function SinglePost({ post }) {
 
 export default SinglePost;
 
-export async function getServerSideProps(context) {
-  const postTitle = context.params.postTitle.replace(/-/g, " ");
+SinglePost.getInitialProps = async (context) => {
+  const postTitle = context.query.postTitle.replace(/-/g, " ");
   const post = await fetchSinglePost(undefined, postTitle);
-
-  return {
-    props: {
-      post,
-    },
-  };
-}
+  return { post };
+};
