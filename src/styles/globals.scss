@@ -219,7 +219,7 @@ a.btn {
   // z-index: 5000;
 
   &.one {
-    background: #2e2257;
+    background: #4c3897;
     z-index: 6000;
   }
 
@@ -229,8 +229,16 @@ a.btn {
   }
 
   &.three {
-    background: #4b3792;
+    background: #2e2257;
     z-index: 8000;
+  }
+  &.four {
+    background: #6956ad;
+    z-index: 9000;
+  }
+  &.five {
+    background: #9383cf;
+    z-index: 10000;
   }
 }
 

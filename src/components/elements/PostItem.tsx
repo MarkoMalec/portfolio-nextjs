@@ -8,6 +8,7 @@ type PostItemProps = {
   postTitle: string;
   postExcerpt: string;
   date: string;
+  ttr: number;
 };
 
 const PostItem = ({
@@ -15,6 +16,7 @@ const PostItem = ({
   postTitle,
   postExcerpt,
   date,
+  ttr
 }: PostItemProps) => {
   const formattedPostTitle = postTitle.replace(/ /g, "-");
 
@@ -59,7 +61,7 @@ const PostItem = ({
           <h2>{postTitle}</h2>
           <p className="read_time">
             <HiOutlineClock className="inline-block text-base" />
-            10 min read
+            {ttr} min read
           </p>
           <p suppressHydrationWarning={true} className="date">
             {formattedDate}
