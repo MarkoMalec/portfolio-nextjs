@@ -15,7 +15,7 @@ const Experience = ({ data }: ExperiencesProps) => {
       <div className="gradients-container">
         <div className="blur-gradient" style={parallaxStyle} />
         <div className="blur-gradient-left" style={parallaxStyle} />
-        <div className="reactive-gradient" style={parallaxStyle} />
+        {/* <div className="reactive-gradient" style={parallaxStyle} /> */}
       </div>
       <div className="container">
         <h4 className="section-subtitle">Work</h4>

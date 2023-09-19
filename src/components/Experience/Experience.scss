@@ -198,7 +198,7 @@
         padding: 1px 8px;
         border: 1px solid #777e90;
         border-radius: 4px;
-        // cursor: none;
+        cursor: default;
         transition: 0.3s ease-out;
 
         &:hover {
@@ -255,7 +255,7 @@
       position: absolute;
       width: 20px;
       height: 20px;
-      perspective: 1500px;
+      perspective: 100px;
     }
 
     .cube {
@@ -263,7 +263,7 @@
       height: 100%;
       position: absolute;
       transform-style: preserve-3d;
-      animation: spin 5s linear infinite;
+      animation: spin 8s linear infinite;
 
       &::before {
         content: "";
@@ -274,7 +274,7 @@
         background-repeat: no-repeat;
         background-position: center;
         background-color: rgba(0, 0, 0, 0.146);
-        border-radius: 100px;
+        border-radius: 100%;
         transform: translateY(-150%) translateX(-5px) translateZ(0px);
       }
 
@@ -307,7 +307,7 @@
       height: 20px;
       background: #6d129e85;
       box-shadow: 0 0 15px rgba(255, 255, 255, 0.553);
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.224);
     }
 
     .cube > .front {
@@ -355,13 +355,6 @@
   width: 20em;
   border-radius: 100vw;
   // background: conic-gradient(from 90deg, #cc0e38ea, #540cc9d3, #090111ec);
-  filter: blur(60px);
+  // filter: blur(60px);
   opacity: 0.7;
-}
-
-.horizontal-line {
-  width: 150%;
-  height: 2px;
-  background-color: white;
-  transform: scaleX(0);
 }

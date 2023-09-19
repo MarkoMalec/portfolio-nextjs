@@ -1,11 +1,13 @@
 import React from "react";
 import axios from "axios";
 import Link from "next/link";
+import { ToastContainer, toast } from "react-toastify";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
 const TableSettings = ({ postid, onDelete }) => {
   const { data: session } = useSession();
+  console.log(session);
   const router = useRouter();
   const { asPath } = router;
 
@@ -18,17 +20,25 @@ const TableSettings = ({ postid, onDelete }) => {
     : undefined;
 
   const deleteContent = async (postId) => {
-    try {
-      const response = await axios.delete(`/api/${contentType}s`, {
-        data: { id: postId },
-      });
-      console.log("Post deleted:", response.data);
-      onDelete();
-    } catch (error) {
-      console.error("Failed to delete post:", error);
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this item?"
+    );
+    if (confirmDelete) {
+      if (session?.user.role !== "admin") {
+        toast("You don't have enough priviledges to delete this post.");
+      } else {
+        try {
+          const response = await axios.delete(`/api/${contentType}s`, {
+            data: { id: postId },
+          });
+          console.log("Post deleted:", response.data);
+          onDelete();
+        } catch (error) {
+          console.error("Failed to delete post:", error);
+        }
+      }
     }
   };
-
 
   return (
     <div className="post_toolbar">
