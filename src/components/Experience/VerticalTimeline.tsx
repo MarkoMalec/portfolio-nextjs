@@ -1,6 +1,4 @@
-'use client'
-
-import React, { useLayoutEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { ExperienceType } from "~/types";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -16,7 +14,7 @@ const VerticalTimeline = ({ data }: ExperienceProps) => {
   const horizontalLine = useRef(null);
   const timelineRef = useRef(null);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {

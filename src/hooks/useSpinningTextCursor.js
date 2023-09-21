@@ -1,4 +1,4 @@
-import { useLayoutEffect } from "react";
+import { useEffect } from "react";
 import gsap from "gsap";
 import { CSSPlugin } from "gsap/CSSPlugin";
 import CircleType from "circletype/dist/circletype.min.js";
@@ -10,7 +10,7 @@ const useSpinningTextCursor = (
   cursorTextContainer,
   cursorTextEl
 ) => {
-  useLayoutEffect(() => {
+  useEffect(() => {
     const hoverItems = document.querySelectorAll(hoverQuerySelector);
     if (!hoverItems || hoverItems.length === 0) return;
 
@@ -85,7 +85,7 @@ const useSpinningTextCursor = (
           {
             duration: cursorRotationDuration,
             rotate: 360,
-            transformOrigin: 'center',
+            transformOrigin: "center",
             ease: "none",
             repeat: -1,
           }
@@ -112,7 +112,9 @@ const useSpinningTextCursor = (
     }
 
     function updateCursorText(textEl) {
-      const cursorTextRepeatTimes = textEl.getAttribute("data-cursor-text-repeat");
+      const cursorTextRepeatTimes = textEl.getAttribute(
+        "data-cursor-text-repeat"
+      );
       const cursorText = returnMultipleString(
         textEl.getAttribute("data-cursor-text"),
         cursorTextRepeatTimes
@@ -141,9 +143,7 @@ const useSpinningTextCursor = (
       });
       document.body.removeEventListener("pointermove", updateCursorPosition);
     };
-
   }, [cursorTextContainer, cursorTextEl]);
 };
-
 
 export default useSpinningTextCursor;

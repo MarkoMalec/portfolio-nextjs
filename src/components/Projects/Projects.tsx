@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Project } from "~/types";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -16,7 +16,7 @@ const Projects: React.FC<ProjectsProps> = ({ projects }) => {
   const parallax = useParallaxEffect(100);
   const projectSection = useRef<HTMLElement | null>(null);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (projectSection.current) {
       projectSection.current.onmousemove = (e) => {
         const projectCards = document.getElementsByClassName(
