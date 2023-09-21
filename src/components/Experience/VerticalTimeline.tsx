@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useLayoutEffect, useRef } from "react";
 import { ExperienceType } from "~/types";
 import { gsap } from "gsap";

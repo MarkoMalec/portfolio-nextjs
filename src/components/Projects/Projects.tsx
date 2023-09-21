@@ -54,37 +54,55 @@ const Projects: React.FC<ProjectsProps> = ({ projects }) => {
         <h4 className="section-subtitle">Portfolio</h4>
         <h2 className="section-title">Recent Projects</h2>
         <div className="projects-grid">
-          {projects.slice(0, 4).map((el, i) => (
-            <div className={`project project-${i}`} key={el.id}>
-              <div className="project_info">
-                <h3>{el.title}</h3>
-                <p>{el.excerpt}</p>
-                <a
-                  href="#"
-                  className="btn cursor-hover-item"
-                  data-cursor-text="see more"
-                  data-cursor-text-repeat="4"
-                >
-                  see more
-                </a>
-              </div>
-              <div
-                className="project_image-wrapper"
-                style={i === 3 ? parallax : undefined}
-              >
-                {i === 3 ? (
-                  <Image src={StackIcons} alt="Stack Icons" />
-                ) : (
+          {projects
+            .filter((el) => el.title !== "Nextjs portfolio")
+            .slice(0, 3)
+            .map((el, i) => (
+              <div className={`project project-${i}`} key={el.id}>
+                <div className="project_info">
+                  <h3>{el.title}</h3>
+                  <p>{el.excerpt}</p>
+                  <a
+                    href="#"
+                    className="btn cursor-hover-item"
+                    data-cursor-text="see more"
+                    data-cursor-text-repeat="4"
+                  >
+                    see more
+                  </a>
+                </div>
+                <div className="project_image-wrapper">
                   <Image
                     src={el.featuredPhoto}
                     alt={el.title}
                     width={900}
                     height={900}
                   />
-                )}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+
+          {projects
+            .filter((el) => el.title === "Nextjs portfolio")
+            .map((el, i) => (
+              <div className={`project project-3`} key={el.id}>
+                <div className="project_info">
+                  <h3>{el.title}</h3>
+                  <p>{el.excerpt}</p>
+                  <a
+                    href="#"
+                    className="btn cursor-hover-item"
+                    data-cursor-text="see more"
+                    data-cursor-text-repeat="4"
+                  >
+                    see more
+                  </a>
+                </div>
+                <div className="project_image-wrapper" style={parallax}>
+                  <Image src={StackIcons} alt="Stack Icons" />
+                </div>
+              </div>
+            ))}
         </div>
       </div>
     </section>
