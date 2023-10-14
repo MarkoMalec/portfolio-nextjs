@@ -5,9 +5,9 @@ const usePagination = (initialPage, itemsPerPage, items) => {
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = items?.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = Array.isArray(items) ? items.slice(indexOfFirstItem, indexOfLastItem) : [];
 
-  const totalItems = items.length;
+  const totalItems = Array.isArray(items) ? items.length : 0;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
