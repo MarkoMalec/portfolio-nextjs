@@ -38,6 +38,7 @@ model Projects {
     featuredPhoto  String?
     authorId       String?
     author   User?     @relation(fields: [authorId], references: [id])
+    type String @default("project")
 }
 
 model Post {
@@ -51,7 +52,7 @@ model Post {
   featuredPhoto String?
   excerpt String?
   category String?
-  test String?
+  type String @default("post")
 }
 
 // Necessary for Next auth

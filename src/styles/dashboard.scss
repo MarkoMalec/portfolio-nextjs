@@ -102,14 +102,54 @@
   background: rgb(22, 22, 22);
 
   .dashboard_card {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-height: 360px;
+    overflow: hidden;
     border-radius: 12px;
     padding: 10px;
     background-color: rgb(28, 28, 28);
     border: 1px solid rgba(238, 238, 238, 0.067);
     margin-bottom: 25px;
+    position: relative;
+
+    &.overlay {
+
+      &::before {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background: linear-gradient(0deg, rgba(255, 255, 255, 0.1000841020001751) 0%, rgba(0, 0, 0, 0) 80%);
+        transition: .1s ease-in-out;
+        pointer-events: none;
+      }
+
+      .dashboard_card--contents {
+        height: 100%;
+        overflow-y: scroll;
+        padding-bottom: 50px;
+      }
+
+      &:has(.reached-bottom) {
+        &::before {
+          opacity: 0;
+        }
+      }
+    }
 
     h5 {
       margin-bottom: 16px;
+    }
+
+    &:hover {
+      &::before {
+        opacity: 0;
+      }
     }
   }
 
@@ -156,11 +196,11 @@
         overflow: hidden;
         transition: height 0.3s ease-in-out;
       }
-      
+
       .submenu-closed {
         height: 0;
       }
-      
+
       .submenu-open {
         height: 70px;
       }
@@ -174,6 +214,7 @@
       }
 
       z-index: 10;
+
       ul {
         margin: 0;
         padding: 0;
@@ -211,7 +252,7 @@
           color: white;
           stroke: white;
           width: 13px;
-          height:13px;
+          height: 13px;
 
           path {
             stroke: white;
@@ -323,14 +364,20 @@
   margin-bottom: 50px;
 }
 
-.daily-posts-block {
-  max-width: 600px;
-  padding: 16px;
-  background-color: rgb(33, 33, 33);
-  border-radius: 12px;
-  border: 1px solid rgba(207, 207, 207, 0.068);
+// .daily-posts-block {
+//   max-width: 600px;
+//   padding: 16px;
+//   background-color: rgb(33, 33, 33);
+//   border-radius: 12px;
+//   border: 1px solid rgba(207, 207, 207, 0.068);
 
-  canvas {
-    width: 100%;
-  }
+//   canvas {
+//     width: 100%;
+//   }
+// }
+
+.griddey {
+  display: inline-grid;
+  grid-template-columns: 600px auto;
+  gap: 25px;
 }

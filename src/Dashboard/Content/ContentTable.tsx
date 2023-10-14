@@ -1,26 +1,14 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import TableSettings from "./TableSettings";
-import { useRouter } from "next/router";
 import { BiSort } from "react-icons/bi";
 
-const ContentTable = ({ data }) => {
+const ContentTable: React.FC<{ data: any[] }> = ({ data }) => {
   const [contents, setContents] = useState(data);
   const [sortConfig, setSortConfig] = useState({
     key: "id",
     direction: "descending",
   });
-
-  const router = useRouter();
-  const { asPath } = router;
-
-  const contentType = asPath.includes("posts")
-    ? "post"
-    : asPath.includes("projects")
-    ? "project"
-    : asPath.includes("experiences")
-    ? "experience"
-    : undefined;
 
   // Sorting function
   const sortedContents = [...contents].sort((a, b) => {
@@ -33,13 +21,13 @@ const ContentTable = ({ data }) => {
     return 0;
   });
 
-  const handleDelete = (deletedContentId) => {
+  const handleDelete = (deletedContentId: number) => {
     setContents((prevContent) =>
       prevContent.filter((content) => content.id !== deletedContentId)
     );
   };
 
-  const requestSort = (key) => {
+  const requestSort = (key: string) => {
     let direction = "ascending";
     if (sortConfig.key === key && sortConfig.direction === "ascending") {
       direction = "descending";
@@ -79,10 +67,11 @@ const ContentTable = ({ data }) => {
           {sortedContents.map((content) => (
             <tr key={content.id}>
               <td className="content_name-column">
-                <Link href={`/dashboard/${contentType}/${content.id}/edit`}>
+                <Link href={`/dashboard/${content.type}/${content.id}/edit`}>
                   {content.title}
                 </Link>
                 <TableSettings
+                  contentType={content.type}
                   postid={content.id}
                   onDelete={() => handleDelete(content.id)}
                 />

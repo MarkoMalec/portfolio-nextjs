@@ -1,14 +1,21 @@
 import { getSession } from "next-auth/react";
-import { fetchDailyStats } from "@utils/data-fetching";
+import { fetchDailyStats, fetchPosts } from "@utils/data-fetching";
 import DailyPosts from "@Charts/DailyPosts";
+import ContentTable from "@Dashboard/Content/ContentTable";
+import Card from "@Dashboard/Card";
 
-const Dashboard = ({ user, postStats }) => {
+const Dashboard = ({ user, postStats, posts }) => {
   console.table(user);
 
   return (
     <>
       <h1 className="welcome_title">Welcome {user.name}</h1>
+      <section className="griddey">
       <DailyPosts postStats={postStats} />
+      <Card title="Posts" size="xxl">
+        <ContentTable data={posts} />
+      </Card>
+      </section>
     </>
   );
 };
@@ -32,12 +39,14 @@ export const getServerSideProps = async (context) => {
     const baseURL = `${protocol}://${host}`;
 
     const postStats = await fetchDailyStats(baseURL);
+    const posts =  await fetchPosts("/api/post");
 
     return {
       props: {
         session: session,
         user: session.user,
         postStats,
+        posts
       },
     };
   } catch (error) {

@@ -10,8 +10,9 @@ export type Post = {
     title: string;
     content: string;
     authorId: string;
-    excerpt: string,
-    createdAt: string,
+    excerpt: string;
+    createdAt: string;
+    type: string;
 };
 
 export type ExperienceType = {
@@ -20,6 +21,7 @@ export type ExperienceType = {
     timeframe: string;
     description: string;
     skills: string;
+    type: string;
 }
 
 export type Project = {

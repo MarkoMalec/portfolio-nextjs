@@ -1,25 +1,19 @@
 import React from "react";
 import axios from "axios";
 import Link from "next/link";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/router";
 
-const TableSettings = ({ postid, onDelete }) => {
+type ContentData = {
+  contentType: string;
+  postid: number;
+  onDelete: Function;
+}
+
+const TableSettings = ({ contentType, postid, onDelete }: ContentData) => {
   const { data: session } = useSession();
-  console.log(session);
-  const router = useRouter();
-  const { asPath } = router;
 
-  const contentType = asPath.includes("posts")
-    ? "post"
-    : asPath.includes("projects")
-    ? "project"
-    : asPath.includes("experiences")
-    ? "experience"
-    : undefined;
-
-  const deleteContent = async (postId) => {
+  const deleteContent = async (postId: number) => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this item?"
     );
