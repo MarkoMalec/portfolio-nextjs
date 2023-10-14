@@ -3,13 +3,13 @@ import { useState } from 'react';
 const usePagination = (initialPage, itemsPerPage, items) => {
   const [currentPage, setCurrentPage] = useState(initialPage);
 
-  console.log(items);
+  console.log(items, 'items')
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = Array.isArray(items) ? items.slice(indexOfFirstItem, indexOfLastItem) : [];
+  const currentItems = items.slice(indexOfFirstItem, indexOfLastItem);
 
-  const totalItems = Array.isArray(items) ? items.length : 0;
+  const totalItems = items.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
