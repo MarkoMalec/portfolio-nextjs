@@ -5,7 +5,7 @@ const usePagination = (initialPage, itemsPerPage, items) => {
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = items.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = items?.slice(indexOfFirstItem, indexOfLastItem);
 
   const totalItems = items.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
