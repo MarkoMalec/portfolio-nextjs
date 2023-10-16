@@ -1,6 +1,10 @@
 import { fetchUsers } from "@utils/data-fetching";
 
-function PostsPage({ users }) {
+type UsersPageProps = {
+  users: User[];
+}
+
+function PostsPage({ users }: UsersPageProps) {
   return (
     <>
       <h1>Users</h1>
@@ -17,7 +21,7 @@ function PostsPage({ users }) {
 export default PostsPage;
 
 export async function getServerSideProps() {
-  const users = await fetchUsers();
+  const users: User[] = await fetchUsers();
 
   return {
     props: {

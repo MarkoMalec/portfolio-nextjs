@@ -2,22 +2,20 @@
 
 import React, {
   useCallback,
-  useRef,
   useState,
   useEffect,
   forwardRef,
 } from "react";
-import TextareaAutosize from "react-textarea-autosize";
 import { uploadFiles } from "@lib/uploadthing";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "@uploadthing/react/styles.css";
 
 const Editor = forwardRef(
-  ({ editPostData, setTitle, onContentChange }, ref) => {
-    const [isMounted, setIsMounted] = useState(false);
-    const [contentChanged, setContentChanged] = useState(false);
-    const [editPostTitle, setEditPostTitle] = useState("");
+  ({ editPostData, onContentChange }: EditorProps, ref: any) => {
+    const [isMounted, setIsMounted] = useState<boolean>(false);
+    const [contentChanged, setContentChanged] = useState<boolean>(false);
+    const [editPostTitle, setEditPostTitle] = useState<string>("");
 
     const initializeEditor = useCallback(async () => {
       const EditorJS = (await import("@editorjs/editorjs")).default;
@@ -62,16 +60,18 @@ const Editor = forwardRef(
               class: ImageTool,
               config: {
                 uploader: {
-                  async uploadByFile(file) {
+                  async uploadByFile(file: any) {
                     const [res] = await uploadFiles({
                       files: [file],
                       endpoint: "imageUploader",
                     });
 
+                    console.log(file);
+
                     return {
                       success: 1,
                       file: {
-                        url: res.fileUrl,
+                        url: res?.url,
                       },
                     };
                   },

@@ -1,14 +1,18 @@
 import { fetchPosts } from "@utils/data-fetching";
 import ContentTable from "@Dashboard/Content/ContentTable";
 
-function PostsPage({ posts }) {
+type PostsPageProps = {
+  posts: Post[];
+}
+
+const PostsPage = ({ posts }: PostsPageProps) => {
   return <ContentTable data={posts} />;
 }
 
 export default PostsPage;
 
 export async function getServerSideProps() {
-  const posts = await fetchPosts();
+  const posts: Post[] = await fetchPosts();
 
   return {
     props: {

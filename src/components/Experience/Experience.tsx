@@ -1,5 +1,4 @@
 import React from "react";
-import { ExperienceType } from "~/types";
 import VerticalTimeline from "./VerticalTimeline";
 import { useParallaxEffect } from "@hooks/useMousePosition";
 

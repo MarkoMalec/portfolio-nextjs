@@ -4,7 +4,12 @@ import placeholder from "@assets/placeholder.svg";
 import Image from "next/image";
 import Card from "@Dashboard/Card";
 
-function FeaturedPhoto({ initialPhoto, setFeaturedPhoto }) {
+type FeaturedPhotoProps = {
+  initialPhoto?: string;
+  setFeaturedPhoto?: any;
+}
+
+function FeaturedPhoto({ initialPhoto, setFeaturedPhoto }: FeaturedPhotoProps) {
   const [photo, setPhoto] = useState(initialPhoto || "");
 
   return (

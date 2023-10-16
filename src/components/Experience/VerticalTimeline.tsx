@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from "react";
-import { ExperienceType } from "~/types";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 

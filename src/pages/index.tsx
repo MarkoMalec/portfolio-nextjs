@@ -1,5 +1,4 @@
 import Head from "next/head";
-import { HomeProps, Project, ExperienceType, Post } from "~/types";
 import {
   fetchExperiences,
   fetchPosts,

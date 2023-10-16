@@ -4,19 +4,6 @@ import PostGrid from "../elements/PostGrid";
 import PostItem from "../elements/PostItem";
 import usePagination from "@hooks/usePagination";
 
-type Posts = {
-  id: number;
-  featuredPhoto: string;
-  title: string;
-  excerpt: string;
-  createdAt: string;
-  content: string;
-};
-
-type BlogHomeProps = {
-  posts: Posts[];
-};
-
 const BlogHome = ({ posts }: BlogHomeProps) => {
   const { currentPage, currentItems, totalPages, paginate } = usePagination(
     1,
@@ -56,7 +43,7 @@ const BlogHome = ({ posts }: BlogHomeProps) => {
         <p className="section-subtitle">blog</p>
         <h4 className="section-title">Latest Articles</h4>
         <PostGrid>
-          {currentItems.map((post: Posts) => {
+          {currentItems.map((post: Post) => {
             const readingTime = estimateReadingTime(post.content);
             return (
               <PostItem
