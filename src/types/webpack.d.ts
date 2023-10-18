@@ -58,7 +58,7 @@ type BlogHomeProps = {
 
 type EditorProps = {
     editPostData?: { content: string, title: string };
-    onContentChange?: (content: string) => void;
+    onContentChange: (content: string) => void;
     featuredPhoto?: null | string;
     editorData?: null | string;
 }
