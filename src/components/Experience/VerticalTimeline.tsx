@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -13,8 +14,8 @@ const VerticalTimeline = ({ data }: ExperienceProps) => {
   const horizontalLine = useRef(null);
   const timelineRef = useRef(null);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
+  useGSAP(
+    () => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: timelineRef.current,
@@ -43,9 +44,9 @@ const VerticalTimeline = ({ data }: ExperienceProps) => {
           },
         });
       });
-    }, timelineRef);
-    return () => ctx.revert();
-  }, []);
+    },
+    // { scope: timelineRef }
+  );
 
   return (
     <div className="timeline-section">
