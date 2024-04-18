@@ -45,7 +45,7 @@ const VerticalTimeline = ({ data }: ExperienceProps) => {
         });
       });
     },
-    // { scope: timelineRef }
+    { scope: timelineRef }
   );
 
   return (

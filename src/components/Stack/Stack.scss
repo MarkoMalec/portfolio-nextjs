@@ -20,10 +20,6 @@
   justify-content: center;
   gap: 30px;
 
-  &:hover img {
-    filter: grayscale(0);
-  }
-
   div {
     display: block;
     flex: 0 0 calc(100% / 10);
@@ -36,11 +32,15 @@
 
     &:hover {
       background: rgba(255, 255, 255, 0.022);
+
+      img {
+        filter: grayscale(0)
+      }
     }
 
     img {
       filter: grayscale(1);
-      transition: filter 0.5s ease-in-out;
+      transition: filter 0.25s ease-in;
 
       &.nextjs {
         filter: invert(1);
@@ -51,12 +51,6 @@
       img {
         filter: grayscale(0);
       }
-    }
-  }
-
-  @for $i from 1 through 16 {
-    div:nth-child(#{$i}) img {
-      transition-delay: 0.1s * $i;
     }
   }
 }

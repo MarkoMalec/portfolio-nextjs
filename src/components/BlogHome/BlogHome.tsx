@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import PostGrid from "../elements/PostGrid";
 import PostItem from "../elements/PostItem";
+import useEstimateReadingTime from "~/hooks/posts/useReadingTime";
 import usePagination from "@hooks/usePagination";
 
 const BlogHome = ({ posts }: BlogHomeProps) => {
@@ -16,27 +17,6 @@ const BlogHome = ({ posts }: BlogHomeProps) => {
     pageNumbers.push(i);
   }
 
-  const countWords = (text: string) => {
-    return text.split(" ").length;
-  };
-
-  const estimateReadingTime = (editorjsContentString: string, wpm = 100) => {
-    const blocks = JSON.parse(editorjsContentString).blocks;
-    let totalWords = 0;
-
-    blocks.forEach((block: any) => {
-      if (block.type === "paragraph" || block.type === "header") {
-        totalWords += countWords(block.data.text);
-      } else if (block.type === "list") {
-        block.data.items.forEach((item: any) => {
-          totalWords += countWords(item);
-        });
-      }
-    });
-
-    return Math.ceil(totalWords / wpm);
-  };
-
   return (
     <section id="blog_section">
       <div className="container blog-loop">
@@ -44,7 +24,6 @@ const BlogHome = ({ posts }: BlogHomeProps) => {
         <h4 className="section-title">Latest Articles</h4>
         <PostGrid>
           {currentItems.map((post: Post) => {
-            const readingTime = estimateReadingTime(post.content);
             return (
               <PostItem
                 key={post.id}
@@ -52,7 +31,7 @@ const BlogHome = ({ posts }: BlogHomeProps) => {
                 postTitle={post.title}
                 postExcerpt={post.excerpt}
                 date={post.createdAt}
-                ttr={readingTime}
+                ttr={useEstimateReadingTime(post.content)}
               />
             );
           })}
@@ -82,7 +61,12 @@ const BlogHome = ({ posts }: BlogHomeProps) => {
         >
           Next
         </button>
-        <Link href="/blog" className="btn btn-primary">
+        <Link
+          href="/blog"
+          className="btn btn-primary cursor-hover-item"
+          data-cursor-text="BLOGPOSTS"
+          data-cursor-text-repeat="3"
+        >
           See more posts
         </Link>
       </div>
