@@ -50,7 +50,6 @@ $background-gradient-herotext: -webkit-linear-gradient(
     align-items: center;
     width: 100%;
     z-index: 10;
-    pointer-events: none;
 
     .hero-photo {
       @media (min-width: 1480px) {
@@ -66,6 +65,7 @@ $background-gradient-herotext: -webkit-linear-gradient(
       transform: scaleX(-1);
       background-size: cover;
       background-position-x: -100px;
+      pointer-events: none;
 
       @media (max-width: $smaller) {
         background-position-x: -300px;
