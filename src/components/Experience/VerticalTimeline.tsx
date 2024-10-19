@@ -48,6 +48,10 @@ const VerticalTimeline = ({ data }: ExperienceProps) => {
     { scope: timelineRef }
   );
 
+  if (data.length === 0) {
+    return <>Loading...</>;
+  }
+
   return (
     <div className="timeline-section">
       <div className="timeline-container" ref={timelineRef}>
