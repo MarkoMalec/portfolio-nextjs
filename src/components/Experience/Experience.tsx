@@ -7,7 +7,7 @@ interface ExperiencesProps {
 }
 
 const Experience = ({ data }: ExperiencesProps) => {
-  const parallaxStyle = useParallaxEffect(20);
+  const parallaxStyle = useParallaxEffect(21);
 
   return (
     <section id="experience_wrapper">
